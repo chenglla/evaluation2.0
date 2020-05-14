@@ -1,15 +1,24 @@
 <template>
   <div class="navbar weui-tabbar">
-    <div v-for="item in menu" v-tap="[changeMenu, item.link]" :key="item.value" :class="[{'active': item.value === curMenu}, 'weui-tabbar__item', 'tabbar-item--' + item.value]">
-      <template v-if="item.value !== 'add'">
-        <i :class="['iconfont', item.icon, 'weui-tabbar__icon']"></i>
+    <div v-for="item in menu" v-tap="[changeMenu, item.src]" :key="item.value" :class="[{'active': item.value === curMenu}, 'weui-tabbar__item', 'tabbar-item--' + item.value]">
+      <template v-if="item.value !== curMenu">
+<!--      <template v-if="item.value !== 'add'">-->
+<!--        <i :class="['iconfont', item.icon, 'weui-tabbar__icon']"></i>-->
+        <img :src="item.link" class="weui-tabbar__icon img_icon" alt="">
         <p class="weui-tabbar__label">{{item.name}}</p>
       </template>
       <template v-else>
-        <div class="tabbar-add-btn">
-          <i :class="['iconfont', item.icon, 'weui-tabbar__icon']"></i>
-        </div>
+        <img :src="item.linkActive" class="weui-tabbar__icon img_icon" alt="">
+        <p class="weui-tabbar__label">{{item.name}}</p>
+<!--        <div class="tabbar-add-btn">-->
+<!--          <i :class="['iconfont', item.icon, 'weui-tabbar__icon']"></i>-->
+<!--        </div>-->
       </template>
+<!--      <template v-else>-->
+<!--        <div class="tabbar-add-btn">-->
+<!--          <i :class="['iconfont', item.icon, 'weui-tabbar__icon']"></i>-->
+<!--        </div>-->
+<!--      </template>-->
     </div>
   </div>
 </template>
@@ -18,31 +27,41 @@ export default {
   data () {
     return {
       menu: [{
-        link: 'home',
+        link: require('../assets/img/zhuye.png'),
+        linkActive: require('../assets/img/zhuye-ac.png'),
+        src: 'home',
         value: 'home',
         name: '首页',
         icon: 'icon_lulushouye'
       }, {
-        link: 'bbs/hot',
+        link: require('../assets/img/zhuanye-4.png'),
+        linkActive: require('../assets/img/zhuanye-4-ac.png'),
         // link: 'study',
-        value: 'study',
-        name: '讨论',
+        src: 'major',
+        value: 'major',
+        name: '专业百科',
         icon: 'icon_luluziyuan'
       },
       {
         // link: 'add',
-        link: 'addScore',
-        value: 'add',
-        // name: '加号',
+        link: require('../assets/img/zhiye.png'),
+        linkActive: require('../assets/img/zhiye-ac.png'),
+        src: 'career',
+        value: 'career',
+        name: '职业百科',
         icon: 'icon_lulutianjia'
       },
       {
-        link: 'lineCourse',
-        value: 'lineCourse',
-        name: '题库',
+        link: require('../assets/img/anli.png'),
+        linkActive: require('../assets/img/anli-ac.png'),
+        src: 'careerCase',
+        value: 'careerCase',
+        name: '职业案例',
         icon: 'icon_luluzaixianketang'
       }, {
-        link: 'my',
+        link: require('../assets/img/wode.png'),
+        linkActive: require('../assets/img/wode-ac.png'),
+        src: 'my',
         value: 'my',
         name: '我的',
         icon: 'icon_luluwo'
@@ -57,8 +76,8 @@ export default {
     }
   },
   methods: {
-    changeMenu (link) {
-      this.$router.push({ path: './' + link })
+    changeMenu (src) {
+      this.$router.push({ path: './' + src })
       // this.$router.push({ path: '/bbs/hot' })
     }
   }
@@ -67,15 +86,19 @@ export default {
 </script>
 <style lang="scss">
   .weui-tabbar {
+    padding-top: 5px;
     background-color: #fff;
     box-shadow: 0px -1px 3px 1px rgba(0, 0, 0, 0.1);
     &:before {
       display: none;
     }
   }
-
+  .img_icon {
+    width: 20px;
+    height: 20px;
+  }
   .weui-tabbar__icon>i, i.weui-tabbar__icon {
-    font-size: 22px;
+    font-size: 20px;
     color: RGB(51,51,51);
     /*color: #000;*/
     /*opacity: 0.6;*/
@@ -85,9 +108,13 @@ export default {
   .active {
     .weui-tabbar__icon {
       /*color: #42b983;*/
-      color: RGB(67,183,131);
+      color: RGB(97,192,131);
       /*border-radius: 10px;*/
       /*opacity: 1;*/
+    }
+    .weui-tabbar__label {
+      color: #61c0f1;
+      font-weight: bold;
     }
   }
   .weui-tabbar__item {
@@ -97,7 +124,7 @@ export default {
     margin-top: 2px;
     line-height: 1.8;
     font-size: 12px;
-    color: #6b6b6b;
+    color: rgb(152, 152, 152);
     /*color: silver;*/
   }
   .tabbar-add-btn {
