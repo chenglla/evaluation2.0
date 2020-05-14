@@ -60,7 +60,8 @@ export default {
   watch: {
     currentIndex (newVal, oldVal) {
       // this.n = -1
-      console.log('改变：', newVal, oldVal)
+      console.log('改变：', this.currentIndex, newVal, oldVal)
+      // 索引变化，设置上一题，下一题按钮的变化
       const btnList = document.querySelectorAll('.btn_last')
       if (this.currentIndex > 0 && this.currentIndex < this.learnQuesList.length - 1) {
         for (let i = 0; i < btnList.length; i++) {
@@ -76,6 +77,10 @@ export default {
         btnList[1].className = 'btn_last'
         btnList[1].style.pointerEvents = 'none'
       }
+      // 记录用户做题选项
+      console.log('用户选项：', this.answerList)
+      // if ()
+      this.n = this.answerList[this.currentIndex] - 1
     }
   },
   methods: {
@@ -92,7 +97,7 @@ export default {
           this.learnQuesList = res.data.data
           this.rate = this.currentQuesNum / this.learnQuesList.length * 100
           // this.rate = this.currentQuesNum / this.learnQuesList.length
-          console.log('bilv:', this.rate)
+          // console.log('bilv:', this.rate)
           for (const item in this.learnQuesList) {
             this.learnQuesList[item].options = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
             // this.type3Content[item].questionId = 'seleted' + item
@@ -120,7 +125,7 @@ export default {
       this.rate = this.currentQuesNum / this.learnQuesList.length * 100
     },
     gotoNext () { // 下一题
-      console.log('222222222')
+      // console.log('222222222')
       this.currentIndex += 1
       this.currentQuesNum += 1
       this.rate = this.currentQuesNum / this.learnQuesList.length * 100

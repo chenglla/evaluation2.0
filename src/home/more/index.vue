@@ -11,6 +11,7 @@
     <div class="more_second">
       <div class="more_second_left" ref="more_second_left">
         <div>
+
           <div v-for="(item, index) in typeList" :key="index" class="more_second_left_item" @click="getEvalType(index)">{{item}}</div>
         </div>
       </div>
@@ -230,12 +231,14 @@ import BScroll from 'better-scroll'
 export default {
   data () {
     return {
-      moreScroll: null,
+      moreLeftScroll: null,
+      moreRightScroll: null,
       typeList: ['全部', '性格', '情感', '职场', '健康', '人际']
     }
   },
   mounted () {
-    this.init()
+    this.initLeft()
+    this.initRight()
     const items = document.querySelectorAll('.more_second_left_item')
     items[0].className = 'more_second_left_item active'
   },
@@ -243,9 +246,16 @@ export default {
     returnBack () {
       this.$router.go(-1)
     },
-    init () {
+    initLeft () {
       this.$nextTick(() => {
-        this.moreScroll = new BScroll(this.$refs.more_second_left, {
+        this.moreLeftScroll = new BScroll(this.$refs.more_second_left, {
+          click: true
+        })
+      })
+    },
+    initRight () {
+      this.$nextTick(() => {
+        this.moreRightScroll = new BScroll(this.$refs.more_second_right, {
           click: true
         })
       })
@@ -254,7 +264,7 @@ export default {
       // console.log(val)
       const items = document.querySelectorAll('.more_second_left_item')
       const rights = document.querySelectorAll('.more_second_right_one')
-      console.log(rights)
+      // console.log(rights)
       if (val === 0) {
         for (let i = 0; i < items.length; i++) {
           items[i].className = 'more_second_left_item'
@@ -262,7 +272,7 @@ export default {
         }
       } else {
         for (let i = 0; i < items.length; i++) {
-          console.log(i)
+          // console.log(i)
           items[i].className = 'more_second_left_item'
           rights[i].style.display = 'none'
         }
@@ -324,12 +334,14 @@ export default {
     width: 100%;
   }
   .more_second {
-    padding-top: 10px;
+    padding-top: 18px;
     z-index: 1;
     border-radius: 4px;
     display: flex;
     background-color: #f8f8f8;
-    margin: 5px 15px 10px;
+    margin: 5px 15px 5px;
+    height: calc(100% - 55px);
+    overflow: hidden;
     .more_second_left {
       flex: 2;
       .more_second_left_item {
@@ -349,7 +361,7 @@ export default {
     }
     .more_second_right {
       flex: 5;
-      margin: 10px 7px 10px 0;
+      margin: 0 7px 10px 0;
       .active {
 
       }
