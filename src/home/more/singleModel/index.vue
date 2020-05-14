@@ -4,7 +4,7 @@
       <div class="return__icon" @click="returnBack">
         <i class="iconfont iconfanhui"></i>
       </div>
-      <div class="title">学习力模型</div>
+      <div class="title">{{title}}</div>
     </div>
     <div class="learnAbility_second">
       <div>
@@ -18,7 +18,7 @@
             <span>【单选】</span>
             {{item.questions}}
           </p>
-          <div v-for="(c,ind) of item.options" class="ques_option" @click="changeList(c, ind, index)" :key="ind">
+          <div v-for="(c,ind) of item.optionsList" class="ques_option" @click="changeList(c, ind, index)" :key="ind">
             <span :class="{checked:ind === n}">{{c.key}}</span>
             <span>{{c.value}}</span>
           </div>
@@ -42,7 +42,7 @@
   </div>
 </template>
 <script>
-import {getLearnQuestion, postLearnAnswer} from '@/api/index'
+import {getLearnQuestion} from '@/api/index'
 export default {
   data () {
     return {
@@ -51,10 +51,19 @@ export default {
       learnQuesList: [],
       n: -1, // 选项
       answerList: {},
-      rate: 0
+      rate: 0,
+      title: '学习力模型'
+    }
+  },
+  computed: {
+    typeId () {
+      // this.$store.state.singleModel.typeId
+      console.log('typeid:', this.$route.query.typeId)
+      return parseInt(this.$route.query.typeId)
     }
   },
   mounted () {
+    this.getTitle()
     this.getLearnQuesList()
   },
   watch: {
@@ -87,19 +96,29 @@ export default {
     returnBack () {
       this.$router.go(-1)
     },
+    getTitle () { // 获取标题
+      if (this.typeId === 3) {
+        this.title = '学习力模型'
+      } else if (this.typeId === 9) {
+        this.title = '人格测试'
+      }
+    },
     getLearnQuesList () { // 获取学习力模型所有题
       getLearnQuestion({
         openid: '111',
-        evaluateType: 3
+        evaluateType: this.typeId
       }).then(res => {
+        console.log(this.typeId, res.data)
         if (res.data.code === 0) {
           this.currentIndex += 1
           this.learnQuesList = res.data.data
           this.rate = this.currentQuesNum / this.learnQuesList.length * 100
-          // this.rate = this.currentQuesNum / this.learnQuesList.length
-          // console.log('bilv:', this.rate)
           for (const item in this.learnQuesList) {
-            this.learnQuesList[item].options = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
+            if (this.typeId === 3) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
+            } else if (this.typeId === 9) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+            }
             // this.type3Content[item].questionId = 'seleted' + item
           }
         }
@@ -131,8 +150,14 @@ export default {
       this.rate = this.currentQuesNum / this.learnQuesList.length * 100
     },
     submitAns () { // 交卷
+      var val = ''
+      if (this.typeId === 3) {
+        val = 'learnResult'
+      } else if (this.typeId === 9) {
+        val = 'personAssResult'
+      }
       this.$router.push({
-        name: 'learnResult',
+        name: val,
         query: {
           list: JSON.stringify(this.answerList)
         }

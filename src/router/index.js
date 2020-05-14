@@ -11,8 +11,9 @@ const career = () => import('@/career/index') // 职业百科
 const careerCase = () => import('@/careerCase/index') // 职业案例
 const my = () => import('@/my/index') // 我的
 const mbti = () => import('@/home/more/mbti/index') // mbti
-const learnAbility = () => import('@/home/more/learnAbility/index') // 学习力模型
-const learnResult = () => import('@/home/more/learnAbility/learnResult') // 学习力模型结果
+const singleModel = () => import('@/home/more/singleModel/index') // 学习力模型 + 模型测评单选页面
+const learnResult = () => import('@/home/more/singleModel/learnResult') // 学习力模型结果
+const personAssResult = () => import('@/home/more/singleModel/personAssResult') // 人格测试结果
 
 export default new Router({
   routes: [
@@ -79,12 +80,12 @@ export default new Router({
       meta: { tab: 'mbti', title: 'mbti' }
     },
     {
-      path: '/learnAbility',
+      path: '/singleModel',
       components: {
-        default: learnAbility
+        default: singleModel
       },
-      name: 'learnAbility',
-      meta: { tab: 'learnAbility', title: 'learnAbility' }
+      name: 'singleModel',
+      meta: { tab: 'singleModel', title: 'singleModel' }
     },
     { // 学习力模型结果
       path: '/learnResult',
@@ -93,6 +94,14 @@ export default new Router({
       },
       name: 'learnResult',
       meta: { tab: 'learnResult', title: 'learnResult' }
+    },
+    { // 人格测试结果
+      path: '/personAssResult',
+      components: {
+        default: personAssResult
+      },
+      name: 'personAssResult',
+      meta: { tab: 'personAssResult', title: 'personAssResult' }
     },
   ]
 })

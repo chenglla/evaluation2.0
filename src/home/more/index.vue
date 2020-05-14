@@ -11,7 +11,6 @@
     <div class="more_second">
       <div class="more_second_left" ref="more_second_left">
         <div>
-
           <div v-for="(item, index) in typeList" :key="index" class="more_second_left_item" @click="getEvalType(index)">{{item}}</div>
         </div>
       </div>
@@ -52,7 +51,8 @@
             </div>
           </div>
           <div class="more_second_right_one">
-            <div class="more_second_right_item" @click="gotoOption('mbti')">
+            <div class="more_second_right_item">
+<!--            <div class="more_second_right_item" @click="gotoOption('mbti', 1)">-->
               <div class="more_second_right_left">
                 <div>
                   <span>MBTI职业性格测试</span>
@@ -68,7 +68,8 @@
                 <img src="../../assets/img/5677.jpg" alt="">
               </div>
             </div>
-            <div class="more_second_right_item" @click="gotoOption('learnAbility')">
+            <div class="more_second_right_item" @click="gotoOption(3)">
+<!--            <div class="more_second_right_item" @click="gotoOption('singleModel', 3)">-->
               <div class="more_second_right_left">
                 <div>
                   <span>学习力模型</span>
@@ -87,7 +88,9 @@
           </div>
           <div class="more_second_right_one">
             <div class="more_second_right_item">
-              <div class="more_second_right_left">
+              <div class="more_second_right_left" @click="gotoOption(9)">
+<!--              <div class="more_second_right_left" @click="gotoOption('singleModel', 9)">-->
+<!--              <div class="more_second_right_left" @click="gotoOption('personAssessment', 9)">-->
                 <div>
                   <span>五大人格测试</span>
                   <span>测测你内心深处的阴暗面</span>
@@ -260,12 +263,11 @@ export default {
         })
       })
     },
-    getEvalType (val) {
-      // console.log(val)
-      const items = document.querySelectorAll('.more_second_left_item')
-      const rights = document.querySelectorAll('.more_second_right_one')
+    getEvalType (val) { // val表示左侧点击按钮的index
+      const items = document.querySelectorAll('.more_second_left_item') // 获取左侧所有按钮
+      const rights = document.querySelectorAll('.more_second_right_one') // 获取右侧所有内容
       // console.log(rights)
-      if (val === 0) {
+      if (val === 0) { // 这里展示的是默认全部div内容
         for (let i = 0; i < items.length; i++) {
           items[i].className = 'more_second_left_item'
           rights[i].style.display = ''
@@ -273,16 +275,22 @@ export default {
       } else {
         for (let i = 0; i < items.length; i++) {
           // console.log(i)
-          items[i].className = 'more_second_left_item'
+          items[i].className = 'more_second_left_item' // 除了点击的按钮，其他按钮没有css变化
           rights[i].style.display = 'none'
         }
       }
-      items[val].className = 'more_second_left_item active'
+      items[val].className = 'more_second_left_item active' // 添加active属性，是设置了点击按钮状态的css变化
       rights[val].style.display = ''
     },
-    gotoOption (val) {
+    gotoOption (id) {
+    // gotoOption (val, id) {
+    //   this.$store.commit('SET_TYPE_ID', id)
       this.$router.push({
-        name: val
+        name: 'singleModel',
+        // name: 'learnAbility',
+        query: {
+          typeId: id
+        }
       })
     }
   }

@@ -1,22 +1,15 @@
 import request from '@/utils/request'
 
-export function getLearnQuestion (req) { // 学习力模型
+export function getLearnQuestion (req) { // 获取单选模型题型
   return request({
     url: 'getExercisesByType',
     method: 'get',
     params: req
   })
 }
-export function getPersonAssInfo (req) { // 获取人格测试题型
-  return request({
-    url: '/getExercisesByType',
-    method: 'get',
-    params: req
-  })
-}
 export function postPersonResult (req) { // 提交人格测试结果
   return request({
-    url: '/bigFive/submitEvaluate',
+    url: 'bigFive/submitEvaluate',
     method: 'post',
     params: req
   })
