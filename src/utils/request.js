@@ -3,7 +3,7 @@ import qs from 'qs'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://www.zhongkeruitong.top/evaluate/evaluate/', // api的base_url
+  baseURL: 'http://www.zhongkeruitong.top/evaluate_new/evaluate_new/', // api的base_url
   // timeout: 300 // 请求超时时间
   timeout: 50000 // 请求超时时间
 })

@@ -20,7 +20,7 @@
           </p>
           <div v-for="(c,ind) of item.optionsList" class="ques_option" @click="changeList(c, ind, index)" :key="ind">
             <span :class="{checked:ind === n}">{{c.key}}</span>
-            <span>{{c.value}}</span>
+            <span class="ques_option_value">{{c.value}}</span>
           </div>
 
 <!--          <x-button></x-button>-->
@@ -101,6 +101,8 @@ export default {
         this.title = '学习力模型'
       } else if (this.typeId === 9) {
         this.title = '人格测试'
+      } else if (this.typeId === 1) {
+        this.title = 'MBTI职业性格测试'
       }
     },
     getLearnQuesList () { // 获取学习力模型所有题
@@ -118,6 +120,10 @@ export default {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
             } else if (this.typeId === 9) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+            } else if (this.typeId === 1) {
+              let list = this.learnQuesList[item].options.split('B')
+              // console.log('list', list)
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].replace(/(^\s*)|(\s*$)/g, '')}]
             }
             // this.type3Content[item].questionId = 'seleted' + item
           }
@@ -150,11 +156,13 @@ export default {
       this.rate = this.currentQuesNum / this.learnQuesList.length * 100
     },
     submitAns () { // 交卷
-      var val = ''
+      let val = ''
       if (this.typeId === 3) {
         val = 'learnResult'
       } else if (this.typeId === 9) {
         val = 'personAssResult'
+      } else if (this.typeId === 1) {
+        val = 'mbtiResult'
       }
       this.$router.push({
         name: val,
@@ -248,6 +256,9 @@ export default {
         padding: 0 5px 1px;
         border-radius: 50%;
         margin-right: 6px;
+      }
+      .ques_option_value {
+        line-height: 30px;
       }
     }
     /*选择当前选项时，出现checked属性，并且变色*/

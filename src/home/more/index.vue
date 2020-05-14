@@ -51,8 +51,8 @@
             </div>
           </div>
           <div class="more_second_right_one">
-            <div class="more_second_right_item">
-<!--            <div class="more_second_right_item" @click="gotoOption('mbti', 1)">-->
+<!--            <div class="more_second_right_item">-->
+            <div class="more_second_right_item" @click="gotoOption(1)">
               <div class="more_second_right_left">
                 <div>
                   <span>MBTI职业性格测试</span>
