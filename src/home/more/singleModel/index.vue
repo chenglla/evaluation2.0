@@ -52,7 +52,8 @@ export default {
       n: -1, // 选项
       answerList: {},
       rate: 0,
-      title: '学习力模型'
+      title: '学习力模型',
+      flag: true
     }
   },
   computed: {
@@ -132,17 +133,32 @@ export default {
       })
     },
     changeList (content, option, index) { // 选项内容，第i-1个选项，第几-1题--点击选项
-      this.n = option
-      this.answerList[index] = option + 1
-      const _this = this
-      setTimeout(function () {
-        // console.log('不执行：')
-        _this.n = -1
-        _this.currentIndex += 1
-        _this.currentQuesNum += 1
-        _this.rate = _this.currentQuesNum / _this.learnQuesList.length * 100
-      }, 400, true)
-      console.log(this.answerList)
+      console.log('当前索引1：', index, this.learnQuesList.length)
+      // if (index === this.learnQuesList.length - 1) {
+      //   let btn = document.querySelector('.ques_option')
+      //   btn.style.pointerEvents = 'none'
+      // }
+      if (this.flag) {
+        this.flag = false
+        this.n = option
+        this.answerList[index] = option + 1
+        const _this = this
+        setTimeout(function () {
+          // console.log('不执行：')
+          if (_this.currentIndex < _this.learnQuesList.length - 1) {
+            _this.n = -1
+            _this.currentIndex += 1
+            _this.currentQuesNum += 1
+            _this.rate = _this.currentQuesNum / _this.learnQuesList.length * 100
+            _this.flag = true
+            console.log('当前索引', _this.currentIndex)
+          }
+          // if (_this.currentIndex < _this.learnQuesList.length - 1) {
+          //   _this.flag = true
+          // }
+        }, 400, true)
+        console.log(this.answerList)
+      }
     },
     gotoLast () { // 上一题
       this.currentIndex -= 1
