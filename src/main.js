@@ -7,11 +7,12 @@ import router from './router'
 import vueTap from 'vue-js-tap'
 import store from './store'
 import echarts from 'echarts'
-import { XProgress, Box, XButton } from 'vux'
+import { XProgress, Box, XButton, Swiper } from 'vux'
 
 Vue.use(vueTap)
 // Vue.use(VueRouter)
 Vue.component('x-progress', XProgress)
+Vue.component('swiper', Swiper)
 Vue.component('x-button', XButton)
 Vue.component('box', Box)
 Vue.prototype.echarts = echarts
