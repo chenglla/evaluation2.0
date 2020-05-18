@@ -76,9 +76,12 @@ export default {
       img {
         height: 26px!important;
       }
+      .eval_third_one {
+        padding: 5px;
+      }
     }
     .eval_third_info {
-      /*margin: 15px;*/
+      margin: 10px 15px;
     }
     .eval_third_item {
       .eval_third_one {
@@ -104,9 +107,12 @@ export default {
       img {
         height: 30px!important;
       }
+      .eval_third_one {
+        padding: 8px 5px;
+      }
     }
     .eval_third_info {
-      /*margin: 15px 15px 20px;*/
+      margin: 15px;
     }
     .eval_third_item {
       .eval_third_one {
@@ -122,7 +128,6 @@ export default {
     }
   }
   .eval_third_info {
-    margin: 15px;
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;

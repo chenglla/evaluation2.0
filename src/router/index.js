@@ -11,7 +11,8 @@ const career = () => import('@/career/index') // 职业百科
 const careerCase = () => import('@/careerCase/index') // 职业案例
 const my = () => import('@/my/index') // 我的
 const mbtiResult = () => import('@/home/more/singleModel/mbtiResult') // mbti结果
-const major_info = () => import('@/home/more/singleModel/major_info') // mbti结果专业按钮跳转
+const majorInfo = () => import('@/home/more/singleModel/major_info') // mbti结果专业按钮跳转
+const building = () => import('@/layout/building') // 正在建设中
 const singleModel = () => import('@/home/more/singleModel/index') // 学习力模型 + 模型测评单选页面
 const learnResult = () => import('@/home/more/singleModel/learnResult') // 学习力模型结果
 const personAssResult = () => import('@/home/more/singleModel/personAssResult') // 人格测试结果
@@ -107,10 +108,18 @@ export default new Router({
     { // mbti测试结果专业跳转
       path: '/major_info',
       components: {
-        default: major_info
+        default: majorInfo
       },
-      name: 'major_info',
-      meta: { tab: 'major_info', title: 'major_info' }
+      name: 'majorInfo',
+      meta: { tab: 'majorInfo', title: 'majorInfo' }
+    },
+    {
+      path: '/building',
+      components: {
+        default: building
+      },
+      name: 'building',
+      meta: { tab: 'building', title: 'building' }
     },
   ]
 })
