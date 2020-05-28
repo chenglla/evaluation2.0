@@ -92,6 +92,9 @@ export default {
     &:before {
       display: none;
     }
+    // 菜单固定在底部
+    position: fixed;
+    bottom: 0px;
   }
   .img_icon {
     width: 20px;
