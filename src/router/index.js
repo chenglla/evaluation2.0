@@ -4,12 +4,16 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 const home = () => import('@/home/index') // 首页
+const discussion = () => import('@/home/discussion') // 讨论圈
 const more = () => import('@/home/more/index') // 首页--更多测评
 const nav = () => import('@/layout/navbar') // 微信底部栏
 const major = () => import('@/major/index') // 专业百科
 const career = () => import('@/career/index') // 职业百科
 const careerCase = () => import('@/careerCase/index') // 职业案例
 const my = () => import('@/my/index') // 我的
+const myinterest = () => import('@/my/myinterest') // 我的兴趣
+const myCollect = () => import('@/my/myCollect') // 我的收藏
+const myStar = () => import('@/my/myStar') // 我赞过的
 const mbtiResult = () => import('@/home/more/singleModel/mbtiResult') // mbti结果
 const majorInfo = () => import('@/home/more/singleModel/major_info') // mbti结果专业按钮跳转
 const building = () => import('@/layout/building') // 正在建设中
@@ -32,6 +36,15 @@ export default new Router({
       },
       name: 'home',
       meta: { tab: 'home', title: 'home' }
+    },
+    {
+      // 讨论圈
+      path: '/discussion',
+      components: {
+        default: discussion
+      },
+      name: 'discussion',
+      meta: { tab: 'discussion', title: 'discussion' }
     },
     {
       path: '/more',
@@ -72,6 +85,37 @@ export default new Router({
       },
       name: 'my',
       meta: { tab: 'my', title: 'my' }
+    },
+    //
+    {
+      // 这是链接上的显示路径
+      path: '/myinterest',
+      components: {
+        default: myinterest
+      },
+      name: 'myinterest',
+      // 登录校验
+      meta: { tab: 'myinterest', title: 'myinterest' }
+    },
+    {
+      // 这是链接上的显示路径
+      path: '/mycollect',
+      components: {
+        default: myCollect
+      },
+      name: 'myCollect',
+      // 登录校验
+      meta: { tab: 'myCollect', title: 'myCollect' }
+    },
+    {
+      
+      path: '/myStar',
+      components: {
+        default: myStar
+      },
+      name: 'myStar',
+      // 登录校验
+      meta: { tab: 'myStar', title: 'myStar' }
     },
     {
       path: '/singleModel',
