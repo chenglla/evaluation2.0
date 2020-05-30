@@ -5,8 +5,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 const home = () => import('@/home/index') // 首页
 const discussion = () => import('@/home/discussion') // 讨论圈
-const majorDetail = () => import('@/home/majorDetail') // 专业详情
-const careerDetail = () => import('@/home/careerDetail') // 专业详情
+//const majorDetail = () => import('@/home/majorDetail') // 专业详情
+//const careerDetail = () => import('@/home/careerDetail') // 专业详情
 const more = () => import('@/home/more/index') // 首页--更多测评
 const nav = () => import('@/layout/navbar') // 微信底部栏
 const major = () => import('@/major/index') // 专业百科
@@ -48,24 +48,24 @@ export default new Router({
       name: 'discussion',
       meta: { tab: 'discussion', title: 'discussion' }
     },
-    {
-      // 专业详情
-      path: '/majorDetail',
-      components: {
-        default: majorDetail
-      },
-      name: 'majorDetail',
-      meta: { tab: 'majorDetail', title: 'majorDetail' }
-    },
-    {
-      // 专业详情
-      path: '/careerDetail',
-      components: {
-        default: careerDetail
-      },
-      name: 'careerDetail',
-      meta: { tab: 'careerDetail', title: 'careerDetail' }
-    },
+    // {
+    //   // 专业详情
+    //   path: '/majorDetail',
+    //   components: {
+    //     default: majorDetail
+    //   },
+    //   name: 'majorDetail',
+    //   meta: { tab: 'majorDetail', title: 'majorDetail' }
+    // },
+    // {
+    //   // 职业详情
+    //   path: '/careerDetail',
+    //   components: {
+    //     default: careerDetail
+    //   },
+    //   name: 'careerDetail',
+    //   meta: { tab: 'careerDetail', title: 'careerDetail' }
+    // },
     {
       path: '/more',
       components: {
