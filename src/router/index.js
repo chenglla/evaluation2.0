@@ -108,7 +108,6 @@ export default new Router({
       meta: { tab: 'myCollect', title: 'myCollect' }
     },
     {
-      
       path: '/myStar',
       components: {
         default: myStar
