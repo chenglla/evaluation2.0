@@ -41,3 +41,26 @@ export function postLearnAnswer (req) { // 学习力模型结果
     // dataType: 'json'
   })
 }
+
+
+export function postPlanResult (req) { // 提交计划力测试结果
+  return request({
+    url: 'basicLiteracy/submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
+export function getPlanQuestion (req) { // 获取所有测评结果
+  return request({
+    url: '/basicLiteracy/getAll',
+    method: 'get',
+    params: req
+  })
+}
+export function postHBDIResult (req) { // 提交HBDI测试结果
+  return request({
+    url: '/hbdi/submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}

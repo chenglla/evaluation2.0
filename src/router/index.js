@@ -22,6 +22,9 @@ const building = () => import('@/layout/building') // 正在建设中
 const singleModel = () => import('@/home/more/singleModel/index') // 学习力模型 + 模型测评单选页面
 const learnResult = () => import('@/home/more/singleModel/learnResult') // 学习力模型结果
 const personAssResult = () => import('@/home/more/singleModel/personAssResult') // 人格测试结果
+const planResult = () => import('@/home/more/singleModel/planResult') //计划性测试
+const physicalFitnessResult = () => import('@/home/more/singleModel/physicalFitnessResult')// 身体素质测试结果 
+const TIMSSResult = () => import('@/home/more/singleModel/TIMSSResult') 
 
 export default new Router({
   routes: [
@@ -160,6 +163,14 @@ export default new Router({
       name: 'personAssResult',
       meta: { tab: 'personAssResult', title: 'personAssResult' }
     },
+    { // 身体素质测试结果
+      path: '/physicalFitnessResult',
+      components: {
+        default: physicalFitnessResult
+      },
+      name: 'physicalFitnessResult',
+      meta: { tab: 'physicalFitnessResult', title: 'physicalFitnessResult' }
+    },
     { // mbti测试结果
       path: '/mbtiResult',
       components: {
@@ -175,6 +186,22 @@ export default new Router({
       },
       name: 'majorInfo',
       meta: { tab: 'majorInfo', title: 'majorInfo' }
+    },
+    { // 计划力测试
+      path: '/planResult',
+      components: {
+        default: planResult
+      },
+      name: 'planResult',
+      meta: { tab: 'planResult', title: 'planResult' }
+    },
+    { // TIMSS-A数学能力模型测试结果
+      path: '/TIMSSResult',
+      components: {
+        default: TIMSSResult
+      },
+      name: 'TIMSSResult',
+      meta: { tab: 'TIMSSResult', title: 'TIMSSResult' }
     },
     {
       path: '/building',

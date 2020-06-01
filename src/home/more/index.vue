@@ -106,7 +106,7 @@
                 <img src="../../assets/img/23.jpg" alt="">
               </div>
             </div>
-            <div class="more_second_right_item" @click="gotoOption(-1)">
+            <div class="more_second_right_item" @click="gotoOption(14)">
               <div class="more_second_right_left">
                 <div>
                   <span>TIMSS-A数学能力模型</span>
@@ -156,7 +156,7 @@
                 <img src="../../assets/img/心理健康.jpg" alt="">
               </div>
             </div>
-            <div class="more_second_right_item" @click="gotoOption(-1)">
+            <div class="more_second_right_item" @click="gotoOption(6)">
               <div class="more_second_right_left">
                 <div>
                   <span>身体素质能力</span>
@@ -190,7 +190,7 @@
                 <img src="../../assets/img/乐观.jpg" alt="">
               </div>
             </div>
-            <div class="more_second_right_item" @click="gotoOption(-1)">
+            <div class="more_second_right_item" @click="gotoOption(11)">
               <div class="more_second_right_left">
                 <div>
                   <span>计划性</span>
