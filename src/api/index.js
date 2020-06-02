@@ -23,7 +23,7 @@ export function postMBTIResult (req) { // 提交MBTI测试结果
 }
 export function gotoMBTIMajorCon (req) { // 获取MBTI专业数据
   return request({
-    baseURL: 'http://www.zhongkeruitong.top/evaluate/evaluate/',
+    baseURL: 'https://www.zhongkeruitong.top/evaluate/evaluate/',
     url: 'profession/getList',
     method: 'get',
     params: req
@@ -41,8 +41,6 @@ export function postLearnAnswer (req) { // 学习力模型结果
     // dataType: 'json'
   })
 }
-
-
 export function postPlanResult (req) { // 提交计划力测试结果
   return request({
     url: 'basicLiteracy/submitEvaluate',

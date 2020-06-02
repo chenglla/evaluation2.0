@@ -443,7 +443,7 @@ export default {
         background-color: #fff;
         border-radius: 4px;
         margin-bottom: 8px;
-        padding: 5px;
+        padding: 5px 3px;
         .more_second_right_left {
           flex: 5;
           display: flex;
@@ -484,7 +484,8 @@ export default {
           justify-content: flex-end;
           img {
             width: 100%;
-            flex-shrink: 0;
+            height: 100%;
+            /*flex-shrink: 0;*/
             /*object-fit: cover;*/
             /*object-fit: fill;*/
             /*object-fit: contain;*/
