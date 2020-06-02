@@ -39,7 +39,7 @@
                 <!--              <div class="more_second_right_left" @click="gotoOption('singleModel', 9)">-->
                 <!--              <div class="more_second_right_left" @click="gotoOption('personAssessment', 9)">-->
                 <div>
-                  <span>五大人格测试</span>
+                  <span>大五人格测试</span>
                   <span>测测你内心深处的阴暗面</span>
                 </div>
                 <div>
