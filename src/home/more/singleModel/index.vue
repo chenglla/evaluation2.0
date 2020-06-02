@@ -59,6 +59,7 @@ export default {
   computed: {
     typeId () {
       // this.$store.state.singleModel.typeId
+
       console.log('typeid:', this.$route.query.typeId)
       return parseInt(this.$route.query.typeId)
     }
@@ -104,6 +105,12 @@ export default {
         this.title = '人格测试'
       } else if (this.typeId === 1) {
         this.title = 'MBTI职业性格测试'
+      } else if (this.typeId === 11) {
+        this.title = '计划性测试'
+      } else if (this.typeId === 6) {
+        this.title = '身体素质能力测试'
+      } else if (this.typeId === 14) {
+        this.title = 'TIMSS数学能力测试'
       }
     },
     getLearnQuesList () { // 获取学习力模型所有题
@@ -119,12 +126,21 @@ export default {
           for (const item in this.learnQuesList) {
             if (this.typeId === 3) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
-            } else if (this.typeId === 9) {
+            } else if (this.typeId === 6) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
-            } else if (this.typeId === 1) {
+            }else if (this.typeId === 9) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+            } else if (this.typeId === 11) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+            }else if (this.typeId === 1) {
               let list = this.learnQuesList[item].options.split('B')
               // console.log('list', list)
               this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].replace(/(^\s*)|(\s*$)/g, '')}]
+            }else if (this.typeId === 14) {
+
+              let list = this.learnQuesList[item].options.split(' ')
+              // 空格开头或者空格结尾
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
             }
             // this.type3Content[item].questionId = 'seleted' + item
           }
@@ -175,10 +191,14 @@ export default {
       let val = ''
       if (this.typeId === 3) {
         val = 'learnResult'
-      } else if (this.typeId === 9) {
+      } else if (this.typeId === 6) {
+        val = 'physicalFitnessResult'
+      }else if (this.typeId === 9) {
         val = 'personAssResult'
       } else if (this.typeId === 1) {
         val = 'mbtiResult'
+      } else if (this.typeId === 11) {
+        val = 'planResult'
       }
       this.$router.push({
         name: val,
