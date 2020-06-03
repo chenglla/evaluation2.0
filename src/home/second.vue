@@ -1,6 +1,7 @@
 <template>
   <div class="eval_second_info">
-    <div class="eval_second_item" @click="gotoOption('discussion')">
+    <div class="eval_second_item" @click="gotoOption('building')">
+<!--    <div class="eval_second_item" @click="gotoOption('discussion')">-->
       <img src="../assets/img/taolun-3.png" alt="">
       <span>讨论圈</span>
     </div>

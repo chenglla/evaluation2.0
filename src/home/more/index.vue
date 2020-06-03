@@ -25,9 +25,9 @@
                   <span>测测你内心深处的阴暗面</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>7k人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -39,12 +39,12 @@
                 <!--              <div class="more_second_right_left" @click="gotoOption('singleModel', 9)">-->
                 <!--              <div class="more_second_right_left" @click="gotoOption('personAssessment', 9)">-->
                 <div>
-                  <span>五大人格测试</span>
+                  <span>大五人格测试</span>
                   <span>测测你内心深处的阴暗面</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
                   <span>11.7W人已测</span>
                 </div>
               </div>
@@ -62,9 +62,9 @@
                   <span>测测你未来生涯的控制力</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>3k人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -78,8 +78,8 @@
 <!--                  <span>测测你内心深处的阴暗面</span>-->
 <!--                </div>-->
 <!--                <div>-->
-<!--                  <span>￥9.9</span>-->
-<!--                  <span>￥99</span>-->
+<!--                  <span>￥59</span>-->
+<!--                  <span class="middle_line">￥99</span>-->
 <!--                  <span>11.7W人已测</span>-->
 <!--                </div>-->
 <!--              </div>-->
@@ -97,9 +97,9 @@
                   <span>测测你的学习能力</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>5k人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -113,9 +113,9 @@
                   <span>测测你数学能力</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>6k人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -129,9 +129,9 @@
                   <span>测测你语言组织能力</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>1170人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -147,9 +147,9 @@
                   <span>测测你内心真实的想法</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>1034人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -163,9 +163,9 @@
                   <span>测测你身体承受能力</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>10k人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -181,9 +181,9 @@
                   <span>测测你面对事情的处事</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>500人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -197,9 +197,9 @@
                   <span>测测你对事情处理的计划逻辑性</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>800人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -215,9 +215,9 @@
                   <span>测测你大脑想象事物的构图</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>950人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -233,9 +233,9 @@
                   <span>查看学生个人对待成绩的客观态度</span>
                 </div>
                 <div>
-                  <span>￥9.9</span>
-                  <span>￥99</span>
-                  <span>11.7W人已测</span>
+                  <span>￥59</span>
+                  <span class="middle_line">￥99</span>
+                  <span>663人已测</span>
                 </div>
               </div>
               <div class="more_second_right_right">
@@ -251,8 +251,8 @@
 <!--                  <span>测测你内心深处的阴暗面</span>-->
 <!--                </div>-->
 <!--                <div>-->
-<!--                  <span>￥9.9</span>-->
-<!--                  <span>￥99</span>-->
+<!--                  <span>￥59</span>-->
+<!--                  <span class="middle_line">￥99</span>-->
 <!--                  <span>11.7W人已测</span>-->
 <!--                </div>-->
 <!--              </div>-->
@@ -267,8 +267,8 @@
 <!--                  <span>测测你内心深处的阴暗面</span>-->
 <!--                </div>-->
 <!--                <div>-->
-<!--                  <span>￥9.9</span>-->
-<!--                  <span>￥99</span>-->
+<!--                  <span>￥59</span>-->
+<!--                  <span class="middle_line">￥99</span>-->
 <!--                  <span>11.7W人已测</span>-->
 <!--                </div>-->
 <!--              </div>-->
@@ -446,7 +446,7 @@ export default {
         background-color: #fff;
         border-radius: 4px;
         margin-bottom: 8px;
-        padding: 5px;
+        padding: 5px 3px;
         .more_second_right_left {
           flex: 5;
           display: flex;
@@ -487,7 +487,8 @@ export default {
           justify-content: flex-end;
           img {
             width: 100%;
-            flex-shrink: 0;
+            height: 100%;
+            /*flex-shrink: 0;*/
             /*object-fit: cover;*/
             /*object-fit: fill;*/
             /*object-fit: contain;*/
@@ -499,5 +500,8 @@ export default {
         }
       }
     }
+  }
+  .middle_line {
+    text-decoration:line-through;
   }
 </style>

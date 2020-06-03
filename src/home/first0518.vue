@@ -27,7 +27,7 @@ export default {
   data () {
     return {
       // activeClass: '.swiper-container', // 滑动模块名称
-      pictures: [require('../assets/img/sy_banner.png'), require('../assets/img/1.jpg'), require('../assets/img/2.jpg'), require('../assets/img/3.jpg')],
+      pictures: [require('../assets/img/sy_banner.png'), require('../assets/img/c_s_1.jpg'), require('../assets/img/cs_2.jpg'), require('../assets/img/cs_3.jpg'), require('../assets/img/cs4.jpg')],
       currentIndex: -1
     }
   },
