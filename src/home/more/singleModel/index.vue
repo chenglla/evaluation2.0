@@ -191,13 +191,16 @@ export default {
       if (this.typeId === 3) {
         val = 'learnResult'
       } else if (this.typeId === 6) {
-        val = 'physicalFitnessResult'
+        val = 'building'
+        // val = 'physicalFitnessResult'
       } else if (this.typeId === 9) {
         val = 'personAssResult'
       } else if (this.typeId === 1) {
         val = 'mbtiResult'
       } else if (this.typeId === 11) {
         val = 'planResult'
+      } else if (this.typeId === 14) {
+        val = 'building'
       }
       this.$router.push({
         name: val,

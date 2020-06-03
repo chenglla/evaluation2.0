@@ -15,10 +15,10 @@
           </div>
           <div class="eval_four_left_bottom">
             <div class="eval_price">
-              <span>￥19.9</span>
-              <span>￥199</span>
+              <span>￥59</span>
+              <span class="middle_line">￥99</span>
             </div>
-            <span class="test_num">85.3W人已测</span>
+            <span class="test_num">3k人已测</span>
           </div>
         </div>
         <div class="eval_four_third_right">
@@ -33,10 +33,10 @@
           </div>
           <div class="eval_four_left_bottom">
             <div class="eval_price">
-              <span>￥19.9</span>
-              <span>￥199</span>
+              <span>￥59</span>
+              <span class="middle_line">￥99</span>
             </div>
-            <span class="test_num">85.3W人已测</span>
+            <span class="test_num">4k人已测</span>
           </div>
         </div>
         <div class="eval_four_third_right">
@@ -206,5 +206,8 @@
         }
       }
     }
+  }
+  .middle_line {
+    text-decoration:line-through;
   }
 </style>
