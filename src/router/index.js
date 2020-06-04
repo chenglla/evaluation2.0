@@ -23,11 +23,9 @@ const singleModel = () => import('@/home/more/singleModel/index') // 学习力�
 const learnResult = () => import('@/home/more/singleModel/learnResult') // 学习力模型结果
 const personAssResult = () => import('@/home/more/singleModel/personAssResult') // 人格测试结果
 const planResult = () => import('@/home/more/singleModel/planResult') //计划性测试
-const physicalFitnessResult = () => import('@/home/more/singleModel/physicalFitnessResult')// 身体素质测试结果
-const TIMSSResult = () => import('@/home/more/singleModel/TIMSSResult') //  数学测试
-const phycholoicalQualityResult = () => import('@/home/more/singleModel/phycholoicalQualityResult') // 心理素质
-const positiveResult = () => import('@/home/more/singleModel/positiveResult') // 积极乐观测试结果
-const caseDetail = () => import('@/careerCase/caseDetail')
+const physicalFitnessResult = () => import('@/home/more/singleModel/physicalFitnessResult')// 身体素质测试结果 
+const TIMSSResult = () => import('@/home/more/singleModel/TIMSSResult') 
+
 export default new Router({
   routes: [
     {
@@ -104,15 +102,6 @@ export default new Router({
       meta: { tab: 'careerCase', title: 'careerCase' }
     },
     {
-      path: '/caseDetail',
-      components: {
-        default: caseDetail, nav: nav
-      },
-      name: 'caseDetail',
-      meta: { tab: 'caseDetail', title: 'caseDetail' }
-    },
-    
-    {
       path: '/my',
       components: {
         default: my, nav: nav
@@ -182,23 +171,6 @@ export default new Router({
       name: 'physicalFitnessResult',
       meta: { tab: 'physicalFitnessResult', title: 'physicalFitnessResult' }
     },
-    { // 身体素质测试结果
-      path: '/phycholoicalQualityResult',
-      components: {
-        default: phycholoicalQualityResult
-      },
-      name: 'phycholoicalQualityResult',
-      meta: { tab: 'phycholoicalQualityResult', title: 'phycholoicalQualityResult' }
-    },
-    { // 积极乐观测试结果
-      path: '/positiveResult',
-      components: {
-        default: positiveResult
-      },
-      name: 'positiveResult',
-      meta: { tab: 'positiveResult', title: 'positiveResult' }
-    },
-
     { // mbti测试结果
       path: '/mbtiResult',
       components: {
