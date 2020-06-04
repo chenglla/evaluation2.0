@@ -190,14 +190,7 @@ export default new Router({
     //   name: 'phycholoicalQualityResult',
     //   meta: { tab: 'phycholoicalQualityResult', title: 'phycholoicalQualityResult' }
     // },
-    // { // 积极乐观测试结果
-    //   path: '/positiveResult',
-    //   components: {
-    //     default: positiveResult
-    //   },
-    //   name: 'positiveResult',
-    //   meta: { tab: 'positiveResult', title: 'positiveResult' }
-    // },
+   
 
     { // mbti测试结果
       path: '/mbtiResult',
@@ -207,6 +200,14 @@ export default new Router({
       name: 'mbtiResult',
       meta: { tab: 'mbtiResult', title: 'mbtiResult' }
     },
+    // { // 积极乐观测试结果
+    //   path: '/positiveResult',
+    //   components: {
+    //     default: positiveResult
+    //   },
+    //   name: 'positiveResult',
+    //   meta: { tab: 'positiveResult', title: 'positiveResult' }
+    // },
     { // mbti测试结果专业跳转
       path: '/major_info',
       components: {
