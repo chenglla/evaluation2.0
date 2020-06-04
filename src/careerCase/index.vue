@@ -1,75 +1,123 @@
 <template>
   <div class="pushList">
     <div class="push_header">
-      <div class="title">职业案例</div>
+      <div class="title">文章推送</div>
     </div>
     <div class="search">
       <input type="text" placeholder='搜索关键词' >
       <i class="iconfont iconsousuo"></i>
     </div>
     <div class="push_split"></div>
-    <div class="push-middle" ref="pushWrapper">
-        <div class="push-content" style="padding: 20px 0 5px 0;">
-
-          <div class="push-list" v-for="(caseList,index) in caseLists" :key="index" @click="toCaseDetail(caseList.caseId)">
-            <div>
-              <img src="../assets/img/火苗.png" alt="">
-            </div>
-            <div>
-              <h4>{{caseList.caseName}}</h4>
-              <!-- <span>{{caseLists.source}}</span>
-              <span>{{caseLists.school}}</span>
-              <span class="pushtime">{{caseLists.time}}</span> -->
+    <div class="w1">
+      <div class="push-middle" ref="wrapper">
+          <div class="push-content" >
+            <div class="push-list" v-for="(pushlist,index) in pushlists" :key="index">
+              <div>
+                <img src="../assets/img/火苗.png" alt="">
+              </div>
+              <div>
+                <h4>{{pushlist.title}}</h4>
+                <span>{{pushlist.source}}</span>
+                <span>{{pushlist.school}}</span>
+                <span class="pushtime">{{pushlist.time}}</span>
+              </div>
             </div>
           </div>
         </div>
+
     </div>
   </div>
 </template>
 <script>
-import {findCaseList} from '@/api/index'
 import BScroll from 'better-scroll'
-
+//let wrapper = document.querySelector('.wrapper')
+//let pushScroll = new BScroll(wrapper,{})
 export default {
   data () {
     return {
       pushScroll: null,
-      caseLists:[]
+      pushlists:[
+        {
+          title:'南京工业大学浦江学院2020年本科生招生简章',
+          source:'来源',
+          school:'南京工业大学',
+          time:'2020-04-21',
+        },
+		{
+		  title:'南京工业大学浦江学院2020年本科生招生简章',
+		  source:'来源',
+		  school:'南京工业大学',
+		  time:'2020-04-21',
+		},
+		{
+		  title:'南京工业大学浦江学院2020年本科生招生简章',
+		  source:'来源',
+		  school:'南京工业大学',
+		  time:'2020-04-21',
+		},
+		{
+		  title:'南京工业大学浦江学院2020年本科生招生简章',
+		  source:'来源',
+		  school:'南京工业大学',
+		  time:'2020-04-21',
+		},
+		{
+		  title:'南京工业大学浦江学院2020年本科生招生简章',
+		  source:'来源',
+		  school:'南京工业大学',
+		  time:'2020-04-21',
+		},
+        {
+          title:'南京工业大学浦江学院2020年本科生招生简章',
+          source:'来源',
+          school:'南京工业大学',
+          time:'2020-04-21',
+        },
+        {
+          title:'南京工业大学浦江学院2020年本科生招生简章',
+          source:'来源',
+          school:'南京工业大学',
+          time:'2020-04-21',
+        },
+        {
+          title:'南京工业大学浦江学院2020年本科生招生简章',
+          source:'来源',
+          school:'南京工业大学',
+          time:'2020-04-21',
+        },
+        {
+          title:'南京工业大学浦江学院2020年本科生招生简章',
+          source:'来源',
+          school:'南京工业大学',
+          time:'2020-04-21',
+        },
+        {
+          title:'南京工业大学浦江学院2020年本科生招生简章',
+          source:'来源',
+          school:'南京工业大学',
+          time:'2020-04-21',
+        },
+        {
+          title:'南京工业大学浦江学院2020年本科生招生简章',
+          source:'来源',
+          school:'南京工业大学',
+          time:'2020-04-21',
+        }
+      ]
 
     }
   },
-  mounted () {
-    this.findCaseList ()
-    this.init()
 
-  },
   methods: {
-    init () {
+    initRight () {
       this.$nextTick(() => {
-        this.pushScroll = new BScroll(this.$refs.pushWrapper, {
+        this.pushScroll = new BScroll(this.$refs.wrapper, {
           click: true,
-          bounce: false,
+          scrollY:true,
         })
-        //console.log(this.pushScroll)
       })
     },
-    findCaseList () {
-      findCaseList({
-      }).then(res => {
-        
-        this.caseLists = res.data
 
-      })
-    },
-    toCaseDetail (id) {
-      console.log('id:', id)
-      this.$router.push({
-        path: '/caseDetail',
-        query: {
-          id: id
-        }
-      })
-    },
   }
 }
 </script>
@@ -84,7 +132,7 @@ export default {
   // 标题部分
   .push_header {
     position: relative;
-    font-size: 20px;
+    font-size: 16px;
     width: 100%;
     background: linear-gradient(to right, #00d2ff 0%, #37a3ff 100%);
     /*background-color: #19bdff;*/
@@ -106,18 +154,18 @@ export default {
   .search{
     border: solid 1px white;
     z-index: 1;
-    margin: 10px 18px;
+    margin: 5px 18px;
     border-radius: 4px;
     position: relative;
-    padding: 6px 0;
     input{
       color: white;
-      width: 70vw;
       border: 0;
       padding-left: 15px;
-      font-size: 14px;
+      font-size: 8px;
       // 背景透明度
       background-color: rgba(0,0,0,0);
+      padding-bottom: 8px;
+      //background-color: green;
 
     }
     input[type=text]:focus{
@@ -126,11 +174,9 @@ export default {
     //修改placeholder的样式
     input::-webkit-input-placeholder{
       color: white;
-      font-size: 14px;
     }
 
     .iconsousuo{
-      font-size: 1.25rem;
       color: white;
       position: absolute;
       right: 15px;
@@ -151,51 +197,51 @@ export default {
 
   .push-middle {
     position: absolute;
-
-    width:calc(100% - 62px);
-    top: 7.25rem;
-    //padding-top: 40px;
-    padding: 0 16px 0 16px;
+    width:calc(100% - 30px);
+    top: 90px;
+    padding-top: 18px;
     z-index: 1;
     border-radius: 4px;
+    display: flex;
+
     background-color: white;
-    margin: 0 15px;
-    height: calc(100% - 145px);
+    margin: 5px 15px 5px;
+    height: calc(100% - 70px);
     overflow: hidden;
 
   }
-
+  .push-content{
+    flex: 1;
+    //height: auto;
+    padding: 0 15px;
+  }
   // 具体列表
   .push-list{
-    //height: 30px;
-    //padding: 0 15px 3px 5px;
-    //position: relative;
-    //width: calc(100% - 30px);
+    position: relative;
+    width: 82vw;
     border-bottom: solid 1px #F7F7F7;
-    font-size: 16px;
+    font-size: 14px;
     color: #525252;
-    margin-bottom: 15px;
-    padding-bottom: 6px;
+    margin-bottom: 8px;
+    padding-bottom: 2px;
+
     display: flex;
-    //background-color: green;
     push-list .img{
       width: 3px;
       height: 3px;
     }
     span{
-      font-size: 12px;
+      font-size: 8px;
       color: rgb(181,181,181);
     }
   }
   .pushtime{
     position: absolute;
     right: 10px;
-
   }
 
   h4{
     color: rgb(84,84,84);
     margin-left: 6px;
-
   }
 </style>

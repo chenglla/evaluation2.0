@@ -50,43 +50,15 @@ export function postPlanResult (req) { // 提交计划力测试结果
 }
 export function getPlanQuestion (req) { // 获取所有测评结果
   return request({
-    url: 'basicLiteracy/getAll',
+    url: '/basicLiteracy/getAll',
     method: 'get',
     params: req
   })
 }
 export function postHBDIResult (req) { // 提交HBDI测试结果
   return request({
-    url: 'hbdi/submitEvaluate',
+    url: '/hbdi/submitEvaluate',
     method: 'post',
-    params: req
-  })
-}
-export function getProfessionInfo (req) { // 获取所有专业大类
-  return request({
-    url: 'profession/getAllKtType',
-    method: 'get',
-    params: req
-  })
-}
-export function findCareerInfo (req) { // 获取专业大类对应的职业列表
-  return request({
-    url: 'profession/findByKtnameAndLabeltype',
-    method: 'get',
-    params: req
-  })
-}
-export function findCaseList (req) { // 获取案例列表
-  return request({
-    url: 'caseInfo/getAllCaseName',
-    method: 'get',
-    params: req
-  })
-}
-export function findCaseDetail (req) { // 获取案例详细信息
-  return request({
-    url: 'caseInfo/getCase',
-    method: 'get',
     params: req
   })
 }
