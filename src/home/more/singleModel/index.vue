@@ -59,7 +59,6 @@ export default {
   computed: {
     typeId () {
       // this.$store.state.singleModel.typeId
-
       console.log('typeid:', this.$route.query.typeId)
       return parseInt(this.$route.query.typeId)
     }
@@ -99,18 +98,34 @@ export default {
       this.$router.go(-1)
     },
     getTitle () { // 获取标题
-      if (this.typeId === 3) {
-        this.title = '学习力模型'
+      if (this.typeId === 1) {
+        this.title = 'MBTI职业性格测试'
+      } else if (this.typeId === 2) {
+        this.title = 'Holland'
+      } else if (this.typeId === 3) {
+        this.title = '学习能力测试'
+      } else if (this.typeId === 4) {
+        this.title = '生涯控制测试'
+      } else if (this.typeId === 5) {
+        this.title = '身心状态-心理素质能力测试'
+      } else if (this.typeId === 6) {
+        this.title = '身心状态-身体素质能力测试'
+      } else if (this.typeId === 7) {
+        this.title = '基本素养-积极乐观'
+      } else if (this.typeId === 8) {
+        this.title = '基本素养-情绪稳定'
       } else if (this.typeId === 9) {
         this.title = '人格测试'
-      } else if (this.typeId === 1) {
-        this.title = 'MBTI职业性格测试'
+      } else if (this.typeId === 10) {
+        this.title = '脑图测试'
       } else if (this.typeId === 11) {
-        this.title = '计划性测试'
-      } else if (this.typeId === 6) {
-        this.title = '身体素质能力测试'
+        this.title = '基本素养-计划性测试'
+      } else if (this.typeId === 12) {
+        this.title = '基本素养-细致高效'
+      } else if (this.typeId === 13) {
+        this.title = '基本素养-适应力'
       } else if (this.typeId === 14) {
-        this.title = 'TIMSS数学能力测试'
+        this.title = '成长能力-TIMSS-A数学能力测试'
       }
     },
     getLearnQuesList () { // 获取学习力模型所有题
@@ -124,19 +139,36 @@ export default {
           this.learnQuesList = res.data.data
           this.rate = this.currentQuesNum / this.learnQuesList.length * 100
           for (const item in this.learnQuesList) {
-            if (this.typeId === 3) {
-              this.learnQuesList[item].optionsList = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
-            } else if (this.typeId === 6) {
-              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
-            } else if (this.typeId === 9) {
-              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
-            } else if (this.typeId === 11) {
-              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
-            } else if (this.typeId === 1) {
+            if (this.typeId === 1) {
               let list = this.learnQuesList[item].options.split('B')
               // console.log('list', list)
               this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].replace(/(^\s*)|(\s*$)/g, '')}]
+            } else if (this.typeId === 2) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+            } else if (this.typeId === 3) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
+            } else if (this.typeId === 5) {
+              let list = this.learnQuesList[item].options.split(' ')
+              // 空格开头或者空格结尾
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('B.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'C', value: list[2].split('C.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'D', value: list[3].split('D.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
+            } else if (this.typeId === 6) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+            } else if (this.typeId === 7) {
+            } else if (this.typeId === 9) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+            } else if (this.typeId === 9) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全同意'}, {key: 'B', value: '  同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  不太同意'}, {key: 'E', value: '  完全不同意'}]
+            } else if (this.typeId === 11) {
+              let list = this.learnQuesList[item].options.split(' ')
+                // 空格开头或者空格结尾
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'E', value: list[4].split('5.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
             } else if (this.typeId === 14) {
+             // this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+           // } else if (this.typeId === 1) {
+             // let list = this.learnQuesList[item].options.split('B')
+              // console.log('list', list)
+             // this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].replace(/(^\s*)|(\s*$)/g, '')}]
+           // } else if (this.typeId === 14) {
               let list = this.learnQuesList[item].options.split(' ')
               // 空格开头或者空格结尾
               this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
@@ -190,7 +222,11 @@ export default {
       let val = ''
       if (this.typeId === 3) {
         val = 'learnResult'
+      } else if (this.typeId === 5) {
+        val = 'building'
       } else if (this.typeId === 6) {
+        val = 'building'
+      } else if (this.typeId === 7) {
         val = 'building'
         // val = 'physicalFitnessResult'
       } else if (this.typeId === 9) {

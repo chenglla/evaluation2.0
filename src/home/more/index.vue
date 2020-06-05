@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="more_second_right_one">
-            <div class="more_second_right_item" @click="gotoOption(-1)">
+            <div class="more_second_right_item" @click="gotoOption(5)">
               <div class="more_second_right_left">
                 <div>
                   <span>心理状态测试</span>
@@ -174,7 +174,7 @@
             </div>
           </div>
           <div class="more_second_right_one">
-            <div class="more_second_right_item" @click="gotoOption(-1)">
+            <div class="more_second_right_item" @click="gotoOption(7)">
               <div class="more_second_right_left">
                 <div>
                   <span>积极乐观能力测试</span>
@@ -319,6 +319,8 @@ export default {
         this.moreRightScroll = new BScroll(this.$refs.more_second_right, {
           click: true
         })
+        
+        console.log(this.moreRightScroll)
       })
     },
     getEvalType (val) { // val表示左侧点击按钮的index,点击左侧的index第一个，就获取右侧的第零个div
@@ -436,7 +438,6 @@ export default {
       flex: 5;
       margin: 0 7px 10px 0;
       .active {
-
       }
       .more_second_right_item {
         display: flex;
