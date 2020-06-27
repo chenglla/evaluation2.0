@@ -206,6 +206,22 @@
                 <img src="../../assets/img/计划性.jpg" alt="">
               </div>
             </div>
+            <div class="more_second_right_item" @click="gotoOption(12)">
+              <div class="more_second_right_left">
+                <div>
+                  <span>细致高效</span>
+                  <span>测测你对生活是否高效细心</span>
+                </div>
+                <div>
+                  <!--                  <span>￥59</span>-->
+                  <!--                  <span class="middle_line">￥99</span>-->
+                  <span>670人已测</span>
+                </div>
+              </div>
+              <div class="more_second_right_right">
+                <img src="../../assets/img/xizhi.jpg" alt="">
+              </div>
+            </div>
           </div>
           <div class="more_second_right_one">
             <div class="more_second_right_item" @click="gotoOption(10)">
@@ -289,7 +305,7 @@ export default {
     return {
       moreLeftScroll: null,
       moreRightScroll: null,
-      typeList: ['全部', '性格', '生涯', '成长', '健康', '基本', '综合', '学生成绩']
+      typeList: ['全部', '性格', '生涯', '成长', '健康', '基本', '综合']
     }
   },
   computed: {

@@ -175,6 +175,7 @@ export default {
     }
   }
   .resultInfo {
+    padding-bottom: 20px;
     margin-top: 15px;
     height: calc(100% - 50px);
     overflow: hidden;

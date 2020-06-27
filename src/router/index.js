@@ -23,6 +23,7 @@ const brainResult = () => import('@/home/more/singleModel/brainResult') // 脑�
 const mentalResult = () => import('@/home/more/singleModel/mentalResult') // 心理素质结果
 const happyResult = () => import('@/home/more/singleModel/happyResult') // 积极乐观结果
 const bodyResult = () => import('@/home/more/singleModel/bodyResult') // 身体素质结果
+const carefulResult = () => import('@/home/more/singleModel/carefulResult') // 细致高效结果
 const majorInfo = () => import('@/home/more/singleModel/major_info') // mbti结果专业按钮跳转
 const building = () => import('@/layout/building') // 正在建设中
 const singleModel = () => import('@/home/more/singleModel/index') // 学习力模型 + 模型测评单选页面
@@ -236,6 +237,14 @@ export default new Router({
       },
       name: 'physicalFitnessResult',
       meta: { tab: 'physicalFitnessResult', title: 'physicalFitnessResult' }
+    },
+    { // 身体素质测试结果
+      path: '/carefulResult',
+      components: {
+        default: carefulResult
+      },
+      name: 'carefulResult',
+      meta: { tab: 'carefulResult', title: 'carefulResult' }
     },
     // { // 身体素质测试结果
     //   path: '/phycholoicalQualityResult',

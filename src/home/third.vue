@@ -12,7 +12,7 @@
       <div class="eval_third_one">
         <img src="../assets/img/qingganfenlan.png" alt="">
         <div class="eval_third_one_top">
-          <span>情感</span>
+          <span>健康</span>
           <span>亲密相处</span>
         </div>
       </div>
