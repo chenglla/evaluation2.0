@@ -222,6 +222,22 @@
                 <img src="../../assets/img/xizhi.jpg" alt="">
               </div>
             </div>
+            <div class="more_second_right_item" @click="gotoOption(13)">
+              <div class="more_second_right_left">
+                <div>
+                  <span>适应力</span>
+                  <span>测测你能否快速适应改变</span>
+                </div>
+                <div>
+                  <!--                  <span>￥59</span>-->
+                  <!--                  <span class="middle_line">￥99</span>-->
+                  <span>370人已测</span>
+                </div>
+              </div>
+              <div class="more_second_right_right">
+                <img src="../../assets/img/shiying.jpg" alt="">
+              </div>
+            </div>
           </div>
           <div class="more_second_right_one">
             <div class="more_second_right_item" @click="gotoOption(10)">

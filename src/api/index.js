@@ -63,6 +63,13 @@ export function carefulResult (req) { // 细致高效测试结果
     params: req
   })
 }
+export function adjustResult (req) { // 适应力测试结果
+  return request({
+    url: '/basicLiteracy/submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
 export function gotoMBTIMajorCon (req) { // 获取MBTI专业数据
   return request({
     baseURL: 'https://www.zhongkeruitong.top/evaluate/evaluate/',

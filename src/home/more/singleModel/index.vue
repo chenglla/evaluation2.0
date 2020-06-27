@@ -177,6 +177,9 @@ export default {
             } else if (this.typeId === 12) {
               let list = this.learnQuesList[item].options.split(' ')
               this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'E', value: list[4].split('5.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
+            } else if (this.typeId === 13) {
+              let list = this.learnQuesList[item].options.split(' ')
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'E', value: list[4].split('5.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
             } else if (this.typeId === 14) {
               // this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
               // } else if (this.typeId === 1) {
@@ -254,6 +257,8 @@ export default {
         val = 'planResult'
       } else if (this.typeId === 12) {
         val = 'carefulResult'
+      } else if (this.typeId === 13) {
+        val = 'adjustResult'
       } else if (this.typeId === 10) {
         val = 'brainResult'
       } else if (this.typeId === 14) {
