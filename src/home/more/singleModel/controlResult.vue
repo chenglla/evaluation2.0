@@ -1,29 +1,27 @@
 <template>
-  <div class="learnAbility_info">
+  <div class="control_info">
     <div class="score_header">
       <div class="return__icon" @click="returnBack">
         <i class="iconfont iconfanhui"></i>
       </div>
-      <div class="title">人格测试结果</div>
+      <div class="title">生涯控制模型结果</div>
     </div>
-    <div class="resultInfo" ref="resultInfo">
-      <div style="padding-bottom: 20px;">
+    <div class="learnAbility_second">
+      <div class="resultInfo">
         <div ref="radar_chart" class="radar_chart"></div>
-        <div v-for="(item, index) in personAssResult" :key="index" class="result_item">
-          {{item.bigFive.describe}}
-          <div>{{item.bigFive.level}}</div>
-        </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
-import {postPersonResult} from '@/api/index'
+import {postLearnAnswer} from '@/api/index'
 import BScroll from 'better-scroll'
 export default {
+  name: 'controlResult',
   data () {
     return {
-      personAssResult: [],
+      controlResult: [],
       dataResult: [],
       dataEchart: [],
       radarChart: '',
@@ -36,7 +34,7 @@ export default {
     }
   },
   mounted () {
-    this.postPersonResult()
+    this.getLearnResult()
   },
   methods: {
     returnBack () {
@@ -52,23 +50,21 @@ export default {
         console.log(this.resultScroll)
       })
     },
-    postPersonResult () { // 获取结果数据
-      postPersonResult({
+    getLearnResult () {
+      postLearnAnswer({
         openid: '111',
+        evaluateType: 4,
         result: this.answerList
-        // result: JSON.stringify(this.choice)
       }).then(res => {
-        if (res.data.code === 0) {
-          this.personAssResult = res.data.data
-          for (let i in this.personAssResult) {
-            const each = {text: this.personAssResult[i].bigFive.title, max: this.personAssResult[i].fullScore}
-            this.dataResult.push(each)
-            this.dataEchart.push(this.personAssResult[i].score)
-          }
-          this.drawPersonAssResult()
-          // this.init()
+        console.log('获取生涯控制力结果')
+        console.log(res.data)
+        this.controlResult = res.data.data
+        for (let i in this.controlResult) {
+          const each = {text: this.controlResult[i].careerType, max: this.controlResult[i].fullScore}
+          this.dataResult.push(each)
+          this.dataEchart.push(this.controlResult[i].score)
         }
-        console.log('结果：', res.data)
+        this.drawPersonAssResult()
       })
     },
     drawPersonAssResult () {
@@ -132,8 +128,9 @@ export default {
   }
 }
 </script>
+
 <style scoped lang="scss">
-  .learnAbility_info {
+  .control_info {
     height: 100%;
     /*width: 100%;*/
     display: flex;
@@ -163,6 +160,20 @@ export default {
     text-align: center;
     font-weight: bold;
   }
+  /*.learnAbility_second {*/
+  /*  margin-top: 10px;*/
+  /*  padding: 5px 15px;*/
+  /*}*/
+  .learnAbility_second {
+    margin: 25px 10px 15px;
+    padding: 5px;
+    box-shadow: 1px 1px 5px 1px rgba(66,185,130,0.4);
+    border-radius: 10px;
+    background-color: #fff;
+    p {
+      text-indent: 1.5em;
+    }
+  }
   .resultInfo {
     margin-top: 15px;
     height: calc(100% - 50px);
@@ -174,14 +185,28 @@ export default {
   .radar_chart {
     padding-top: 5px;
     height: 200px;
-    position: relative;
   }
-  .result_item {
-    margin: 5px 15px;
-    padding: 2px;
-    font-size: 14px;
+  .type3_four_tip {
+    /*border: 4px dashed rgba(66,185,130,0.4);*/
+    border-radius: 10px;
+    /*box-shadow: 1px 1px 5px 1px rgba(66,185,130,0.4);*/
+    padding: 0 5px 10px;
+    margin: 3px 15px 15px;
+  }
+  li {
+    /*text-indent: 2em;*/
+    color: #9c9c9c;
+    font-size: 12px;
     line-height: 26px;
-    text-indent: 2em;
-    color: #3c3c3c;
+  }
+  .learnAbility_second {
+    margin: 25px 10px 15px;
+    padding: 5px;
+    box-shadow: 1px 1px 5px 1px rgba(66,185,130,0.4);
+    border-radius: 10px;
+    background-color: #fff;
+    p {
+      text-indent: 1.5em;
+    }
   }
 </style>

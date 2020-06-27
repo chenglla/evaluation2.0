@@ -38,6 +38,7 @@ export default {
     }
   },
   mounted () {
+    // eslint-disable-next-line no-unused-vars
     var mySwiper = new Swiper('.swiper-container', {
       direction: 'horizontal',
       loop: true,
@@ -52,7 +53,7 @@ export default {
       // 分页器
       pagination: {
         el: '.swiper-pagination'
-      },
+      }
     })
   }
 }

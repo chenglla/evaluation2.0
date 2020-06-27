@@ -27,70 +27,71 @@
 
 <script>
 
-  import BScroll from 'better-scroll'
+import BScroll from 'better-scroll'
 
-   export default {
-     data () {
-       return {
-         title:'讨论圈',
-         articles:[
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:202,
-           },
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:10,
-           },
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:10,
-           },
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:10,
-           },
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:10,
-           },
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:10,
-           },
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:10,
-           },
-           {
-             name:'董鲁皖龙',
-             time:'2020-05-07',
-             num:10,
-           },
-         ]
+export default {
+  data () {
+    return {
+      title: '讨论圈',
+      articles: [
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 202
+        },
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 10
+        },
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 10
+        },
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 10
+        },
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 10
+        },
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 10
+        },
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 10
+        },
+        {
+          name: '董鲁皖龙',
+          time: '2020-05-07',
+          num: 10
+        }
+      ]
 
-       }
-     },
-     mounted () {
-       this.$nextTick(() => {
-         this.myScroll = new BScroll(this.$refs.my-wrapper, {
-           click: true
-         })
-       })
-     },
-     methods:{
-       returnBack () {
-         this.$router.go(-1)
-       },
-     },
-   }
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      // eslint-disable-next-line no-undef
+      this.myScroll = new BScroll(this.$refs.my - wrapper, {
+        click: true
+      })
+    })
+  },
+  methods: {
+    returnBack () {
+      this.$router.go(-1)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

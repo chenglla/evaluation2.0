@@ -52,7 +52,7 @@
             <div>
               <div class="test-head"><p>未完成测评</p></div>
               <div v-if="testlist"></div>
-              <div class="test-list" v-else="!testlist">
+              <div class="test-list" v-else>
                 <img src="../assets/img/测评里的图片.png" alt="">
                 <div>
                   <b class="none">暂无测评</b>
@@ -71,15 +71,16 @@
 import BScroll from 'better-scroll'
 export default {
   name: 'my',
-  data(){
+  data () {
     return {
       homeScroll: null,
-      testlist:0,
+      testlist: 0
     }
   },
   mounted () {
     this.$nextTick(() => {
-      this.myScroll = new BScroll(this.$refs.my-wrapper, {
+      // eslint-disable-next-line no-undef
+      this.myScroll = new BScroll(this.$refs.my - wrapper, {
         click: true
       })
     })
@@ -87,7 +88,7 @@ export default {
   methods: {
     gotoOption (val) {
       this.$router.push({name: val})
-    },
+    }
   }
 }
 </script>
@@ -104,7 +105,6 @@ export default {
     text-align: center;
 
    }
-
 
   // 头像图片
   .my-up-avatar img{
@@ -142,7 +142,6 @@ export default {
     height: 10.9375rem;
     background-color: white;
     margin: 0 0.9375rem;
-
 
   }
   // ul列表

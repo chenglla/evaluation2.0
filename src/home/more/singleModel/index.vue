@@ -143,35 +143,47 @@ export default {
               let list = this.learnQuesList[item].options.split('B')
               // console.log('list', list)
               this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].replace(/(^\s*)|(\s*$)/g, '')}]
+            } else if (this.typeId === 10) {
+              var sep = /[0-9A-Za-z]\./
+              let list = this.learnQuesList[item].options.split(sep)
+              console.log('list   id为10', list)
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[1]}, {key: 'B', value: list[2]}, {key: 'C', value: list[3]}, {key: 'E', value: list[4]}, {key: 'G', value: list[5]}, {key: 'H', value: list[6]}, {key: 'I', value: list[7]}, {key: 'J', value: list[8]}]
             } else if (this.typeId === 2) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
             } else if (this.typeId === 3) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '是'}, {key: 'B', value: '否'}]
+            } else if (this.typeId === 4) {
+              this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不符合'}, {key: 'B', value: '不太符合'}, {key: 'C', value: '  不确定'}, {key: 'D', value: '  比较符合'}, {key: 'E', value: '  完全符合'}]
             } else if (this.typeId === 5) {
-              let list = this.learnQuesList[item].options.split(' ')
-              // 空格开头或者空格结尾
-              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('B.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'C', value: list[2].split('C.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'D', value: list[3].split('D.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
+              var sept = /[0-9A-Za-z]\./
+              let list = this.learnQuesList[item].options.split(sept)
+              console.log('list   id为5', list)
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[1]}, {key: 'B', value: list[2]}]
             } else if (this.typeId === 6) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
             } else if (this.typeId === 7) {
+              var septt = /[0-9A-Za-z]\./
+              let list = this.learnQuesList[item].options.split(septt)
+              console.log('list   id为5', list)
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[1]}, {key: 'B', value: list[2]}, {key: 'C', value: list[3]}, {key: 'D', value: list[4]}, {key: 'E', value: list[5]}]
             } else if (this.typeId === 9) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
             } else if (this.typeId === 9) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全同意'}, {key: 'B', value: '  同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  不太同意'}, {key: 'E', value: '  完全不同意'}]
             } else if (this.typeId === 11) {
               let list = this.learnQuesList[item].options.split(' ')
-                // 空格开头或者空格结尾
-              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'E', value: list[4].split('5.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
+              // 空格开头或者空格结尾
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'E', value: list[4].split('5.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
             } else if (this.typeId === 14) {
-             // this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
-           // } else if (this.typeId === 1) {
-             // let list = this.learnQuesList[item].options.split('B')
+              // this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
+              // } else if (this.typeId === 1) {
+              // let list = this.learnQuesList[item].options.split('B')
               // console.log('list', list)
-             // this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].replace(/(^\s*)|(\s*$)/g, '')}]
-           // } else if (this.typeId === 14) {
+              // this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('A')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].replace(/(^\s*)|(\s*$)/g, '')}]
+              // } else if (this.typeId === 14) {
               let list = this.learnQuesList[item].options.split(' ')
               // 空格开头或者空格结尾
-              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')},{key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
+              this.learnQuesList[item].optionsList = [{key: 'A', value: list[0].split('1.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'B', value: list[1].split('2.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'C', value: list[2].split('3.')[1].replace(/(^\s*)|(\s*$)/g, '')}, {key: 'D', value: list[3].split('4.')[1].replace(/(^\s*)|(\s*$)/g, '')}]
             }
             // this.type3Content[item].questionId = 'seleted' + item
           }
@@ -222,12 +234,14 @@ export default {
       let val = ''
       if (this.typeId === 3) {
         val = 'learnResult'
+      } else if (this.typeId === 4) {
+        val = 'controlResult'
       } else if (this.typeId === 5) {
-        val = 'building'
+        val = 'mentalResult'
       } else if (this.typeId === 6) {
-        val = 'building'
+        val = 'bodyResult'
       } else if (this.typeId === 7) {
-        val = 'building'
+        val = 'happyResult'
         // val = 'physicalFitnessResult'
       } else if (this.typeId === 9) {
         val = 'personAssResult'
@@ -235,8 +249,10 @@ export default {
         val = 'mbtiResult'
       } else if (this.typeId === 11) {
         val = 'planResult'
+      } else if (this.typeId === 10) {
+        val = 'brainResult'
       } else if (this.typeId === 14) {
-        val = 'building'
+        val = 'mathResult'
       }
       this.$router.push({
         name: val,

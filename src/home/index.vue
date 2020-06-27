@@ -37,7 +37,7 @@ export default {
         })
         console.log(this.resultScroll)
       })
-    },
+    }
   }
 }
 </script>

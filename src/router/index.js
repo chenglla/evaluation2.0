@@ -17,16 +17,22 @@ const myinterest = () => import('@/my/myinterest') // 我的兴趣
 const myCollect = () => import('@/my/myCollect') // 我的收藏
 const myStar = () => import('@/my/myStar') // 我赞过的
 const mbtiResult = () => import('@/home/more/singleModel/mbtiResult') // mbti结果
+const controlResult = () => import('@/home/more/singleModel/controlResult') // 控制力结果
+const mathResult = () => import('@/home/more/singleModel/mathResult') // 数学结果
+const brainResult = () => import('@/home/more/singleModel/brainResult') // 脑图结果
+const mentalResult = () => import('@/home/more/singleModel/mentalResult') // 心理素质结果
+const happyResult = () => import('@/home/more/singleModel/happyResult') // 积极乐观结果
+const bodyResult = () => import('@/home/more/singleModel/bodyResult') // 身体素质结果
 const majorInfo = () => import('@/home/more/singleModel/major_info') // mbti结果专业按钮跳转
 const building = () => import('@/layout/building') // 正在建设中
 const singleModel = () => import('@/home/more/singleModel/index') // 学习力模型 + 模型测评单选页面
 const learnResult = () => import('@/home/more/singleModel/learnResult') // 学习力模型结果
 const personAssResult = () => import('@/home/more/singleModel/personAssResult') // 人格测试结果
-const planResult = () => import('@/home/more/singleModel/planResult') //计划性测试
+const planResult = () => import('@/home/more/singleModel/planResult') // 计划性测试
 const physicalFitnessResult = () => import('@/home/more/singleModel/physicalFitnessResult')// 身体素质测试结果
 const TIMSSResult = () => import('@/home/more/singleModel/TIMSSResult') //  数学测试
-//const phycholoicalQualityResult = () => import('@/home/more/singleModel/phycholoicalQualityResult') // 心理素质
-//const positiveResult = () => import('@/home/more/singleModel/positiveResult') // 积极乐观测试结果
+// const phycholoicalQualityResult = () => import('@/home/more/singleModel/phycholoicalQualityResult') // 心理素质
+// const positiveResult = () => import('@/home/more/singleModel/positiveResult') // 积极乐观测试结果
 const caseDetail = () => import('@/careerCase/caseDetail')
 
 export default new Router({
@@ -167,6 +173,54 @@ export default new Router({
       name: 'learnResult',
       meta: { tab: 'learnResult', title: 'learnResult' }
     },
+    { // 生涯控制力模型结果
+      path: '/controlResult',
+      components: {
+        default: controlResult
+      },
+      name: 'controlResult',
+      meta: { tab: 'controlResult', title: 'controlResult' }
+    },
+    { // 数学模型结果
+      path: '/mathResult',
+      components: {
+        default: mathResult
+      },
+      name: 'mathResult',
+      meta: { tab: 'mathResult', title: 'mathResult' }
+    },
+    { // 脑图模型结果
+      path: '/brainResult',
+      components: {
+        default: brainResult
+      },
+      name: 'brainResult',
+      meta: { tab: 'brainResult', title: 'brainResult' }
+    },
+    { // 心理素质模型结果
+      path: '/mentalResult',
+      components: {
+        default: mentalResult
+      },
+      name: 'mentalResult',
+      meta: { tab: 'mentalResult', title: 'mentalResult' }
+    },
+    { // 积极乐观模型结果
+      path: '/happyResult',
+      components: {
+        default: happyResult
+      },
+      name: 'happyResult',
+      meta: { tab: 'happyResult', title: 'happyResult' }
+    },
+    { // 身体素质模型结果
+      path: '/bodyResult',
+      components: {
+        default: bodyResult
+      },
+      name: 'bodyResult',
+      meta: { tab: 'bodyResult', title: 'bodyResult' }
+    },
     { // 人格测试结果
       path: '/personAssResult',
       components: {
@@ -239,6 +293,6 @@ export default new Router({
       },
       name: 'building',
       meta: { tab: 'building', title: 'building' }
-    },
+    }
   ]
 })

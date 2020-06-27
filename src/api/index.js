@@ -21,6 +21,41 @@ export function postMBTIResult (req) { // 提交MBTI测试结果
     params: req
   })
 }
+export function postMathResult (req) { // 提交数学能力测试结果
+  return request({
+    url: 'submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
+export function postBrainResult (req) { // 脑象图能力测试结果
+  return request({
+    url: 'submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
+export function mentalBrainResult (req) { // 心理素质能力测试结果
+  return request({
+    url: 'submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
+export function bodyResult (req) { // 身体素质能力测试结果
+  return request({
+    url: 'submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
+export function happyBrainResult (req) { // 积极乐观测试结果
+  return request({
+    url: '/basicLiteracy/submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
 export function gotoMBTIMajorCon (req) { // 获取MBTI专业数据
   return request({
     baseURL: 'https://www.zhongkeruitong.top/evaluate/evaluate/',

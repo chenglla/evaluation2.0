@@ -10,15 +10,15 @@
       <div class="eval_four_third_item">
         <div class="eval_four_third_left">
           <div class="eval_four_left_top">
-            <span>测测你的抑郁有多深？</span>
-            <span>抑郁测试【专业版】</span>
+            <span>走出象牙塔</span>
+            <span>在香醇咖啡中绽放创业花</span>
           </div>
           <div class="eval_four_left_bottom">
-            <div class="eval_price">
-              <span>￥59</span>
-              <span class="middle_line">￥99</span>
-            </div>
-            <span class="test_num">3k人已测</span>
+<!--            <div class="eval_price">-->
+<!--              <span>￥59</span>-->
+<!--              <span class="middle_line">￥99</span>-->
+<!--            </div>-->
+            <span class="test_num">3k人已读</span>
           </div>
         </div>
         <div class="eval_four_third_right">
@@ -28,15 +28,15 @@
       <div class="eval_four_third_item">
         <div class="eval_four_third_left">
           <div class="eval_four_left_top">
-            <span>测测你的抑郁有多深？</span>
-            <span>抑郁测试【专业版】</span>
+            <span>宅在家的新天地</span>
+            <span>自由职业翻译</span>
           </div>
           <div class="eval_four_left_bottom">
-            <div class="eval_price">
-              <span>￥59</span>
-              <span class="middle_line">￥99</span>
-            </div>
-            <span class="test_num">4k人已测</span>
+<!--            <div class="eval_price">-->
+<!--              <span>￥59</span>-->
+<!--              <span class="middle_line">￥99</span>-->
+<!--            </div>-->
+            <span class="test_num">4k人已读</span>
           </div>
         </div>
         <div class="eval_four_third_right">

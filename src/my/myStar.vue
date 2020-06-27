@@ -18,7 +18,7 @@
           于【3月5日00:00-】进行系统升级...
         </div>
         <div class="C-time">{{time}}</div>
-        <div class="C-more" @click="">
+        <div class="C-more" >
           <span>查看详情</span>
           <i class="iconfont icon-youjiantou"></i>
         </div>
@@ -30,31 +30,32 @@
 </template>
 
 <script>
- import BScroll from 'better-scroll'
+import BScroll from 'better-scroll'
 
-  export default {
-    data () {
-      return {
-        title:'我赞过的',
+export default {
+  data () {
+    return {
+      title: '我赞过的',
 
-        time:'2019-3-6 10: 22: 23',
-        starLists:10
+      time: '2019-3-6 10: 22: 23',
+      starLists: 10
 
-      }
-    },
-    mounted () {
-      this.$nextTick(() => {
-        this.myScroll = new BScroll(this.$refs.my-wrapper, {
-          click: true
-        })
-      })
-    },
-    methods: {
-      returnBack () {
-        this.$router.go(-1)
-      },
+    }
   },
- }
+  mounted () {
+    this.$nextTick(() => {
+      // eslint-disable-next-line no-undef
+      this.myScroll = new BScroll(this.$refs.my - wrapper, {
+        click: true
+      })
+    })
+  },
+  methods: {
+    returnBack () {
+      this.$router.go(-1)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -146,14 +147,13 @@
       position: relative;
       margin-right: 10px;
       margin-top: 10px;
-      padding-top: 10px 10px 10px 10px;
+      padding-top: 10px;
       bottom: 6px;
       float: right;
       color: #9C9C9C;
       font-size: 6px;
 
     }
-
 
   }
   // 更多

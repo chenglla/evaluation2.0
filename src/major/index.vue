@@ -24,14 +24,14 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
-//let wrapper = document.querySelector('.wrapper')
-//let encyScroll = new BScroll(wrapper,{})
+// let wrapper = document.querySelector('.wrapper')
+// let encyScroll = new BScroll(wrapper,{})
 export default {
   data () {
     return {
       encyScroll: null,
-      encyLists:[
-        '生物解刨学类','地质学类','天文学类','语言学类','财政学类','金融学类','生物解刨学类','地质学类','生物解刨学类','地质学类','天文学类','语言学类','财政学类','金融学类','生物解刨学类','地质学类','天文学类','语言学类','心理学类','财政学类'
+      encyLists: [
+        '生物解刨学类', '地质学类', '天文学类', '语言学类', '财政学类', '金融学类', '生物解刨学类', '地质学类', '生物解刨学类', '地质学类', '天文学类', '语言学类', '财政学类', '金融学类', '生物解刨学类', '地质学类', '天文学类', '语言学类', '心理学类', '财政学类'
       ]
 
     }
@@ -42,10 +42,10 @@ export default {
       this.$nextTick(() => {
         this.encyScroll = new BScroll(this.$refs.wrapper, {
           click: true,
-          scrollY:true,
+          scrollY: true
         })
       })
-    },
+    }
 
   }
 }
@@ -135,7 +135,7 @@ export default {
     margin: 5px 15px 5px;
     height: calc(100% - 70px);
     overflow: hidden;
-    
+
   }
   .ency-content{
     flex: 1;
