@@ -7,6 +7,18 @@
       <input type="text" placeholder='搜索关键词' >
       <i class="iconfont iconsousuo"></i>
     </div>
+    <div class="tag-container">
+      <div class="tag">互联网</div>
+      <div class="tag">金融经贸</div>
+      <div class="tag">法律从业</div>
+      <div class="tag">机械制造</div>
+      <div class="tag">土木建造</div>
+      <div class="tag">财务会计</div>
+      <div class="tag">农业种植</div>
+      <div class="tag">人工智能</div>
+      <div class="tag">电子信息</div>
+      <div class="tag">教育从业</div>
+    </div>
     <div class="push_split"></div>
     <div class="push-middle" ref="pushWrapper">
         <div class="push-content" style="padding: 20px 0 5px 0;">
@@ -53,7 +65,7 @@ export default {
     findCaseList () {
       findCaseList({
       }).then(res => {
-        
+
         this.caseLists = res.data
       })
     },
@@ -144,7 +156,7 @@ export default {
   .push-middle {
     position: absolute;
     width:calc(100% - 62px);
-    top: 7.25rem;
+    top: 14.25rem;
     //padding-top: 40px;
     padding: 0 16px 0 16px;
     z-index: 1;
@@ -183,5 +195,33 @@ export default {
   h4{
     color: rgb(84,84,84);
     margin-left: 6px;
+  }
+  .tag-container {
+    z-index: 1;
+    margin: 10px 18px;
+    border-radius: 4px;
+    position: relative;
+    padding: 6px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .tag{
+    width:60px;
+    height: 30px;
+    background-color: rgba(255,255,2550,0.4);
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 13px;
+    color: white;
+  }
+  .kong{
+    width:60px;
+    height: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
   }
 </style>

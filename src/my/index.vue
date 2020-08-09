@@ -26,13 +26,13 @@
         <div class="my-down">
           <div class="my-down-box">
             <ul class="my-down-list">
-              <li class="my-down-report">
+              <li class="my-down-report" @click="gotoOption('myReport')">
                 <img src="../assets/img/报告.png" alt="">
                 <div>我的报告</div>
               </li>
               <li class="my-down-score">
                 <img src="../assets/img/成绩.png" alt="">
-                <div>我的成绩</div>
+                <div>学科成绩</div>
               </li>
               <li class="my-down-collect" @click="gotoOption('myCollect')">
                 <img src="../assets/img/收藏.png" alt="">

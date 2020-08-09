@@ -15,7 +15,9 @@ const careerCase = () => import('@/careerCase/index') // 职业案例
 const my = () => import('@/my/index') // 我的
 const myinterest = () => import('@/my/myinterest') // 我的兴趣
 const myCollect = () => import('@/my/myCollect') // 我的收藏
+const myReport = () => import('@/my/myReport') // 我的报告
 const myStar = () => import('@/my/myStar') // 我赞过的
+const myPrompt = () => import('@/home/more/promptpage') // 模型题数提示
 const mbtiResult = () => import('@/home/more/singleModel/mbtiResult') // mbti结果
 const controlResult = () => import('@/home/more/singleModel/controlResult') // 控制力结果
 const mathResult = () => import('@/home/more/singleModel/mathResult') // 数学结果
@@ -151,6 +153,16 @@ export default new Router({
       meta: { tab: 'myCollect', title: 'myCollect' }
     },
     {
+      // 这是链接上的显示路径
+      path: '/myReport',
+      components: {
+        default: myReport
+      },
+      name: 'myReport',
+      // 登录校验
+      meta: { tab: 'myReport', title: 'myReport' }
+    },
+    {
       path: '/myStar',
       components: {
         default: myStar
@@ -158,6 +170,15 @@ export default new Router({
       name: 'myStar',
       // 登录校验
       meta: { tab: 'myStar', title: 'myStar' }
+    },
+    {
+      path: '/myPrompt',
+      components: {
+        default: myPrompt
+      },
+      name: 'myPrompt',
+      // 做题提示
+      meta: { tab: 'myPrompt', title: 'myPrompt' }
     },
     {
       path: '/singleModel',

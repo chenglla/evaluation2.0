@@ -48,7 +48,7 @@ export default {
         linkActive: require('../assets/img/zhiye-ac.png'),
         src: 'career',
         value: 'career',
-        name: '职业百科',
+        name: '职业列表',
         icon: 'icon_lulutianjia'
       },
       {

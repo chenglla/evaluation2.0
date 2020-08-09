@@ -139,3 +139,11 @@ export function findCaseDetail (req) { // 获取案例详细信息
     params: req
   })
 }
+
+export function getAllUserAnswers (req) { // 获取用户所有答案
+  return request({
+    url: '/user/getAllEvaluate',
+    method: 'get',
+    params: req
+  })
+}

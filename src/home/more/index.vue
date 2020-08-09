@@ -383,8 +383,15 @@ export default {
       if (id === -1) {
         this.$router.push({name: 'building'})
       } else {
+        // this.$router.push({
+        //   name: 'singleModel',
+        //   // name: 'learnAbility',
+        //   query: {
+        //     typeId: id
+        //   }
+        // })
         this.$router.push({
-          name: 'singleModel',
+          name: 'myPrompt',
           // name: 'learnAbility',
           query: {
             typeId: id
