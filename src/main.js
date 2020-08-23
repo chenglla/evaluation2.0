@@ -7,8 +7,10 @@ import router from './router'
 import vueTap from 'vue-js-tap'
 import store from './store'
 import echarts from 'echarts'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import { XProgress, Box, XButton, Swiper } from 'vux'
-
+Vue.use(ElementUI);
 Vue.use(vueTap)
 // Vue.use(VueRouter)
 Vue.component('x-progress', XProgress)

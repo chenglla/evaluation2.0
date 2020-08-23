@@ -3,7 +3,7 @@
   <div class="app-container">
 
     <div class="content">
-      <div id="bility" style="width:100%;height: 400px"/>
+      <div id="bility" style="width:313px;height: 400px;"/>
     </div>
   </div>
 </template>

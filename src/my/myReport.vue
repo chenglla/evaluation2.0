@@ -4,140 +4,174 @@
       <div class="return__icon" @click="returnBack">
         <i class="iconfont iconfanhui"></i>
       </div>
-      <div class="title">综合报告</div>
+      <div class="title">我的报告</div>
     </div>
     <div class="resultInfo" ref="resultInfo">
-      <div style="padding-bottom: 15px">
-        <div class="one-item">
-          <div class="one-step">
-            <div>
-              <span>*测评编号：2020080701235</span>
+        <div class="one-item" style="float: left;border-top: 1px solid #1db9ff ;padding: 7px 7px 13px 13px;">
+          <el-row>
+            <el-col :span="24">
+              <div style="font-size: 20px;text-align:center;"> <h4>测评报告</h4></div>
+              <br/>
+            </el-col>
+            <div style="float: right;">测评编号：{{testnumber}}</div>
+          </el-row>
+          <el-divider style="margin-top: 3px"></el-divider>
+<!--          <div class="usermsg">-->
+            <span>测评者昵称：{{name}}</span>
+            <div >
+              <div>
+                <span >报告时间：{{testtime}}</span>
+              </div>
             </div>
-          </div>
-          <div class="one-step">
-            <div>
-              <span>*评测者昵称：夏天的风</span>
+            <div class="one-step">
+              <div>
+                <span >根据您测评情况，我们生成如下报告如下：</span>
+                <h4>大五人格：</h4>
+                <p>{{bigfivedata}}</p>
+              </div>
             </div>
-          </div>
-          <div class="one-step">
-            <div>
-              <span>*评测者时间：2020.08.07</span>
-            </div>
-          </div>
-          <div class="one-step">
-            <div>
-              <span>根据您测评情况，我们生成如下报告如下：</span>
-            </div>
-          </div>
-          <div class="one-step">
-            <h4>职业性格测评</h4>
-            <p v-html="mbtiData.describe">MBTI:{{this.mbtiData.describe.zhiyname}}</p>
-            <h4>性格特征</h4>
-            <p>{{this.mbtiData.charactertype}}</p>
-            <h4>适合职业</h4>
-            <p v-for = "item in mbtiprofession">{{item.zhiyname}}</p>
-          </div>
-          <div class="one-step">
-            <h4>大五人格测评</h4>
-            <div>
-              <big-five-chart :personassdata="mapper[9]"></big-five-chart>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">神经质或情绪稳定性(Neuroticism)：</span></p>
-              <p>神经质指个体体验消极情绪的倾向。得分越低，表示情绪越稳定；得分越高，表示情绪越不稳定。20.4 分以下为
-                典型低分，38.8 分以上为典型高分。
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">外倾性(Extraversion)：</span></p>
-              <p>外向代表了在外界投入的能量。
-                得分越高，性格越外向。26 分以下为典型低分，42 分以上为典型高分。
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">开放性(Openness)：</span></p>
-              <p>指个体想像力以及好奇心程度。
-                得分越高，性格越开朗，态度开放，容易接受新事物。32 分以下为典型低分，47 分以上为典型高分。
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">尽责性(Conscientiousness)：</span></p>
-              <p>神尽责性指我们控制、管理和调节自身冲动的方式。
-                得分越高，责任心越强。36 分以下为典型低分，44 分以上为典型高分。
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">宜人性(Agreeableness)：</span></p>
-              <p>反应个体在合作与社会和谐性方面的差异。
-                得分越高，性格越随和。30 分以下为典型低分，48 分以上为典型高分。
+            <el-collapse accordion>
+              <el-collapse-item>
+                <template slot="title">
+                  性格测评-MBTI 测评结果
+                </template>
+                <div class="one-step">
+                  <h4>职业性格测评</h4>
+                  <p v-html="mbtiData.describe">MBTI:{{this.mbtiData.describe.zhiyname}}</p>
+                  <h4>性格特征</h4>
+                  <p>{{this.mbtiData.charactertype}}</p>
+                  <h4>适合职业</h4>
+                  <p v-for = "item in mbtiprofession">{{item.zhiyname}}</p>
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="性格测评-大五人格测评">
+                <div class="one-step" >
+                  <h4>大五人格测评</h4>
+                  <el-row>
+                    <el-col :span="24"> <big-five-chart :personassdata="mapper[9]"></big-five-chart></el-col>
+                  </el-row>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">神经质或情绪稳定性(Neuroticism)：</span></p>
+                    <p>神经质指个体体验消极情绪的倾向。得分越低，表示情绪越稳定；得分越高，表示情绪越不稳定。20.4 分以下为
+                      典型低分，38.8 分以上为典型高分。
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">外倾性(Extraversion)：</span></p>
+                    <p>外倾性代表了在外界投入的能量。
+                      得分越高，性格越外向。26 分以下为典型低分，42 分以上为典型高分。
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">开放性(Openness)：</span></p>
+                    <p>指个体想像力以及好奇心程度。
+                      得分越高，性格越开朗，态度开放，容易接受新事物。32 分以下为典型低分，47 分以上为典型高分。
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">尽责性(Conscientiousness)：</span></p>
+                    <p>尽责性指我们控制、管理和调节自身冲动的方式。
+                      得分越高，责任心越强。36 分以下为典型低分，44 分以上为典型高分。
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">宜人性(Agreeableness)：</span></p>
+                    <p>反应个体在合作与社会和谐性方面的差异。
+                      得分越高，性格越随和。30 分以下为典型低分，48 分以上为典型高分。
 
-              </p>
-            </div>
+                    </p>
+                  </div>
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="基本素养测评结果">
+                <div class="one-step">
+                  <h4>基本素养测评</h4>
+                  <p><span style="font-weight: bold;color: #ffae45">计划性:</span>{{plandata.describe}}</p>
+                  <p><span style="font-weight: bold;color: #ffae45">细致高效:</span>{{caredata.describe}}</p>
+                  <p><span style="font-weight: bold;color: #ffae45">适应力:</span>{{adjustdata.describe}}</p>
+                  <p><span style="font-weight: bold;color: #ffae45">积极乐观:</span>{{happydata.describe}}</p>
+                  <p><span style="font-weight: bold;color: #ffae45">情绪稳定:</span>您的情绪稳定性水平较高，一般生活和学习中遇到的小挫折或者小确幸都很难引起您强烈的情绪反应，您的情绪反应也较为缓慢，受外界（或内部）条件变化而产生的波动较小。如当遇到事业成败等重大生活事件时，较易控制自己的情绪。
+                  </p>
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="学习能力测评">
+                <div class="one-step">
+                  <h4>学习能力</h4>
+                  <el-row>
+                    <el-col :span="24">
+                      <study-ability-chart :learndata = "mapper[3]"></study-ability-chart>
+                    </el-col>
+                  </el-row>
+
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">驱动力：</span></p>
+                    <p>是来自内在的动力，也就是内心把一种事情做好的欲望。
+                      顺应力：将会帮助学习者更好地获得上述各种能力，同时，它将帮助学习者在遇到无序、未知和失败时能够保持不屈精神
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">互惠力：</span></p>
+                    <p>主要体现在自己和他人之间的自主、观察与合作。他人分享或发表观点，是否有个人的思考在里面，学习他人优点，同时乐于分享。
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">顺应力：</span></p>
+                    <p>将会帮助学习者更好地获得上述各种能力，同时，它将帮助学习者在遇到无序、未知和失败时能够保持不屈精神
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">策应力：</span></p>
+                    <p>在学习过程中，能不能根据已有的问题或知识点，进行提问面对不同知识点推理并建立联系。
+                    </p>
+                  </div>
+                  <div>
+                    <p><span style="font-weight: bolder;color: #5ea6ff ">调节力：</span></p>
+                    <p>也是反省力。学习时，会不会根据个人情况做一个相对合理的计划， 在计划执行时或者执行后能不能按照实际情况做正确调整。
+                    </p>
+                  </div>
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="心理状态测评">
+                <div class="one-step">
+                  <h4>心理状态测评</h4>
+                  <p style="color: red">{{this.sixData.level}}</p>
+                  <p style="color: red">{{this.sixData.describe}}</p>
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="身体状态测评">
+                <div class="one-step">
+                  <h4>身体状态测评</h4>
+                  <p style="color: #66dd6e">{{this.bodydata.level}}</p>
+                  <p style="color: #66dd6e">{{this.bodydata.describe}}</p>
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="TIMSS-A 数学能力测评">
+                <div class="one-step">
+                  <h4>TIMSS-A 数学能力测评</h4>
+                  <el-row>
+                    <el-col :span="24">
+                      <math-ability-chart :mathdata = "mapper[14]"></math-ability-chart>
+                    </el-col>
+                  </el-row>
+
+                  <p>{{this.shisiData.teacherInfluenceContent}}</p>
+                  <p>{{this.shisiData.hobbyInfluenceContent}}</p>
+                  <p>{{this.shisiData.othersInfluenceContent}}</p>
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+
+
           </div>
-          <div class="one-step">
-            <h4>基本素养测评</h4>
-            <p><span style="font-weight: bold;color: #ffae45">计划性:</span>{{plandata.describe}}</p>
-            <p><span style="font-weight: bold;color: #ffae45">细致高效:</span>{{caredata.describe}}</p>
-            <p><span style="font-weight: bold;color: #ffae45">适应力:</span>{{adjustdata.describe}}</p>
-            <p><span style="font-weight: bold;color: #ffae45">积极乐观:</span>{{happydata.describe}}</p>
-            <p><span style="font-weight: bold;color: #ffae45">情绪稳定:</span>您的情绪稳定性水平较高，一般生活和学习中遇到的小挫折或者小确幸都很难引起您强烈的情绪反应，您的情绪反应也较为缓慢，受外界（或内部）条件变化而产生的波动较小。如当遇到事业成败等重大生活事件时，较易控制自己的情绪。
-            </p>
-          </div>
-          <div class="one-step">
-            <h4>学习能力</h4>
-            <study-ability-chart :learndata = "mapper[3]"></study-ability-chart>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">驱动力：</span></p>
-              <p>是来自内在的动力，也就是内心把一种事情做好的欲望。
-                顺应力：将会帮助学习者更好地获得上述各种能力，同时，它将帮助学习者在遇到无序、未知和失败时能够保持不屈精神
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">互惠力：</span></p>
-              <p>主要体现在自己和他人之间的自主、观察与合作。他人分享或发表观点，是否有个人的思考在里面，学习他人优点，同时乐于分享。
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">顺应力：</span></p>
-              <p>将会帮助学习者更好地获得上述各种能力，同时，它将帮助学习者在遇到无序、未知和失败时能够保持不屈精神
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">策应力：</span></p>
-              <p>在学习过程中，能不能根据已有的问题或知识点，进行提问面对不同知识点推理并建立联系。
-              </p>
-            </div>
-            <div>
-              <p><span style="font-weight: bolder;color: #5ea6ff ">调节力：</span></p>
-              <p>也是反省力。学习时，会不会根据个人情况做一个相对合理的计划， 在计划执行时或者执行后能不能按照实际情况做正确调整。
-              </p>
-            </div>
-          </div>
-          <div class="one-step">
-            <h4>心理状态测评</h4>
-            <p style="color: red">{{this.sixData.level}}</p>
-            <p style="color: red">{{this.sixData.describe}}</p>
-          </div>
-          <div class="one-step">
-            <h4>身体状态测评</h4>
-            <p style="color: #66dd6e">{{this.bodydata.level}}</p>
-            <p style="color: #66dd6e">{{this.bodydata.describe}}</p>
-          </div>
-          <div class="one-step">
-            <h4>TIMSS-A 数学能力测评</h4>
-            <math-ability-chart :mathdata = "mapper[14]"></math-ability-chart>
-            <p>{{this.shisiData.teacherInfluenceContent}}</p>
-            <p>{{this.shisiData.hobbyInfluenceContent}}</p>
-            <p>{{this.shisiData.othersInfluenceContent}}</p>
-          </div>
+
         </div>
       </div>
-    </div>
+<!--    </div>-->
   </div>
 </template>
 
 <script>
-import {getAllUserAnswers, mentalBrainResult, postMathResult} from '@/api/index'
+import {getAllUserAnswers, mentalBrainResult, postMathResult,getuserinfo} from '@/api/index'
 import bigFiveChart from '@/my/reportCharts/bigFiveChart'
 import studyAbilityChart from '@/my/reportCharts/studyAbilityChart'
 import mathAbilityChart from '@/my/reportCharts/mathAbilityChart'
@@ -183,7 +217,11 @@ export default {
       happy:{},
       happydata:'',
       body:{},
-      bodydata:''
+      bodydata:'',
+      name:'',
+      testtime:'',
+      testnumber:'',
+      bigfivedata:''
     }
   },
   methods: {
@@ -211,6 +249,16 @@ export default {
         this.adjust = this.mapper[13]
         this.happy = this.mapper[7]
         this.body = this.mapper[6]
+      })
+      getuserinfo({
+        openid:111,
+        type:9
+      }).then(res => {
+        this.name = res.data.userNickName;
+        this.testtime = res.data.testTime;
+        this.testnumber = res.data.testNumber;
+        this.bigfivedata = res.data.describe;
+
       })
     },
     getHealthData: function () {
@@ -304,6 +352,9 @@ export default {
       },1000);
 
     },
+    getusermag(){
+
+    },
 
     returnBack () {
       this.$router.go(-1)
@@ -313,6 +364,12 @@ export default {
 </script>
 
 <style scoped>
+  .usermsg{
+    float: left;
+    border-top: 1px solid #1db9ff ;
+    padding: 7px 7px 13px 13px;
+
+  }
   .button_container {
     display: flex;
     justify-content: center;
@@ -361,10 +418,13 @@ export default {
   }
   .one-item{
     background: rgba(255,255,204, 0.1);
-    padding: 14px;
+    padding: 0px;
+    border: 1px solid #1db9ff;
+    border-radius: 4px;
     margin: 20px 20px 16px;
     box-shadow: 0 6px 6px rgba(75, 92, 178, 0.1);
     border-radius: 4px;
+    border-color: #1db9ff;
     position: relative;
     overflow: hidden;
   }
@@ -404,5 +464,10 @@ export default {
   }
   .one-step{
     margin-top: 20px;
+  }
+  .first{
+    list-style: none;
+    list-style-image: url("../assets/logo.png");
+    padding-left: 20px;
   }
 </style>

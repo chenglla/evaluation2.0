@@ -3,7 +3,7 @@
   <div class="app-container">
 
     <div class="content">
-      <div id="math" style="width:100%;height: 400px"/>
+      <div id="math" style="width:313px;height: 400px;"/>
     </div>
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
         console.log('math')
         console.log(res.data)
         this.math = res.data.data
+        this.mathData.push(this.math['hobbyInfluenceScale'])
+        this.mathData.push(this.math['othersInfluenceScale'])
+        this.mathData.push(this.math['teacherInfluenceScale'])
       })
       this.option = {
         title: {
@@ -56,10 +59,8 @@ export default {
             indicator: [
               { text: '理性创造脑' },
               { text: 'A象限' },
-              { text: 'B象限' },
-              { text: '传统情感脑' },
-              { text: 'C象限' },
-              { text: 'D象限' }
+              { text: '传统情感脑' }
+
             ],
             center: ['50%', '50%'],
             radius: 80,
@@ -99,7 +100,7 @@ export default {
           // areaStyle: {normal: {}},
           data: [
             {
-              value: [0.2, 0.8, 0.5, 0.63, 0.32, 0.1]
+              value: this.mathData
               // name: '预算分配（Allocated Budget）'
             }
           ]

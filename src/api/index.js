@@ -156,4 +156,10 @@ export function getAllUserAnswers (req) { // 获取用户所有答案
     params: req
   })
 }
-
+export function getuserinfo (req) { // 获取案例详细信息
+  return request({
+    url: 'https://zhongkeruitong.top/evaluate_new/evaluate_new/testReport/showTestReportApi?userOpenId=111&type=9',
+    method: 'get',
+    params: req
+  })
+}

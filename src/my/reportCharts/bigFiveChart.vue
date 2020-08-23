@@ -1,10 +1,10 @@
 <template>
-  <div class="app-container">
+<!--  <div class="app-container">-->
 
     <div class="content">
-      <div id="test" style="width:100%;height: 400px"/>
+      <div id="test" style="width:313px;height: 400px;"/>
     </div>
-  </div>
+<!--  </div>-->
 </template>
 
 <script>
