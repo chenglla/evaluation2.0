@@ -4,60 +4,182 @@
       <div class="title">百科列表</div>
     </div>
     <div class="search">
-      <input type="text" placeholder='搜索关键词' >
+      <input type="text" placeholder='搜索关键词'>
       <i class="iconfont iconsousuo"></i>
     </div>
     <div class="ency_split"></div>
     <div class="w1">
       <div class="ency-middle" ref="wrapper">
-          <div class="ency-content" >
-            <div class="ency-list" v-for="(encylist,index) in encyLists" :key="index">
-              <i class="iconfont iconanli"></i>
-              <span>{{encylist}}</span>
-              <i class="iconfont iconxiajiantou"></i>
-            </div>
-          </div>
-        </div>
+        <!--        <h>本科门类列表：</h>-->
+        <div class="ency-content">
+          <div style="margin-top: 5px;margin-bottom: 20px;color: #1db9ff"><span >本科门类：</span></div>
+<!--          <el-tree-->
+<!--            :props="props"-->
+<!--            :load="loadNode"-->
+<!--            lazy-->
+<!--            show-checkbox>-->
+<!--          </el-tree>-->
 
+          <div v-for="(categoryBenList,index) in  categoryBenList" :key="index">
+<!--            <el-collapse v-model="activeNames" @change="handleChange">-->
+            <el-collapse>
+              <el-collapse-item>
+                <template slot="title">
+                  <i class="iconfont iconanli"></i>
+                  <span>{{categoryBenList}}</span>
+                </template>
+                <div v-for="(item,index1) in subjectList[index]" :key="index1">
+                  <span>{{item}}</span>
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+          <div style="margin-top: 20px;margin-bottom: 20px;color: #1db9ff"><span >专科门类：</span></div>
+
+          <div v-for="(categoryZhuanList,index) in  categoryZhuanList" :key="'info2-'+index">
+            <el-collapse>
+              <el-collapse-item>
+                <template slot="title">
+                  <i class="iconfont iconanli"></i>
+                  <span>{{categoryZhuanList}}</span>
+                </template>
+<!--                <div v-for="(item1,index1) in educationdian[index]" :key="index1">-->
+<!--                  <span>{{item1}}</span>-->
+<!--                </div>-->
+              </el-collapse-item>
+            </el-collapse>
+          </div>
+<!--          <div class="ency-list" v-for="(educationbenke,index) in  educationbenke" :key="index">-->
+<!--            <i class="iconfont iconanli"></i>-->
+<!--            <span>{{educationbenke}}</span>-->
+<!--            <i class="iconfont iconxiajiantou"></i>-->
+<!--          </div>-->
+<!--          <span>专科门类：</span>-->
+<!--          <div class="ency-list" v-for="(encyLists,index1) in  encyLists" :key="index1">-->
+<!--            <i class="iconfont iconanli"></i>-->
+<!--            <span>{{encyLists}}</span>-->
+<!--            <i class="iconfont iconxiajiantou"></i>-->
+<!--          </div>-->
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import BScroll from 'better-scroll'
-// let wrapper = document.querySelector('.wrapper')
-// let encyScroll = new BScroll(wrapper,{})
-export default {
-  data () {
-    return {
-      encyScroll: null,
-      encyLists: [
-        '生物解刨学类', '地质学类', '天文学类', '语言学类', '财政学类', '金融学类', '生物解刨学类', '地质学类', '生物解刨学类', '地质学类', '天文学类', '语言学类', '财政学类', '金融学类', '生物解刨学类', '地质学类', '天文学类', '语言学类', '心理学类', '财政学类'
-      ]
+import {getCategoryList,getSubject,getMajor,getMajorInfoDescribe} from '@/api/index'
+  import BScroll from 'better-scroll'
+  // let wrapper = document.querySelector('.wrapper')
+  // let encyScroll = new BScroll(wrapper,{})
+  export default {
+    data() {
+      return {
+        props: {
+          label: 'name',
+          children: 'zones',
+          isLeaf: 'leaf'
+        },
+        categoryBenList: [],
+        categoryZhuanList: [],
+        encyScroll: null,
+        encyLists: [],
+        subjectList:[],
+        sub1: null,
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        }
 
-    }
-  },
-
-  methods: {
-    initRight () {
-      this.$nextTick(() => {
-        this.encyScroll = new BScroll(this.$refs.wrapper, {
-          click: true,
-          scrollY: true
+      }
+    },
+    mounted() {
+      this.getCategoryList()
+    },
+    methods: {
+      initRight() {
+        this.$nextTick(() => {
+          this.encyScroll = new BScroll(this.$refs.wrapper, {
+            click: true,
+            scrollY: true
+          })
         })
-      })
-    }
+      },
+      getCategoryList(){
+        getCategoryList({
+          education:'本科'
+        }).then(res => {
+          console.log(res.data);
+          this.categoryBenList = res.data
+          for( var i=0; i<this.categoryBenList.length ;i++){
+            // console.log(this.categoryBenList[i])
+            var a = this.categoryBenList
+            getSubject({
+              education:'本科',
+              category:this.categoryBenList[i]
+            }).then(res =>{
+                // this.sub1 = res.data;
+              this.subjectList.push(res.data);
+              // console.log(a[i])
+              console.log(res.data)
+            })
+            // setTimeout(()=>{
+            //   console.log(this.sub1)
+            // },100)
+            // console.log(a[i])
+          }
 
+          // console.log(this.subjectList)
+        })
+        // setTimeout(()=>{
+        //   console.log(this.subjectList)
+        // },1000)
+
+        getCategoryList({
+          education:'专科'
+        }).then(res => {
+          console.log(res.data);
+          this.categoryZhuanList = res.data
+          for( var i = 0; i<this.categoryZhuanList.length;i++){
+            this.sub1 = this.categoryZhuanList[i]
+            getSubject({
+            education:'专科',
+            category: this.categoryZhuanList[i]
+          }).then(res => {
+            this.subjectList
+              // console.log(this.sub1)
+          })
+          }
+
+        })
+      },
+      // loadNode(node, resolve) {
+      //   if (node.level === 0) {
+      //     return resolve([{ name: 'region' }]);
+      //   }
+      //   if (node.level > 1) return resolve([]);
+      //
+      //   setTimeout(() => {
+      //     const data = [{
+      //       name: 'leaf',
+      //       leaf: true
+      //     }, {
+      //       name: 'zone'
+      //     }];
+      //
+      //     resolve(data);
+      //   }, 100);
+      // }
+    },
   }
-}
 </script>
 <style lang="scss" scoped>
   .encyList {
-    height: 100vh;
+
     /*width: 100%;*/
     display: flex;
     flex-direction: column;
     background: #EDEDED;
   }
+
   // 标题部分
   .ency_header {
     position: relative;
@@ -71,46 +193,53 @@ export default {
     flex: none;
     z-index: 1;
   }
-  .return__icon{
+
+  .return__icon {
     position: absolute;
     margin-left: 15px;
   }
-   .title {
+
+  .title {
     text-align: center;
     font-weight: bold;
   }
+
   // 搜索框
-  .search{
+  .search {
     border: solid 1px white;
     z-index: 1;
     margin: 5px 18px;
     border-radius: 4px;
     position: relative;
-    input{
+
+    input {
       color: white;
       border: 0;
       padding-left: 15px;
       font-size: 8px;
       // 背景透明度
-      background-color: rgba(0,0,0,0);
+      background-color: rgba(0, 0, 0, 0);
       padding-bottom: 4px;
 
     }
-    input[type=text]:focus{
+
+    input[type=text]:focus {
       outline: none;
     }
+
     //修改placeholder的样式
-    input::-webkit-input-placeholder{
+    input::-webkit-input-placeholder {
       color: white;
     }
 
-    .iconsousuo{
+    .iconsousuo {
       color: white;
       position: absolute;
       right: 15px;
     }
 
   }
+
   // 蓝色部分背景
   .ency_split {
     position: absolute;
@@ -120,11 +249,13 @@ export default {
     margin-top: 45px;
     width: 100%;
   }
+
   // 中间的百科列表
 
   .ency-middle {
+    /*overflow-y: scroll;*/
     position: absolute;
-    width:calc(100% - 30px);
+    width: calc(100% - 30px);
     top: 90px;
     padding-top: 18px;
     z-index: 1;
@@ -134,16 +265,17 @@ export default {
     background-color: white;
     margin: 5px 15px 5px;
     height: calc(100% - 70px);
-    overflow: hidden;
 
   }
-  .ency-content{
+
+  .ency-content {
     flex: 1;
     //height: auto;
     padding: 0 15px;
   }
+
   // 具体列表
-  .ency-list{
+  .ency-list {
     width: 84vw;
     //width: calc(100vw - 15px);
     border-bottom: solid 1px #F7F7F7;
@@ -154,7 +286,8 @@ export default {
     margin-bottom: 8px;
     padding-bottom: 2px;
   }
-  .iconxiajiantou{
+
+  .iconxiajiantou {
     position: absolute;
     right: 30px;
     color: #BDC2CE;

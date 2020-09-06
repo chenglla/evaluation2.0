@@ -156,9 +156,37 @@ export function getAllUserAnswers (req) { // 获取用户所有答案
     params: req
   })
 }
-export function getuserinfo (req) { // 获取案例详细信息
+export function getuserinfo (req) { // 获取用戶測評详细信息
   return request({
-    url: 'https://zhongkeruitong.top/evaluate_new/evaluate_new/testReport/showTestReportApi?userOpenId=111&type=9',
+    url: '/testReport/showTestReportApi',
+    method: 'get',
+    params: req
+  })
+}
+export function getCategoryList (req) { // 获取学科门类列表
+  return request({
+    url: 'majorInfo/getCategory',
+    method: 'get',
+    params: req
+  })
+}
+export function getSubject (req) { // 获取学科列表
+  return request({
+    url: '/majorInfo/getSubject',
+    method: 'get',
+    params: req
+  })
+}
+export function getMajor (req) { // 获取具体专业
+  return request({
+    url: '/majorInfo/getMajor',
+    method: 'get',
+    params: req
+  })
+}
+export function getMajorInfoDescribe (req) { // 获取专业信息
+  return request({
+    url: '/majorInfo/getMajorInfoDescribe',
     method: 'get',
     params: req
   })

@@ -7,7 +7,7 @@
       <div class="title">我的报告</div>
     </div>
     <div class="resultInfo" ref="resultInfo">
-        <div class="one-item" style="float: left;border-top: 1px solid #1db9ff ;padding: 7px 7px 13px 13px;">
+        <div class="one-item" style="float: left;border-top: 1px solid #1db9ff ;padding: 7px 0px 3px 0px;">
           <el-row>
             <el-col :span="24">
               <div style="font-size: 20px;text-align:center;"> <h4>测评报告</h4></div>
@@ -26,8 +26,7 @@
             <div class="one-step">
               <div>
                 <span >根据您测评情况，我们生成如下报告如下：</span>
-                <h4>大五人格：</h4>
-                <p>{{bigfivedata}}</p>
+                <p v-html="describeData">{{describeData}}</p>
               </div>
             </div>
             <el-collapse accordion>
@@ -195,6 +194,7 @@ export default {
       this.getLearnResult()
       this.getMbti()
       this.getBasic()
+      this.getusermsg()
     }, 0)
   },
   data () {
@@ -221,7 +221,8 @@ export default {
       name:'',
       testtime:'',
       testnumber:'',
-      bigfivedata:''
+      bigfivedata:'',
+      describeData:''
     }
   },
   methods: {
@@ -249,16 +250,6 @@ export default {
         this.adjust = this.mapper[13]
         this.happy = this.mapper[7]
         this.body = this.mapper[6]
-      })
-      getuserinfo({
-        openid:111,
-        type:9
-      }).then(res => {
-        this.name = res.data.userNickName;
-        this.testtime = res.data.testTime;
-        this.testnumber = res.data.testNumber;
-        this.bigfivedata = res.data.describe;
-
       })
     },
     getHealthData: function () {
@@ -352,8 +343,18 @@ export default {
       },1000);
 
     },
-    getusermag(){
-
+    getusermsg(){
+      getuserinfo({
+        userOpenId:111,
+        type: 1
+      }).then(res => {
+        console.log('名字');
+        console.log(res)
+        this.name = res.data.userNickName;
+        this.testtime = res.data.testTime;
+        this.testnumber = res.data.testNumber;
+        this.describeData = res.data.describe;
+      })
     },
 
     returnBack () {
@@ -417,8 +418,9 @@ export default {
     /*left: 0;*/
   }
   .one-item{
+    width: 90%;
     background: rgba(255,255,204, 0.1);
-    padding: 0px;
+    padding: 0px 0px 0px 0px;
     border: 1px solid #1db9ff;
     border-radius: 4px;
     margin: 20px 20px 16px;
@@ -469,5 +471,16 @@ export default {
     list-style: none;
     list-style-image: url("../assets/logo.png");
     padding-left: 20px;
+  }
+  .iconxiajiantou{
+    position: absolute;
+    right: 30px;
+    color: #BDC2CE;
+  }
+  .iconfont {
+    font-size: 28px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
   }
 </style>
