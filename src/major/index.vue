@@ -12,87 +12,153 @@
       <div class="ency-middle" ref="wrapper">
         <!--        <h>本科门类列表：</h>-->
         <div class="ency-content">
-          <div style="margin-top: 5px;margin-bottom: 20px;color: #1db9ff"><span >本科门类：</span></div>
-<!--          <el-tree-->
-<!--            :props="props"-->
-<!--            :load="loadNode"-->
-<!--            lazy-->
-<!--            show-checkbox>-->
-<!--          </el-tree>-->
+          <el-collapse>
+            <el-collapse-item >
+              <template slot="title" >
+                <div style="font-size:16px;color: #1db9ff"><span >本科门类：</span></div>
+              </template>
+              <div v-for="(item,index) in  this.categoryList" :key="index">
+                <el-collapse>
+                  <el-collapse-item>
+                    <template slot="title">
+                      <i class="iconfont iconanli"></i>
+                      <span>{{index}}</span>
+                    </template>
+                    <div v-for="(i,index1) in item" :key="index1">
+                      <el-collapse @change="getMajorList('本科',i)">
+<!--                        <div v-show="view">-->
+                          <el-collapse-item >
+                            <template slot="title">
+                              <span style="text-indent:2em;">{{i}}</span>
+                            </template>
+                            <div v-for="(j,index2) in majorList" :key="index2">
+                              <el-collapse  @change="getMajorInfo('本科',j)">
+                                <el-collapse-item >
+                                  <template slot="title">
+                                    <span style="text-indent:4em;">{{j}}</span>
+                                  </template>
+                                  <div>
+                                    <span>专业描述：{{majorInfoDescribe}}</span>
+                                  </div>
+                                  <div>
+                                    <span>主要课程：{{majorInfoCourses}}</span>
+                                  </div>
+                                </el-collapse-item>
+                              </el-collapse>
+                            </div>
+                          </el-collapse-item>
+<!--                        </div>-->
+                      </el-collapse>
 
-          <div v-for="(categoryBenList,index) in  categoryBenList" :key="index">
-<!--            <el-collapse v-model="activeNames" @change="handleChange">-->
-            <el-collapse>
-              <el-collapse-item>
-                <template slot="title">
-                  <i class="iconfont iconanli"></i>
-                  <span>{{categoryBenList}}</span>
-                </template>
-                <div v-for="(item,index1) in subjectList[index]" :key="index1">
-                  <span>{{item}}</span>
-                </div>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
-          <div style="margin-top: 20px;margin-bottom: 20px;color: #1db9ff"><span >专科门类：</span></div>
-
-          <div v-for="(categoryZhuanList,index) in  categoryZhuanList" :key="'info2-'+index">
-            <el-collapse>
-              <el-collapse-item>
-                <template slot="title">
-                  <i class="iconfont iconanli"></i>
-                  <span>{{categoryZhuanList}}</span>
-                </template>
-<!--                <div v-for="(item1,index1) in educationdian[index]" :key="index1">-->
-<!--                  <span>{{item1}}</span>-->
-<!--                </div>-->
-              </el-collapse-item>
-            </el-collapse>
-          </div>
-<!--          <div class="ency-list" v-for="(educationbenke,index) in  educationbenke" :key="index">-->
-<!--            <i class="iconfont iconanli"></i>-->
-<!--            <span>{{educationbenke}}</span>-->
-<!--            <i class="iconfont iconxiajiantou"></i>-->
-<!--          </div>-->
-<!--          <span>专科门类：</span>-->
-<!--          <div class="ency-list" v-for="(encyLists,index1) in  encyLists" :key="index1">-->
-<!--            <i class="iconfont iconanli"></i>-->
-<!--            <span>{{encyLists}}</span>-->
-<!--            <i class="iconfont iconxiajiantou"></i>-->
-<!--          </div>-->
+                    </div>
+                  </el-collapse-item>
+                </el-collapse>
+              </div>
+            </el-collapse-item>
+            <el-collapse-item >
+              <template slot="title" >
+                <div style="font-size:16px;color: #1db9ff"><span >专科门类：</span></div>
+              </template>
+              <div v-for="(item,index) in  this.categoryZhuanList" :key="index">
+                <el-collapse>
+                  <el-collapse-item>
+                    <template slot="title">
+                      <i class="iconfont iconanli"></i>
+                      <span>{{index}}</span>
+                    </template>
+                    <div v-for="(k,index1) in item" :key="index1">
+                      <el-collapse @change="getMajorList('专科',k)">
+                          <el-collapse-item >
+                            <template slot="title">
+                              <span style="text-indent:2em;" >{{k}}</span>
+                            </template>
+                            <div v-for="(j,index2) in zhuanmap[k]" :key="index2" >
+                              <el-collapse  @change="getMajorInfo('专科',j)">
+                                <el-collapse-item >
+                                  <template slot="title">
+                                    <span  style="text-indent:4em;">{{j}}</span>
+                                  </template>
+                                  <div>
+                                    <span>专业描述：{{majorInfoDescribe}}</span>
+                                  </div>
+                                  <div>
+                                    <span>主要课程：{{majorInfoCourses}}</span>
+                                  </div>
+                                </el-collapse-item>
+                              </el-collapse>
+                            </div>
+                          </el-collapse-item>
+                      </el-collapse>
+                    </div>
+                  </el-collapse-item>
+                </el-collapse>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import {getCategoryList,getSubject,getMajor,getMajorInfoDescribe} from '@/api/index'
+import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
   import BScroll from 'better-scroll'
-  // let wrapper = document.querySelector('.wrapper')
-  // let encyScroll = new BScroll(wrapper,{})
   export default {
     data() {
       return {
+         temp:[],
+        view:false,
+        view2:false,
+        treeNode:{},
+        treeList:[],
+        nodeId:0,
+        temp1:[],
+        map:{},
+        major:[],
+        mmap:{},
+        s:[],
+        j:0,
+        majorInfoDescribe:'',
+        majorInfoCourses:'',
+        zhuanmajorInfoDescribe:'',
+        zhuanmajorInfoCourses:'',
+        categoryName:"",
+        parentId:0,
+        treeListData:[], // 无层级结构节点数据
+        defaultProps:{
+          children: 'childList',
+          label: 'name'
+          /* label: 'categoryName'*/
+        },
         props: {
           label: 'name',
           children: 'zones',
           isLeaf: 'leaf'
         },
+        majorList:[],
+        majorZhuanList:[],
         categoryBenList: [],
-        categoryZhuanList: [],
+        categoryZhuanList: {},
         encyScroll: null,
         encyLists: [],
         subjectList:[],
         sub1: null,
+        category:[],
+        list:[],
+        categoryList:{},
+        zhuanmap:{},
+        benmap:{},
         defaultProps: {
           children: 'children',
           label: 'label'
         }
-
       }
     },
     mounted() {
-      this.getCategoryList()
+      // this.getCategoryList()
+      this.getCategoryandSub()
+
+
     },
     methods: {
       initRight() {
@@ -103,71 +169,149 @@ import {getCategoryList,getSubject,getMajor,getMajorInfoDescribe} from '@/api/in
           })
         })
       },
-      getCategoryList(){
+      getCategoryandSub(){
         getCategoryList({
           education:'本科'
         }).then(res => {
-          console.log(res.data);
-          this.categoryBenList = res.data
-          for( var i=0; i<this.categoryBenList.length ;i++){
-            // console.log(this.categoryBenList[i])
-            var a = this.categoryBenList
-            getSubject({
-              education:'本科',
-              category:this.categoryBenList[i]
-            }).then(res =>{
-                // this.sub1 = res.data;
-              this.subjectList.push(res.data);
-              // console.log(a[i])
-              console.log(res.data)
-            })
-            // setTimeout(()=>{
-            //   console.log(this.sub1)
-            // },100)
-            // console.log(a[i])
-          }
-
-          // console.log(this.subjectList)
+          this.categoryList= res.data
+          // console.log(this.categoryList)
         })
-        // setTimeout(()=>{
-        //   console.log(this.subjectList)
-        // },1000)
-
         getCategoryList({
           education:'专科'
         }).then(res => {
-          console.log(res.data);
-          this.categoryZhuanList = res.data
-          for( var i = 0; i<this.categoryZhuanList.length;i++){
-            this.sub1 = this.categoryZhuanList[i]
-            getSubject({
-            education:'专科',
-            category: this.categoryZhuanList[i]
-          }).then(res => {
-            this.subjectList
-              // console.log(this.sub1)
-          })
+          // this.categoryZhuanList = res.data.map((item,index) =>{
+          //   return{
+          //     index: index,
+          //     name: item,
+          //     children: []
+          //   }
+          // })
+          //   console.log(this.categoryZhuanList)
+          this.categoryZhuanList =res.data
+          // for(var tmp in this.categoryZhuanList){
+          //   this.temp.push(this.categoryZhuanList[tmp])
+          // }
+          // for( var i in this.categoryZhuanList){
+          //   for(var j= 0;j<this.categoryZhuanList[i].length;j++){
+          //     console.log(this.categoryZhuanList[i][j])
+          //     this.getmajor(this.categoryZhuanList[i][j])
+          //   }
+          //   // this.getMajorList(this.categoryZhuanList[i])
+          // }
+          // console.log(this.temp[0][1])
+          // this.getMajorList('专科',this.temp[0][1])
+          // console.log(this.categoryZhuanList)
+        })
+
+      },
+      // getmajor(a){
+      //   getMajor({
+      //     education:'专科',
+      //     subject: a
+      //   }).then(res => {
+      //     var  mmmajor = new Map()
+      //     for ( var j = 0; j<res.data.length;j++){
+      //       mmmajor.set(a,res.data[j])
+      //       this.temp.push(mmmajor)
+      //       // map[i] = res.data[j]
+      //     }
+      //     console.log(this.temp)
+      //   })
+      // },
+      getMajorList(e,i){
+        getMajor({
+          education:e,
+          subject: i
+        }).then(res => {
+          // console.log(e)
+          // console.log(res.data)
+          this.majorList = res.data
+          // var  mmajor = new Map()
+          console.log(res.data.length)
+          if(e=='本科'){
+            for ( var k = 0; k<res.data.length;k++){
+              // mmajor.set(i,res.data[j])
+              this.benmap[i] = res.data
+              // this.temp.push(map[i])
+              // console.log(res.data)
+            }
+          }
+          if(e=='专科'){
+            for ( var j = 0; j<res.data.length;j++){
+              // mmajor.set(i,res.data[j])
+              this.zhuanmap[i] = res.data
+              // this.temp.push(map[i])
+              // console.log(res.data)
+            }
           }
 
+          // console.log(this.map)
+          // this.majorList = res.data.map((item, index) =>{
+          //   return {
+          //     parent:i,
+          //     index: index,
+          //     name: item,
+          //     children: []
+          //   }
+          // }  )
+          // console.log(this.majorList)
         })
       },
-      // loadNode(node, resolve) {
-      //   if (node.level === 0) {
-      //     return resolve([{ name: 'region' }]);
-      //   }
-      //   if (node.level > 1) return resolve([]);
+      getMajorInfo(e,j){
+        this.loading = true
+        // console.log(j)
+       getMajorInfoDescribe({
+         education:e,
+         majorName:j
+       }).then(res => {
+         console.log(res.data)
+         this.majorInfoDescribe =res.data.majorInfoDescribe
+         this.majorInfoCourses =res.data.majorInfoCourses
+       })
+
+      },
+      // getCategoryList(){
+      //   getCategoryList({
+      //     education:'本科'
+      //   }).then(res => {
+      //     console.log(res.data);
+      //     this.categoryBenList = res.data
+      //     for( var i=0; i<this.categoryBenList.length ;i++){
+      //       // console.log(this.categoryBenList[i])
+      //       var a = this.categoryBenList
+      //       getSubject({
+      //         education:'本科',
+      //         category:this.categoryBenList[i]
+      //       }).then(res =>{
+      //           // this.sub1 = res.data;
+      //         this.subjectList.push(res.data);
+      //         // console.log(a[i])
+      //         console.log(res.data)
+      //       })
+      //     }
+      //   })
+      //   // setTimeout(()=>{
+      //   //   console.log(this.subjectList)
+      //   // },1000)
       //
-      //   setTimeout(() => {
-      //     const data = [{
-      //       name: 'leaf',
-      //       leaf: true
-      //     }, {
-      //       name: 'zone'
-      //     }];
-      //
-      //     resolve(data);
-      //   }, 100);
-      // }
+      // },
+      loadNode(node, resolve) {
+        if (node.level === 0) {
+          return resolve([{ name: 'region' }]);
+        }
+        if (node.level > 1) return resolve([]);
+
+        setTimeout(() => {
+          const data = [{
+            name: 'leaf',
+            leaf: true
+          }, {
+            name: 'zone'
+          }];
+
+          resolve(data);
+        }, 100);
+      }
     },
   }
 </script>
@@ -291,5 +435,8 @@ import {getCategoryList,getSubject,getMajor,getMajorInfoDescribe} from '@/api/in
     position: absolute;
     right: 30px;
     color: #BDC2CE;
+  }
+  /deep/ .el-tree-node__content{
+    height: 50px;
   }
 </style>

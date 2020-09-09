@@ -7,7 +7,7 @@
       <div class="title">我的报告</div>
     </div>
     <div class="resultInfo" ref="resultInfo">
-        <div class="one-item" style="float: left;border-top: 1px solid #1db9ff ;padding: 7px 0px 3px 0px;">
+        <div class="one-item" style="float: left;border-top: 1px solid #1db9ff ;">
           <el-row>
             <el-col :span="24">
               <div style="font-size: 20px;text-align:center;"> <h4>测评报告</h4></div>
@@ -15,7 +15,8 @@
             </el-col>
             <div style="float: right;">测评编号：{{testnumber}}</div>
           </el-row>
-          <el-divider style="margin-top: 3px"></el-divider>
+          <hr align="center" width="100%" size="0.1" color="#ebeef5"/>
+<!--          <el-divider style="margin-top: 1px"></el-divider>-->
 <!--          <div class="usermsg">-->
             <span>测评者昵称：{{name}}</span>
             <div >
@@ -133,15 +134,15 @@
               <el-collapse-item title="心理状态测评">
                 <div class="one-step">
                   <h4>心理状态测评</h4>
-                  <p style="color: red">{{this.sixData.level}}</p>
-                  <p style="color: red">{{this.sixData.describe}}</p>
+                  <p >{{this.sixData.level}}</p>
+                  <p >{{this.sixData.describe}}</p>
                 </div>
               </el-collapse-item>
               <el-collapse-item title="身体状态测评">
                 <div class="one-step">
                   <h4>身体状态测评</h4>
-                  <p style="color: #66dd6e">{{this.bodydata.level}}</p>
-                  <p style="color: #66dd6e">{{this.bodydata.describe}}</p>
+                  <p >{{this.bodydata.level}}</p>
+                  <p >{{this.bodydata.describe}}</p>
                 </div>
               </el-collapse-item>
               <el-collapse-item title="TIMSS-A 数学能力测评">
@@ -418,17 +419,16 @@ export default {
     /*left: 0;*/
   }
   .one-item{
-    width: 90%;
     background: rgba(255,255,204, 0.1);
-    padding: 0px 0px 0px 0px;
+    padding: 7px 7px 7px 7px;
     border: 1px solid #1db9ff;
     border-radius: 4px;
-    margin: 20px 20px 16px;
+    margin: 20px 20px 20px 20px;
     box-shadow: 0 6px 6px rgba(75, 92, 178, 0.1);
     border-radius: 4px;
     border-color: #1db9ff;
-    position: relative;
-    overflow: hidden;
+    position: absolute;
+    /*overflow: hidden;*/
   }
   .one-item-img {
     /*width: 100px;*/

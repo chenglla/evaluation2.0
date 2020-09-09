@@ -165,18 +165,18 @@ export function getuserinfo (req) { // 获取用戶測評详细信息
 }
 export function getCategoryList (req) { // 获取学科门类列表
   return request({
-    url: 'majorInfo/getCategory',
-    method: 'get',
-    params: req
-  })
-}
-export function getSubject (req) { // 获取学科列表
-  return request({
     url: '/majorInfo/getSubject',
     method: 'get',
     params: req
   })
 }
+// export function getSubject (req) { // 获取学科列表
+//   return request({
+//     url: '/majorInfo/getSubject',
+//     method: 'get',
+//     params: req
+//   })
+// }
 export function getMajor (req) { // 获取具体专业
   return request({
     url: '/majorInfo/getMajor',
