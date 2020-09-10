@@ -10,44 +10,32 @@
     <div class="ency_split"></div>
     <div class="w1">
       <div class="ency-middle" ref="wrapper">
-        <!--        <h>本科门类列表：</h>-->
         <div class="ency-content">
           <el-collapse>
+            <!--        <h>本科门类列表：</h>-->
             <el-collapse-item >
               <template slot="title" >
                 <div style="font-size:16px;color: #1db9ff"><span >本科门类：</span></div>
               </template>
-              <div v-for="(item,index) in  this.categoryList" :key="index">
+              <div v-for="major in list">
                 <el-collapse>
                   <el-collapse-item>
                     <template slot="title">
                       <i class="iconfont iconanli"></i>
-                      <span>{{index}}</span>
+                      <span>{{major.name}}</span>
                     </template>
-                    <div v-for="(i,index1) in item" :key="index1">
-                      <el-collapse @change="getMajorList('本科',i)">
-<!--                        <div v-show="view">-->
-                          <el-collapse-item >
-                            <template slot="title">
-                              <span style="text-indent:2em;">{{i}}</span>
-                            </template>
-                            <div v-for="(j,index2) in majorList" :key="index2">
-                              <el-collapse  @change="getMajorInfo('本科',j)">
-                                <el-collapse-item >
-                                  <template slot="title">
-                                    <span style="text-indent:4em;">{{j}}</span>
-                                  </template>
-                                  <div>
-                                    <span>专业描述：{{majorInfoDescribe}}</span>
-                                  </div>
-                                  <div>
-                                    <span>主要课程：{{majorInfoCourses}}</span>
-                                  </div>
-                                </el-collapse-item>
-                              </el-collapse>
-                            </div>
-                          </el-collapse-item>
-<!--                        </div>-->
+                    <div v-for="(sub, inde) in major.children" :key="inde" @click.stop="getMajorList('本科',sub)">
+                      <el-collapse>
+                        <el-collapse-item >
+                          <template slot="title">
+                            <span style="text-indent:2em;">{{sub.middle_name}}</span>
+                          </template>
+                          <!--                            {{majorList.name}}-->
+                          <div v-for="(sun, ind) in major.children[sub.middle_index].middle_children" :key="ind" >
+                            <p>{{sun.small_name}}</p>
+                          </div>
+                        </el-collapse-item>
+                        <!--                        </div>-->
                       </el-collapse>
 
                     </div>
@@ -55,40 +43,32 @@
                 </el-collapse>
               </div>
             </el-collapse-item>
+            <!--        <h>本科门类列表：</h>-->
             <el-collapse-item >
               <template slot="title" >
                 <div style="font-size:16px;color: #1db9ff"><span >专科门类：</span></div>
               </template>
-              <div v-for="(item,index) in  this.categoryZhuanList" :key="index">
+              <div v-for="majorzhuan in zhuanlist">
                 <el-collapse>
                   <el-collapse-item>
                     <template slot="title">
                       <i class="iconfont iconanli"></i>
-                      <span>{{index}}</span>
+                      <span>{{majorzhuan.name}}</span>
                     </template>
-                    <div v-for="(k,index1) in item" :key="index1">
-                      <el-collapse @change="getMajorList('专科',k)">
-                          <el-collapse-item >
-                            <template slot="title">
-                              <span style="text-indent:2em;" >{{k}}</span>
-                            </template>
-                            <div v-for="(j,index2) in zhuanmap[k]" :key="index2" >
-                              <el-collapse  @change="getMajorInfo('专科',j)">
-                                <el-collapse-item >
-                                  <template slot="title">
-                                    <span  style="text-indent:4em;">{{j}}</span>
-                                  </template>
-                                  <div>
-                                    <span>专业描述：{{majorInfoDescribe}}</span>
-                                  </div>
-                                  <div>
-                                    <span>主要课程：{{majorInfoCourses}}</span>
-                                  </div>
-                                </el-collapse-item>
-                              </el-collapse>
-                            </div>
-                          </el-collapse-item>
+                    <div v-for="(sub1, inde111) in majorzhuan.children" :key="inde111" @click.stop="getMajorList('专科',sub1)">
+                      <el-collapse>
+                        <el-collapse-item >
+                          <template slot="title">
+                            <span style="text-indent:2em;">{{sub1.middle_name}}</span>
+                          </template>
+                          <!--                            {{majorList.name}}-->
+                          <div v-for="(sun1, ind1) in majorzhuan.children[sub1.middle_index].middle_children" :key="ind1" >
+                            <p>{{sun1.small_name}}</p>
+                          </div>
+                        </el-collapse-item>
+                        <!--                        </div>-->
                       </el-collapse>
+
                     </div>
                   </el-collapse-item>
                 </el-collapse>
@@ -106,59 +86,18 @@ import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
   export default {
     data() {
       return {
-         temp:[],
-        view:false,
-        view2:false,
-        treeNode:{},
-        treeList:[],
-        nodeId:0,
-        temp1:[],
-        map:{},
-        major:[],
-        mmap:{},
-        s:[],
-        j:0,
-        majorInfoDescribe:'',
-        majorInfoCourses:'',
-        zhuanmajorInfoDescribe:'',
-        zhuanmajorInfoCourses:'',
-        categoryName:"",
-        parentId:0,
-        treeListData:[], // 无层级结构节点数据
-        defaultProps:{
-          children: 'childList',
-          label: 'name'
-          /* label: 'categoryName'*/
-        },
-        props: {
-          label: 'name',
-          children: 'zones',
-          isLeaf: 'leaf'
-        },
-        majorList:[],
-        majorZhuanList:[],
-        categoryBenList: [],
-        categoryZhuanList: {},
-        encyScroll: null,
-        encyLists: [],
-        subjectList:[],
-        sub1: null,
-        category:[],
+        majorList: [],
+        majorList1:[],
         list:[],
-        categoryList:{},
-        zhuanmap:{},
-        benmap:{},
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        }
+        zhuanlist:[],
+        encyScroll: null,
+        categoryBenList: [],
+        categoryBenList1:{},
+        categoryZhuanList:[]
       }
     },
     mounted() {
-      // this.getCategoryList()
       this.getCategoryandSub()
-
-
     },
     methods: {
       initRight() {
@@ -173,144 +112,88 @@ import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
         getCategoryList({
           education:'本科'
         }).then(res => {
-          this.categoryList= res.data
-          // console.log(this.categoryList)
+          this.categoryBenList = res.data
+          Object.keys(this.categoryBenList)
+          this.majorList = Object.keys(this.categoryBenList)
+          console.log(this.majorList)
+          this.list = this.majorList.map((item,index) => {
+            return {
+                      show: false,
+                      index: index,
+                      name: item,
+                      children: []=this.categoryBenList[item].map((item,index) =>{
+                        return{
+                          middle_show: false,
+                          middle_index: index,
+                          middle_name: item,
+                          middle_children:[]
+                        }
+                      })
+                    }
+          })
+          console.log(this.list)
         })
         getCategoryList({
           education:'专科'
         }).then(res => {
-          // this.categoryZhuanList = res.data.map((item,index) =>{
-          //   return{
-          //     index: index,
-          //     name: item,
-          //     children: []
-          //   }
-          // })
-          //   console.log(this.categoryZhuanList)
-          this.categoryZhuanList =res.data
-          // for(var tmp in this.categoryZhuanList){
-          //   this.temp.push(this.categoryZhuanList[tmp])
-          // }
-          // for( var i in this.categoryZhuanList){
-          //   for(var j= 0;j<this.categoryZhuanList[i].length;j++){
-          //     console.log(this.categoryZhuanList[i][j])
-          //     this.getmajor(this.categoryZhuanList[i][j])
-          //   }
-          //   // this.getMajorList(this.categoryZhuanList[i])
-          // }
-          // console.log(this.temp[0][1])
-          // this.getMajorList('专科',this.temp[0][1])
-          // console.log(this.categoryZhuanList)
+          this.categoryZhuanList = res.data
+          this.majorList1 = Object.keys(this.categoryZhuanList)
+          console.log(this.majorList1)
+          this.zhuanlist = this.majorList1.map((item,index) => {
+            return {
+              show: false,
+              index: index,
+              name: item,
+              children: []=this.categoryZhuanList[item].map((item,index) =>{
+                return{
+                  middle_show: false,
+                  middle_index: index,
+                  middle_name: item,
+                  middle_children:[]
+                }
+              })
+            }
+          })
+          console.log(this.zhuanlist)
         })
 
       },
-      // getmajor(a){
-      //   getMajor({
-      //     education:'专科',
-      //     subject: a
-      //   }).then(res => {
-      //     var  mmmajor = new Map()
-      //     for ( var j = 0; j<res.data.length;j++){
-      //       mmmajor.set(a,res.data[j])
-      //       this.temp.push(mmmajor)
-      //       // map[i] = res.data[j]
-      //     }
-      //     console.log(this.temp)
-      //   })
-      // },
+      // getMajorList: _.debounce(function (e, i) {
+      //     getMajor({
+      //       education:e,
+      //       subject: i.middle_name
+      //     }).then(res => {
+      //       if (res.data.code === 0) {
+      //         // middleName.middle_children = res.data.data
+      //         // middleName.middle_show = true
+      //         console.log('专业小类：', res.data)
+      //       }
+      //     })
+      // }, true, 50),
       getMajorList(e,i){
         getMajor({
           education:e,
-          subject: i
+          subject: i.middle_name
         }).then(res => {
-          // console.log(e)
-          // console.log(res.data)
-          this.majorList = res.data
-          // var  mmajor = new Map()
-          console.log(res.data.length)
-          if(e=='本科'){
-            for ( var k = 0; k<res.data.length;k++){
-              // mmajor.set(i,res.data[j])
-              this.benmap[i] = res.data
-              // this.temp.push(map[i])
-              // console.log(res.data)
+          console.log('专业小类：', res.data)
+          i.middle_children = res.data.map((item2, index2) => {
+            return {
+              small_show: false,
+              small_index: index2,
+              small_name: item2,
+              small_children: []
             }
-          }
-          if(e=='专科'){
-            for ( var j = 0; j<res.data.length;j++){
-              // mmajor.set(i,res.data[j])
-              this.zhuanmap[i] = res.data
-              // this.temp.push(map[i])
-              // console.log(res.data)
-            }
-          }
-
-          // console.log(this.map)
-          // this.majorList = res.data.map((item, index) =>{
-          //   return {
-          //     parent:i,
-          //     index: index,
-          //     name: item,
-          //     children: []
-          //   }
-          // }  )
-          // console.log(this.majorList)
+          })
+          console.log('小类：', i)
+            // this.majorList1 = res.data.map((item, index) =>{
+            //   return {
+            //     parent:i,
+            //     index: i,
+            //     name: item,
+            //     children: []
+            //   }
+            // }  )
         })
-      },
-      getMajorInfo(e,j){
-        this.loading = true
-        // console.log(j)
-       getMajorInfoDescribe({
-         education:e,
-         majorName:j
-       }).then(res => {
-         console.log(res.data)
-         this.majorInfoDescribe =res.data.majorInfoDescribe
-         this.majorInfoCourses =res.data.majorInfoCourses
-       })
-
-      },
-      // getCategoryList(){
-      //   getCategoryList({
-      //     education:'本科'
-      //   }).then(res => {
-      //     console.log(res.data);
-      //     this.categoryBenList = res.data
-      //     for( var i=0; i<this.categoryBenList.length ;i++){
-      //       // console.log(this.categoryBenList[i])
-      //       var a = this.categoryBenList
-      //       getSubject({
-      //         education:'本科',
-      //         category:this.categoryBenList[i]
-      //       }).then(res =>{
-      //           // this.sub1 = res.data;
-      //         this.subjectList.push(res.data);
-      //         // console.log(a[i])
-      //         console.log(res.data)
-      //       })
-      //     }
-      //   })
-      //   // setTimeout(()=>{
-      //   //   console.log(this.subjectList)
-      //   // },1000)
-      //
-      // },
-      loadNode(node, resolve) {
-        if (node.level === 0) {
-          return resolve([{ name: 'region' }]);
-        }
-        if (node.level > 1) return resolve([]);
-
-        setTimeout(() => {
-          const data = [{
-            name: 'leaf',
-            leaf: true
-          }, {
-            name: 'zone'
-          }];
-
-          resolve(data);
-        }, 100);
       }
     },
   }
@@ -438,5 +321,80 @@ import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
   }
   /deep/ .el-tree-node__content{
     height: 50px;
+  }
+  .major-item {
+    background: #fff;
+    margin: 0 20px 16px;
+    box-shadow: 0 6px 6px rgba(75, 92, 178, 0.1);
+    border-radius: 4px;
+    position: relative;
+    min-height: 20px;
+    &.major-item--open {
+      .major-item__name {
+        background: linear-gradient(to right, #417dda 0%, #77a5ec 25%, #afd1fb 100%);
+        color: #fff;
+      }
+      .major-item__icon {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  .major-item__name {
+    font-size: 15px;
+    padding: 10px;
+    color: #1e509e;
+  }
+  .major-item__icon {
+    position: absolute;
+    right: 16px;
+    top: 10px;
+    transform: rotate(-90deg);
+    transition: all .2s;
+    .iconfont {
+      font-size: 15px;
+    }
+  }
+  .major-item__sub {
+    transition: all .2s;
+    padding: 0 10px;
+  }
+  .sub-major-item {
+    padding: 6px 0;
+    position: relative;
+    & + .sub-major-item {
+      border-top: 1px solid #f5f5f5;
+    }
+    &.sub-item--open {
+      .sub-item__name {
+        padding: 5px 0 8px;
+        /*border-bottom: 1px solid #ececec;*/
+        /*box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .1);*/
+        /*background: linear-gradient(to right, #417dda 0%, #77a5ec 25%, #afd1fb 100%);*/
+        /*color: #fff;*/
+      }
+      .major-item__icon {
+        transform: rotate(-90deg);
+        margin-top: 15px;
+        font-size: 12px;
+      }
+    }
+    .iconfont {
+      position: absolute;
+      /*right: 10px;*/
+      top: -10px;
+      /*top: 7px;*/
+      font-size: 12px;
+      color: #b5b5b5;
+      transform: rotate(180deg);
+    }
+  }
+  .iconleft-arrow {
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 12px;
+    color: #b5b5b5;
+    transform: rotate(180deg);
   }
 </style>

@@ -16,8 +16,6 @@
             <div style="float: right;">测评编号：{{testnumber}}</div>
           </el-row>
           <hr align="center" width="100%" size="0.1" color="#ebeef5"/>
-<!--          <el-divider style="margin-top: 1px"></el-divider>-->
-<!--          <div class="usermsg">-->
             <span>测评者昵称：{{name}}</span>
             <div >
               <div>
@@ -27,7 +25,13 @@
             <div class="one-step">
               <div>
                 <span >根据您测评情况，我们生成如下报告如下：</span>
-                <p v-html="describeData">{{describeData}}</p>
+<!--                <p v-html="describeData">{{describeData}}</p>-->
+                <div>
+                <el-image
+                  style="width: 320px; height: 330px"
+                  :src="require('@/assets/123.png')"
+                 ></el-image>
+                </div>
               </div>
             </div>
             <el-collapse accordion>
@@ -419,6 +423,7 @@ export default {
     /*left: 0;*/
   }
   .one-item{
+    width: calc(100% - 56px);
     background: rgba(255,255,204, 0.1);
     padding: 7px 7px 7px 7px;
     border: 1px solid #1db9ff;
@@ -427,7 +432,7 @@ export default {
     box-shadow: 0 6px 6px rgba(75, 92, 178, 0.1);
     border-radius: 4px;
     border-color: #1db9ff;
-    position: absolute;
+    position: relative;
     /*overflow: hidden;*/
   }
   .one-item-img {
