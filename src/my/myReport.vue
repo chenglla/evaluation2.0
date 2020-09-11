@@ -38,7 +38,7 @@
                 <el-col :span="5" style="text-align: center; ">
                   <ul class="tag-list">
                     <li>
-                      <el-tag>标签测试</el-tag>
+                      <el-tag>标签1111</el-tag>
                     </li>
                     <li>
                       <el-tag>标签</el-tag>
