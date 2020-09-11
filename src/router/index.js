@@ -38,6 +38,8 @@ const TIMSSResult = () => import('@/home/more/singleModel/TIMSSResult') //  数�
 // const phycholoicalQualityResult = () => import('@/home/more/singleModel/phycholoicalQualityResult') // 心理素质
 // const positiveResult = () => import('@/home/more/singleModel/positiveResult') // 积极乐观测试结果
 const caseDetail = () => import('@/careerCase/caseDetail')
+const majorMsg = () => import('@/major/majorMsg')
+
 
 export default new Router({
   routes: [
@@ -97,6 +99,14 @@ export default new Router({
       },
       name: 'major',
       meta: { tab: 'major', title: 'major' }
+    },
+    {
+      path: '/majorMsg/:id',
+      components: {
+        default: majorMsg
+      },
+      name: 'majorMsg',
+      meta: { tab: 'majorMsg', title: 'majorMsg' }
     },
     {
       path: '/career',

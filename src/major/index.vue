@@ -31,9 +31,13 @@
                             <span style="text-indent:2em;">{{sub.middle_name}}</span>
                           </template>
                           <!--                            {{majorList.name}}-->
-                          <div v-for="(sun, ind) in major.children[sub.middle_index].middle_children" :key="ind" >
-                            <p>{{sun.small_name}}</p>
-                          </div>
+                          <ul v-for="(sun, ind) in major.children[sub.middle_index].middle_children" :key="ind" >
+                            <li>
+                              <div class="majorstyle" @click.stop="gotoPage('本科',sun.small_name)">
+                                <el-button type="text">{{sun.small_name}}</el-button>
+                              </div>
+                            </li>
+                          </ul>
                         </el-collapse-item>
                         <!--                        </div>-->
                       </el-collapse>
@@ -61,14 +65,15 @@
                           <template slot="title">
                             <span style="text-indent:2em;">{{sub1.middle_name}}</span>
                           </template>
-                          <!--                            {{majorList.name}}-->
-                          <div v-for="(sun1, ind1) in majorzhuan.children[sub1.middle_index].middle_children" :key="ind1" >
-                            <p>{{sun1.small_name}}</p>
-                          </div>
+                          <ul v-for="(sun1, ind1) in majorzhuan.children[sub1.middle_index].middle_children" :key="ind1" >
+                            <li>
+                              <div class="majorstyle" @click.stop="gotoPage('专科',sun1.small_name)">
+                                <el-button type="text">{{sun1.small_name}}</el-button>
+                              </div>
+                            </li>
+                          </ul>
                         </el-collapse-item>
-                        <!--                        </div>-->
                       </el-collapse>
-
                     </div>
                   </el-collapse-item>
                 </el-collapse>
@@ -97,6 +102,7 @@ import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
       }
     },
     mounted() {
+      // this.getMajorDetails()
       this.getCategoryandSub()
     },
     methods: {
@@ -185,16 +191,21 @@ import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
             }
           })
           console.log('小类：', i)
-            // this.majorList1 = res.data.map((item, index) =>{
-            //   return {
-            //     parent:i,
-            //     index: i,
-            //     name: item,
-            //     children: []
-            //   }
-            // }  )
         })
-      }
+      },
+      // getMajorDetails(){
+      //   getMajorInfoDescribe({
+      //     education:'专科',
+      //     majorName: '通信技术'
+      //   }).then( res => {
+      //     // console.log(this.majorCode)
+      //     console.log(res.data)
+      //   })
+      // },
+      gotoPage (s,sun) {
+        this.$router.push({ name: 'majorMsg', params: { edu:s ,major:sun}})
+        // this.$router.push({ path: '/majorMsg/' + sun })
+      },
     },
   }
 </script>
@@ -322,79 +333,8 @@ import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
   /deep/ .el-tree-node__content{
     height: 50px;
   }
-  .major-item {
-    background: #fff;
-    margin: 0 20px 16px;
-    box-shadow: 0 6px 6px rgba(75, 92, 178, 0.1);
-    border-radius: 4px;
-    position: relative;
-    min-height: 20px;
-    &.major-item--open {
-      .major-item__name {
-        background: linear-gradient(to right, #417dda 0%, #77a5ec 25%, #afd1fb 100%);
-        color: #fff;
-      }
-      .major-item__icon {
-        transform: rotate(90deg);
-      }
-    }
-  }
-  .major-item__name {
-    font-size: 15px;
-    padding: 10px;
-    color: #1e509e;
-  }
-  .major-item__icon {
-    position: absolute;
-    right: 16px;
-    top: 10px;
-    transform: rotate(-90deg);
-    transition: all .2s;
-    .iconfont {
-      font-size: 15px;
-    }
-  }
-  .major-item__sub {
-    transition: all .2s;
-    padding: 0 10px;
-  }
-  .sub-major-item {
-    padding: 6px 0;
-    position: relative;
-    & + .sub-major-item {
-      border-top: 1px solid #f5f5f5;
-    }
-    &.sub-item--open {
-      .sub-item__name {
-        padding: 5px 0 8px;
-        /*border-bottom: 1px solid #ececec;*/
-        /*box-shadow: 1px 1px 0 1px rgba(0, 0, 0, .1);*/
-        /*background: linear-gradient(to right, #417dda 0%, #77a5ec 25%, #afd1fb 100%);*/
-        /*color: #fff;*/
-      }
-      .major-item__icon {
-        transform: rotate(-90deg);
-        margin-top: 15px;
-        font-size: 12px;
-      }
-    }
-    .iconfont {
-      position: absolute;
-      /*right: 10px;*/
-      top: -10px;
-      /*top: 7px;*/
-      font-size: 12px;
-      color: #b5b5b5;
-      transform: rotate(180deg);
-    }
-  }
-  .iconleft-arrow {
-    font-size: 12px;
-    position: absolute;
-    right: 10px;
-    top: 12px;
-    font-size: 12px;
-    color: #b5b5b5;
-    transform: rotate(180deg);
+  .majorstyle{
+    margin-left: 7vw;
+    margin-bottom: 0.5vh;
   }
 </style>

@@ -23,16 +23,53 @@
               </div>
             </div>
             <div class="one-step">
-              <div>
-                <span >根据您测评情况，我们生成如下报告如下：</span>
-<!--                <p v-html="describeData">{{describeData}}</p>-->
-                <div>
-                <el-image
-                  style="width: 320px; height: 330px"
-                  :src="require('@/assets/123.png')"
-                 ></el-image>
-                </div>
-              </div>
+              <el-row style="text-align: center; ">
+                <el-col :span="5">
+                  <el-tag>标签一</el-tag>
+                </el-col>
+                <el-col :span="14">
+                  <el-tag>标签一</el-tag>
+                </el-col>
+                <el-col :span="5">
+                  <el-tag>标签一</el-tag>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="5" style="text-align: center; ">
+                  <ul class="tag-list">
+                    <li>
+                      <el-tag>标签一</el-tag>
+                    </li>
+                    <li>
+                      <el-tag>标签一</el-tag>
+                    </li>
+                    <li>
+                      <el-tag>标签一</el-tag>
+                    </li>
+                  </ul>
+                </el-col>
+                <el-col :span="14">
+                  <el-image
+                    :src="require('@/assets/123.png')"
+                  ></el-image>
+                </el-col>
+                <el-col :span="5" style="text-align: center; ">
+                  <ul class="tag-list">
+                    <li>
+                      <el-tag>标签一</el-tag>
+                    </li>
+                    <li>
+                      <el-tag>标签一</el-tag>
+                    </li>
+                    <li>
+                      <el-tag>标签一</el-tag>
+                    </li>
+                  </ul>
+                </el-col>
+              </el-row>
+            </div>
+            <div style="margin: 0 auto; text-align: center; ">
+              <el-tag effect="plain">标签一</el-tag>
             </div>
             <el-collapse accordion>
               <el-collapse-item>
@@ -267,6 +304,9 @@ export default {
         console.log('心理素质')
         console.log(res.data)
         this.sixData = res.data.data
+        console.log('心理素质描述')
+        console.log(res.data.data.brief)
+
         // console.log(res.data.data.describe)
       })
       bodyResult({
@@ -278,6 +318,8 @@ export default {
         console.log('身体素质')
         console.log(res.data)
         this.bodydata = res.data.data
+        console.log('身体素质描述')
+        console.log(res.data.data.brief)
         // console.log(res.data.data.describe)
       })
 
@@ -292,6 +334,8 @@ export default {
         console.log('数学能力')
         console.log(res.data)
         this.shisiData = res.data.data
+        console.log('数学能力描述')
+        console.log(res.data.data.brief)
         // console.log(res.data.data.hobbyInfluenceContent)
       })
     },
@@ -307,6 +351,8 @@ export default {
           console.log(res.data)
           this.mbtiData = res.data.data.mbti
           this.mbtiprofession = res.data.data.professionInfoList
+          console.log('mbti描述')
+          console.log(res.data.data.brief)
           // console.log(this.mbtiprofession[0].zhiyname)
           // console.log(res.data.data.mbti.describe)
         })
@@ -322,6 +368,8 @@ export default {
           console.log('细致')
           console.log(this.care)
           this.caredata = res.data.data
+          console.log('细致描述')
+          console.log(res.data.data.brief)
           // console.log(this.caredata.describe)
         })
         adjustResult({
@@ -330,6 +378,8 @@ export default {
           type: 13
         }).then(res =>{
           this.adjustdata = res.data.data
+          console.log('适应描述')
+          console.log(res.data.data.brief)
         })
         happyBrainResult({
           openid: '111',
@@ -337,6 +387,8 @@ export default {
           type: 7
         }).then(res => {
           this.happydata = res.data.data
+          console.log('乐观描述')
+          console.log(res.data.data.brief)
         })
         postPlanResult({
           openid: '111',
@@ -344,6 +396,8 @@ export default {
           type : 11
         }).then(res => {
           this.plandata = res.data.data
+          console.log('计划描述')
+          console.log(res.data.data.brief)
         })
       },1000);
 
@@ -470,7 +524,10 @@ export default {
     margin-top: 20px;
   }
   .one-step{
-    margin-top: 20px;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background-image: url("../../src/assets/123.png");*/
+    /*background-size: 100% 100%;*/
   }
   .first{
     list-style: none;
@@ -487,5 +544,14 @@ export default {
     color: #fff;
     line-height: 50px;
     text-align: center;
+  }
+
+  .tag-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .tag-list li {
+    margin: 5px 0;
   }
 </style>
