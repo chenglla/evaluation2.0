@@ -11,12 +11,12 @@
     <div class="w1">
       <div class="ency-middle" ref="wrapper">
         <div class="ency-content">
-          <el-collapse>
-            <!--        <h>本科门类列表：</h>-->
-            <el-collapse-item >
-              <template slot="title" >
+<!--          <el-collapse>-->
+<!--            &lt;!&ndash;        <h>本科门类列表：</h>&ndash;&gt;-->
+<!--            <el-collapse-item >-->
+<!--              <template slot="title" >-->
                 <div style="font-size:16px;color: #1db9ff"><span >本科门类：</span></div>
-              </template>
+<!--              </template>-->
               <div v-for="major in list">
                 <el-collapse>
                   <el-collapse-item>
@@ -46,12 +46,12 @@
                   </el-collapse-item>
                 </el-collapse>
               </div>
-            </el-collapse-item>
+<!--            </el-collapse-item>-->
             <!--        <h>本科门类列表：</h>-->
-            <el-collapse-item >
-              <template slot="title" >
-                <div style="font-size:16px;color: #1db9ff"><span >专科门类：</span></div>
-              </template>
+<!--            <el-collapse-item >-->
+<!--              <template slot="title" >-->
+                <div style="font-size:16px;color: #1db9ff;margin-top: 10px"><span >专科门类：</span></div>
+<!--              </template>-->
               <div v-for="majorzhuan in zhuanlist">
                 <el-collapse>
                   <el-collapse-item>
@@ -61,7 +61,7 @@
                     </template>
                     <div v-for="(sub1, inde111) in majorzhuan.children" :key="inde111" @click.stop="getMajorList('专科',sub1)">
                       <el-collapse>
-                        <el-collapse-item >
+                        <el-collapse-item>
                           <template slot="title">
                             <span style="text-indent:2em;">{{sub1.middle_name}}</span>
                           </template>
@@ -78,8 +78,8 @@
                   </el-collapse-item>
                 </el-collapse>
               </div>
-            </el-collapse-item>
-          </el-collapse>
+<!--            </el-collapse-item>-->
+<!--          </el-collapse>-->
         </div>
       </div>
     </div>
@@ -211,7 +211,6 @@ import {getCategoryList,getMajor,getMajorInfoDescribe} from '@/api/index'
 </script>
 <style lang="scss" scoped>
   .encyList {
-
     /*width: 100%;*/
     display: flex;
     flex-direction: column;

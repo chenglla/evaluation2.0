@@ -26,6 +26,7 @@ const mentalResult = () => import('@/home/more/singleModel/mentalResult') // 心
 const happyResult = () => import('@/home/more/singleModel/happyResult') // 积极乐观结果
 const bodyResult = () => import('@/home/more/singleModel/bodyResult') // 身体素质结果
 const carefulResult = () => import('@/home/more/singleModel/carefulResult') // 细致高效结果
+const emotionResult = () => import('@/home/more/singleModel/emotionResult') // 积极乐观结果
 const adjustResult = () => import('@/home/more/singleModel/adjustResult') // 细致高效结果
 const majorInfo = () => import('@/home/more/singleModel/major_info') // mbti结果专业按钮跳转
 const building = () => import('@/layout/building') // 正在建设中
@@ -245,6 +246,14 @@ export default new Router({
       },
       name: 'happyResult',
       meta: { tab: 'happyResult', title: 'happyResult' }
+    },
+    { // 情绪稳定模型结果
+      path: '/emotionResult',
+      components: {
+        default: emotionResult
+      },
+      name: 'emotionResult',
+      meta: { tab: 'emotionResult', title: 'emotionResult' }
     },
     { // 身体素质模型结果
       path: '/bodyResult',

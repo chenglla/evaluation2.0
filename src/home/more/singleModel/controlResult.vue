@@ -9,8 +9,15 @@
     <div class="learnAbility_second">
       <div class="resultInfo">
         <div ref="radar_chart" class="radar_chart"></div>
+        <p style="margin-top: 20px"><span style="font-weight: bolder;color: #5ea6ff ">生涯调试：</span>是个体对于可预测的生涯任务，所参与的生涯角色与面对生涯变化或不可预测的生涯问题的准备程度与应对能力</p>
+        <p><span style="font-weight: bolder;color: #5ea6ff ">生涯自信：</span>是个体对生涯走向的坚定、努力、勤奋程度</p>
+        <p><span style="font-weight: bolder;color: #5ea6ff ">生涯好奇：</span>是个体对生涯走向的尝试、冒险、询问程度</p>
+        <p><span style="font-weight: bolder;color: #5ea6ff ">生涯控制：</span>是个体意识到能够对未来发展的掌控感，是从工作领域的控制点引申过来的</p>
+        <p><span style="font-weight: bolder;color: #5ea6ff ">生涯人际：</span>是个体在生涯历程中人际关系交往、沟通程度</p>
+        <p><span style="font-weight: bolder;color: #5ea6ff ">生涯关注：</span>是个体对生涯觉察、投入、准备程度</p>
       </div>
     </div>
+
   </div>
 </template>
 

@@ -65,7 +65,7 @@ export default {
       if (this.typeId === 1) {
         this.title = 'MBTI职业性格测试'
         this.model_type = 'MBTI职业性格测试'
-        this.ques_num = '本次测评共有28道选择题，请根据个人真实情况选择！预计用时5分钟本次测评共有28道选择题，请根据个人真实情况选择！预计用时5分钟'
+        this.ques_num = '本次测评共有28道选择题，请根据个人真实情况选择！预计用时5分钟'
         this.model_explain = 'MBTI职业性格测试是国际最为流行的职业人格评估工具，作为一种对个性的判断和分析，是一个理论模型，从纷繁复杂的个性特征中，归纳提炼出4个关键要素——动力、信息收集、决策方式、生活方式，进行分析判断，从而把不同个性的人区别开来。'
         console.log('模型类型是' + 'MBTI职业性格测试')
       } else if (this.typeId === 2) {
@@ -89,7 +89,7 @@ export default {
       } else if (this.typeId === 5) {
         this.title = '身心状态-心理素质能力测试'
         this.model_type = '身心状态-心理素质能力测试'
-        this.ques_num = '身心状态-心理素质能力测试'
+        this.ques_num = '本次测评共有12道选择题，请根据个人真实情况选择！预计用时2分钟'
         this.model_explain = '本模型有关你近期状态一些选择题，每一题没有对错之分，尽快回答，不要过多的思考'
         console.log('模型类型是' + '身心状态-心理素质能力测试')
       } else if (this.typeId === 6) {
@@ -106,9 +106,9 @@ export default {
         console.log('模型类型是' + '基本素养-积极乐观')
       } else if (this.typeId === 8) {
         this.title = '基本素养-情绪稳定'
-        this.model_type = 'Holland'
-        this.ques_num = ''
-        this.model_explain = ''
+        this.model_type = '基本素养-情绪稳定'
+        this.ques_num = '本次测评共有10道多选题，请根据个人真实情况选择！预计用时1.5分钟'
+        this.model_explain = '情绪稳定对人的影响因素很大，快来测测你的情绪是否稳定'
         console.log('模型类型是' + '基本素养-情绪稳定')
       } else if (this.typeId === 9) {
         this.title = '人格测试'
@@ -118,9 +118,9 @@ export default {
         console.log('模型类型是' + '人格测试')
       } else if (this.typeId === 10) {
         this.title = '脑图测试'
-        this.model_type = 'Holland'
-        this.ques_num = ''
-        this.model_explain = ''
+        this.model_type = '脑图测试'
+        this.ques_num = '本次测评共有8道双选题，请根据个人真实情况选择最符合你的两个选项！预计用时1分钟'
+        this.model_explain = '全脑优势的概念建立于一系列生理学、医学研究的基础上,快来测测你的大脑优势在哪方面'
         console.log('模型类型是' + '脑图测试')
       } else if (this.typeId === 11) {
         this.title = '基本素养-计划性测试'
@@ -129,16 +129,16 @@ export default {
         this.model_explain = '是按部就班还是随心所欲，是循序渐进还是狂飙突进，是顺理成章还是倚马可待，你的计划性几何？'
         console.log('模型类型是' + '基本素养-计划性测试')
       } else if (this.typeId === 12) {
-        this.title = '基本素养-适应力'
-        this.model_type = 'Holland'
-        this.ques_num = ''
-        this.model_explain = ''
-        console.log('模型类型是' + '基本素养-适应力')
+        this.title = '基本素养-细致高效'
+        this.model_type = '细致高效'
+        this.ques_num = '本次测评共有10道多选题，请根据个人真实情况选择！预计用时1.5分钟'
+        this.model_explain = '小时候学校办的游园会有一项活动叫做夹弹珠，要用筷子将弹珠从一个盘子夹到另一个盘子里。有的同学下筷神速，不一会就夹满了一盘子；有的同学仿佛“抖神”上身，能安然无恙到盘子里的也就三四个；有的干脆中途放弃，夹弹珠改为弹弹珠……耐心和稳定的心态决定了游戏的胜负，那么你属于哪种游戏者呢，快来测测吧！\n'
+        console.log('模型类型是' + '基本素养-细致高效')
       } else if (this.typeId === 13) {
         this.title = '基本素养-适应力'
-        this.model_type = 'Holland'
-        this.ques_num = ''
-        this.model_explain = ''
+        this.model_type = '适应力'
+        this.ques_num = '本次测评共有10道多选题，请根据个人真实情况选择！预计用时1.5分钟'
+        this.model_explain = '社会的发展使我们无法像父母那辈一样，每天做着同样的工作，面对同样的人群，重复着同样的路线。不论是在学习或工作中，我们每天都会面对新的信息，新的人和新的事物，每天我们都要面对各种各样的选择。良好的适应能力让我们能够在应对不同情境时，做出最有利的选择，不断调节自身的身心状况，从而更好的去应对任务。本测试将帮助你了解自身的适应能力如何，快来测测吧！'
         console.log('模型类型是' + '基本素养-适应力')
       } else if (this.typeId === 14) {
         this.title = '成长能力-TIMSS-A数学能力测试'

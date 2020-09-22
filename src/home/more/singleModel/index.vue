@@ -9,11 +9,12 @@
     <div class="learnAbility_second">
       <div>
         <box class="process_info">
-<!--        <box gap="10px">-->
+          <!--        <box gap="10px">-->
           <x-progress :percent="rate" :show-cancel="false"></x-progress>
           <span>{{currentQuesNum}} / {{learnQuesList.length}}</span>
         </box>
-        <div v-show="currentIndex === index" v-for="(item, index) in learnQuesList" :key="index" class="learnAbility_second_item">
+
+        <div v-show="currentIndex === index && title !='脑图测试'" v-for="(item, index) in learnQuesList" :key="index" class="learnAbility_second_item">
           <p class="ques_content">
             <span>【单选】</span>
             {{item.questions}}
@@ -22,21 +23,35 @@
             <span :class="{checked:ind === n}">{{c.key}}</span>
             <span class="ques_option_value">{{c.value}}</span>
           </div>
-
-<!--          <x-button></x-button>-->
+          <!--          <x-button></x-button>-->
         </div>
+        <div v-show="currentIndex === index && title ==='脑图测试'" v-for="(item, index) in learnQuesList" :key="'info2-'+index" class="learnAbility_second_item">
+          <p class="ques_content">
+            <span>【双选】</span>
+            {{item.questions}}
+          </p>
+          <div v-for="(c,ind1) of item.optionsList" class="ques_option" @click="changeList1(c, ind1, index)" :key="ind1">
+            <span :class="checkbox.includes(ind1)?'checked':''">{{c.key}}</span>
+            <span class="ques_option_value">{{c.value}}</span>
+          </div>
+          <!--          <x-button></x-button>-->
+        </div>
+
       </div>
     </div>
     <div class="btn_option">
       <div>
-<!--      <div v-if="currentIndex > 0">-->
+        <!--      <div v-if="currentIndex > 0">-->
         <span class="btn_last" @click="gotoLast">上一题</span>
       </div>
       <div>
         <span class="submitAns" @click="submitAns">提交</span>
       </div>
-      <div>
+      <div v-show="title != '脑图测试'">
         <span class="btn_last" @click="gotoNext">下一题</span>
+      </div>
+      <div v-show="title === '脑图测试'">
+        <span class="btn_last" @click="gotoNext1">下一题</span>
       </div>
     </div>
   </div>
@@ -50,10 +65,14 @@ export default {
       currentQuesNum: 1,
       learnQuesList: [],
       n: -1, // 选项
+      z:[],
       answerList: {},
       rate: 0,
       title: '学习力模型',
-      flag: true
+      flag: true,
+      a:{},
+      b:false,
+      checkbox:[],
     }
   },
   computed: {
@@ -137,6 +156,7 @@ export default {
         if (res.data.code === 0) {
           this.currentIndex += 1
           this.learnQuesList = res.data.data
+          console.log('问题',this.learnQuesList)
           this.rate = this.currentQuesNum / this.learnQuesList.length * 100
           for (const item in this.learnQuesList) {
             if (this.typeId === 1) {
@@ -148,6 +168,8 @@ export default {
               let list = this.learnQuesList[item].options.split(sep)
               console.log('list   id为10', list)
               this.learnQuesList[item].optionsList = [{key: 'A', value: list[1]}, {key: 'B', value: list[2]}, {key: 'C', value: list[3]}, {key: 'E', value: list[4]}, {key: 'G', value: list[5]}, {key: 'H', value: list[6]}, {key: 'I', value: list[7]}, {key: 'J', value: list[8]}]
+              console.log('脑图111',this.learnQuesList[item].optionsList)
+
             } else if (this.typeId === 2) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
             } else if (this.typeId === 3) {
@@ -166,7 +188,7 @@ export default {
               let list = this.learnQuesList[item].options.split(septt)
               console.log('list   id为5', list)
               this.learnQuesList[item].optionsList = [{key: 'A', value: list[1]}, {key: 'B', value: list[2]}, {key: 'C', value: list[3]}, {key: 'D', value: list[4]}, {key: 'E', value: list[5]}]
-            } else if (this.typeId === 9) {
+            } else if (this.typeId === 8) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全不同意'}, {key: 'B', value: '  不太同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  同意'}, {key: 'E', value: '  完全同意'}]
             } else if (this.typeId === 9) {
               this.learnQuesList[item].optionsList = [{key: 'A', value: '完全同意'}, {key: 'B', value: '  同意'}, {key: 'C', value: '  中立'}, {key: 'D', value: '  不太同意'}, {key: 'E', value: '  完全不同意'}]
@@ -199,6 +221,7 @@ export default {
     },
     changeList (content, option, index) { // 选项内容，第i-1个选项，第几-1题--点击选项
       console.log('当前索引1：', index, this.learnQuesList.length)
+      console.log('测试', content,option,index)
       // if (index === this.learnQuesList.length - 1) {
       //   let btn = document.querySelector('.ques_option')
       //   btn.style.pointerEvents = 'none'
@@ -225,6 +248,29 @@ export default {
         console.log(this.answerList)
       }
     },
+    changeList1 (content, option, index) { // 选项内容，第i-1个选项，第几-1题--点击选项
+      var idx = this.checkbox.indexOf(option);
+      if(idx > -1){
+        this.checkbox.splice(idx,1);
+      }else {
+        this.checkbox.push(option)
+      }
+       this.z.push(option+1)
+      this.answerList[index] = this.z
+      console.log('try',this.answerList[index])
+      console.log('length',this.checkbox.length)
+        const _this = this
+          setTimeout(function () {
+            if(_this.checkbox.length == 2 && _this.currentIndex < _this.learnQuesList.length - 1){
+              _this.currentIndex += 1
+              _this.currentQuesNum += 1
+              _this.checkbox = [],
+              _this.z =[],
+              _this.rate = _this.currentQuesNum / _this.learnQuesList.length * 100
+            }
+          }, 400, true)
+         console.log('try',this.answerList)
+    },
     gotoLast () { // 上一题
       this.currentIndex -= 1
       this.currentQuesNum -= 1
@@ -235,6 +281,20 @@ export default {
       this.currentIndex += 1
       this.currentQuesNum += 1
       this.rate = this.currentQuesNum / this.learnQuesList.length * 100
+    },
+    gotoNext1 () { // 下一题
+      // console.log('222222222')
+      if(this.checkbox.length == 2){
+        this.currentIndex += 1
+        this.currentQuesNum += 1
+        this.rate = this.currentQuesNum / this.learnQuesList.length * 100
+      }else{
+        this.$message({
+          message: '请选择两个选项',
+          type: 'warning'
+
+        })
+      }
     },
     submitAns () { // 交卷
       let val = ''
@@ -263,6 +323,8 @@ export default {
         val = 'brainResult'
       } else if (this.typeId === 14) {
         val = 'mathResult'
+      }else if (this.typeId === 8) {
+        val = 'emotionResult'
       }
       this.$router.push({
         name: val,
@@ -361,6 +423,14 @@ export default {
         line-height: 30px;
       }
     }
+    //.ques_option:active{
+    //  color: #fff;
+    //  background-color: #337df7;
+    //}
+    //.ques_option:visited{
+    //  color: #fff;
+    //  background-color: #337df7;
+    //}
     /*选择当前选项时，出现checked属性，并且变色*/
     .checked {
       color: #fff;

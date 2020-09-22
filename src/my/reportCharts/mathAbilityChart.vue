@@ -1,10 +1,12 @@
 
 <template>
   <div class="app-container">
-
     <div class="content">
       <div id="math" style="width:313px;height: 400px;"/>
     </div>
+    <p>{{this.math.teacherInfluenceContent}}</p>
+    <p>{{this.math.hobbyInfluenceContent}}</p>
+    <p>{{this.math.othersInfluenceContent}}</p>
   </div>
 </template>
 
@@ -17,12 +19,12 @@ export default {
   props: ['mathdata'],
   data () {
     return {
-      math:[],
       mathData:[],
+      mathview:{},
+      math:{}
     }
   },
   mounted () {
-
     this.mathResult()
     setTimeout(()=>{
       this.initChart()
@@ -47,20 +49,13 @@ export default {
         this.mathData.push(this.math['teacherInfluenceScale'])
       })
       this.option = {
-        title: {
-          // text: '基础雷达图'
-        },
         tooltip: {},
-        legend: {
-          data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-        },
         radar: [
           {
             indicator: [
-              { text: '理性创造脑' },
-              { text: 'A象限' },
-              { text: '传统情感脑' }
-
+              { text: '数学兴趣',max:1},
+              { text: '数学意识' ,max:1},
+              { text: '教师教学风格',max:1}
             ],
             center: ['50%', '50%'],
             radius: 80,
@@ -68,7 +63,7 @@ export default {
             splitNumber: 4,
             shape: 'circle',
             name: {
-              formatter: '【{value}】',
+              formatter: '{value}',
               textStyle: {
                 color: '#72ACD1'
               }
@@ -95,13 +90,11 @@ export default {
           }
         ],
           series: [{
-          // name: '预算 vs 开销（Budget vs spending）',
+          name:'能力数值',
           type: 'radar',
-          // areaStyle: {normal: {}},
           data: [
             {
               value: this.mathData
-              // name: '预算分配（Allocated Budget）'
             }
           ]
         }]

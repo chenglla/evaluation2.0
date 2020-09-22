@@ -11,17 +11,10 @@
         <div class="one-item">
           <h4 class="one__p">测试结果：</h4>
         </div>
-        <!-- <div class="one-item">
-          <div class="one-step">
-            <div class="one-step__item" v-html="Plan.advanddis">
-              <span class="ptext">{{Plan.advanddis}}</span>
-            </div>
-          </div>
-        </div> -->
         <div class="one-item">
           <div class="one-step">
-            <div class="one-step__item"  v-html="Plan.describe">
-              <span>{{Plan.describe}}</span>
+            <div class="one-step__item">
+              <p v-for="item in fenge">{{item}}<br/><br/></p>
             </div>
           </div>
         </div>
@@ -38,7 +31,8 @@ export default {
       mes: '',
       Plan: [],
       professionInfoList: [],
-      resultScroll: null
+      resultScroll: null,
+      fenge:[]
     }
   },
   computed: {
@@ -77,6 +71,15 @@ export default {
         console.log(this.answerList)
         this.mes = res.data.msg
         this.Plan = res.data.data
+        var start = 0;
+        var pos = this.Plan.describe.indexOf('。');
+
+        while (pos > -1) {
+          this.fenge.push(this.Plan.describe.substr(start, pos - start));
+          start = pos + 1;
+          pos = this.Plan.describe.indexOf('。', pos + 1);
+        }
+        console.log(this.fenge)
         //this.Plan = res.data.data.Plan
         //this.professionInfoList = res.data.data.professionInfoList
         // this.result = res.data.data

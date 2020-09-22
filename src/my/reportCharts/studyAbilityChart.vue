@@ -40,10 +40,12 @@ export default {
         result: this.learndata
       }).then(res =>{
         this.learn = res.data.data
-        this.learnData.push(this.learn['accommodationForceNumScale'])
+        console.log('come',this.learn)
+        this.$emit('func',this.learn)
         this.learnData.push(this.learn['drivingForceScale'])
-        this.learnData.push(this.learn['engineeringStressNumScale'])
         this.learnData.push(this.learn['reciprocityNumScale'])
+        this.learnData.push(this.learn['accommodationForceNumScale'])
+        this.learnData.push(this.learn['engineeringStressNumScale'])
         this.learnData.push(this.learn['resilienceNumScale'])
       })
       this.option = {
@@ -51,9 +53,6 @@ export default {
           // text: '基础雷达图'
         },
         tooltip: {},
-        legend: {
-          data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-        },
         radar: {
           // shape: 'circle',
           name: {
@@ -74,7 +73,7 @@ export default {
             radius: 100
         },
         series: [{
-          // name: '预算 vs 开销（Budget vs spending）',
+          name: '能力数值',
           type: 'radar',
           // areaStyle: {normal: {}},
           data: [

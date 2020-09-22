@@ -148,7 +148,7 @@ export default {
     position: absolute;
     /*background-color: #19bdff;*/
     background: linear-gradient(to right, #00d2ff 0%, #37a3ff 100%);
-    height: calc(30% - 45px);
+    height: calc(43% - 45px);
     margin-top: 45px;
     width: 100%;
   }
@@ -156,7 +156,7 @@ export default {
   .push-middle {
     position: absolute;
     width:calc(100% - 62px);
-    top: 14.25rem;
+    top: 14.9rem;
     //padding-top: 40px;
     padding: 0 16px 0 16px;
     z-index: 1;

@@ -59,10 +59,10 @@ export default {
       })
     },
     getRadarChart () {
-      this.rusultList.push(this.learnResult['accommodationForceNumScale'])
       this.rusultList.push(this.learnResult['drivingForceScale'])
-      this.rusultList.push(this.learnResult['engineeringStressNumScale'])
       this.rusultList.push(this.learnResult['reciprocityNumScale'])
+      this.rusultList.push(this.learnResult['accommodationForceNumScale'])
+      this.rusultList.push(this.learnResult['engineeringStressNumScale'])
       this.rusultList.push(this.learnResult['resilienceNumScale'])
       console.log('3333', this.rusultList)
       this.radarChart = this.echarts.init(this.$refs.radar_chart)
@@ -106,10 +106,10 @@ export default {
                 showMaxLabel: false, // 不显示最大值，即外圈不显示数字30
                 showMinLabel: true // 显示最小数字，即中心点显示0
               }},
-            {name: '顺应力', max: 1},
-            {name: '策应力', max: 1},
+            {name: '互惠力', max: 1},
             {name: '调节力', max: 1},
-            {name: '互惠力', max: 1}
+            {name: '策应力', max: 1},
+            {name: '顺应力', max: 1}
           ]
         },
         series: [{

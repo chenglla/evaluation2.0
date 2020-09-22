@@ -64,9 +64,6 @@ export default {
 	    this.majorLists = res.data
 	  })
 	},
-  // findCareerInfo (val) {
-  //   console.log('名字：',val)
-  // },
   dropDown (val) {
     this.showProfessionList = !this.showProfessionList
     //if (this.showProfessionList!=0) {

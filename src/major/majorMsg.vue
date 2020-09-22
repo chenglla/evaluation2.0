@@ -13,7 +13,7 @@
         <div slot="header">
           <span>专业简介</span>
         </div>
-        <p>{{majorDescribe}}</p>
+        <p>{{majorDescribe.majorInfoDescribe}}</p>
       </el-card>
     </div>
     <div class="majorbox">
@@ -21,12 +21,27 @@
         <div slot="header">
           <span>专业课程</span>
         </div>
-       <p>{{majorCourses}} </p>
+        <p>{{majorDescribe.majorInfoCourses}}</p>
+      </el-card>
+    </div>
+    <div class="majorbox">
+      <el-card class="box-card" shadow="always">
+        <div slot="header">
+          <span>相似专业</span>
+        </div>
+        <span  v-for="item in majorDescribe.similarMajor">{{item}}<el-divider direction="vertical"></el-divider></span>
+      </el-card>
+    </div>
+    <div class="majorbox">
+      <el-card class="box-card" shadow="always">
+        <div slot="header">
+          <span>适合职业</span>
+        </div>
+        <el-button type="text" v-for="(item,index) in majorDescribe.profession"  :key="index">{{item}}<el-divider direction="vertical"></el-divider></el-button>
       </el-card>
     </div>
   </div>
 <!--  <div style="height: 100%;width: 100%;display:flex;flex-direction: column;">-->
-
 </template>
 <script>
   import {getMajorInfoDescribe} from '@/api/index'
@@ -34,8 +49,8 @@
         name: "majorMsg",
       data(){
           return{
-            majorDescribe:'',
-            majorCourses:''
+            majorDescribe:{},
+
           }
       },
         computed: {
@@ -58,8 +73,9 @@
             education:this.eduName,
             majorName:this.majorName
           }).then( res => {
-            this.majorCourses = res.data.majorInfoCourses
-            this.majorDescribe = res.data.majorInfoDescribe
+
+            // this.majorCourses = res.data.majorInfoCourses
+            this.majorDescribe = res.data
           })
         }
       }

@@ -70,6 +70,13 @@ export function adjustResult (req) { // 适应力测试结果
     params: req
   })
 }
+export function emotionResult (req) { // 情绪测试结果
+  return request({
+    url: '/basicLiteracy/submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
 export default function getMbtiResult(req) {//获取mbti测评结果
   return request({
     url: '/mbti/submitEvaluate',
