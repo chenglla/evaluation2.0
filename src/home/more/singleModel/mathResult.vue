@@ -16,6 +16,7 @@
 
 <script>
 import {postMathResult} from '@/api/index'
+import { mapState } from 'vuex'
 export default {
   name: 'mathResult',
   data () {
@@ -24,6 +25,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -37,7 +41,7 @@ export default {
     },
     getLearnResult () {
       postMathResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 14,
         result: this.answerList
       }).then(res => {

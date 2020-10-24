@@ -10,6 +10,7 @@
 <script>
 import echarts from 'echarts'
 import {postPersonResult} from '@/api/index'
+import { mapState } from 'vuex'
 require('echarts/theme/macarons') // echarts theme
 export default {
   name: 'bigFiveChart',
@@ -21,6 +22,11 @@ export default {
       option: {},
       bigfivebrief:''
     }
+  },
+  computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    })
   },
   mounted () {
     // this.getChartData()
@@ -38,10 +44,10 @@ export default {
       console.log('結果：')
       console.log(this.personassdata);
       postPersonResult({
-        openid: '111',
+        openid: this.openid,
         result: this.personassdata
       }).then( res =>{
-        console.log('ceshi')
+
         console.log(res.data)
         if (res.data.code === 0) {
           this.personass = res.data.data
@@ -51,6 +57,7 @@ export default {
         }
 
         this.bigfivebrief = this.personass[0].bigFive.brief
+        console.log('ceshi',this.bigfivebrief)
         this.$emit('func1',this.bigfivebrief)
         // this.option.series.data[0].value=persondata;
         this.option = {

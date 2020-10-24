@@ -14,6 +14,7 @@ const career = () => import('@/career/index') // 职业百科
 const careerCase = () => import('@/careerCase/index') // 职业案例
 const my = () => import('@/my/index') // 我的
 const myinterest = () => import('@/my/myinterest') // 我的兴趣
+const myScore = () => import('@/my/myScore') // 我的兴趣
 const myCollect = () => import('@/my/myCollect') // 我的收藏
 const myReport = () => import('@/my/myReport') // 我的报告
 const myStar = () => import('@/my/myStar') // 我赞过的
@@ -40,8 +41,10 @@ const TIMSSResult = () => import('@/home/more/singleModel/TIMSSResult') //  数�
 // const positiveResult = () => import('@/home/more/singleModel/positiveResult') // 积极乐观测试结果
 const caseDetail = () => import('@/careerCase/caseDetail')
 const majorMsg = () => import('@/major/majorMsg')
-
-
+const majorSearch = () => import('@/major/search') // 专业搜索
+const careerSearch = () => import('@/career/careerSearch') // 职业搜索
+const caseSearch = () => import('@/careerCase/caseSearch') // 职业搜索
+const scoreInfo = () => import('@/my/scoreDetail/viewScore')//分数详情
 export default new Router({
   routes: [
     {
@@ -66,6 +69,30 @@ export default new Router({
       },
       name: 'discussion',
       meta: { tab: 'discussion', title: 'discussion' }
+    },
+    {
+      path: '/majorSearch',
+      components: {
+        default: majorSearch
+      },
+      name: 'majorSearch',
+      meta: { tab: 'majorSearch', title: 'majorSearch', keepAlive: true }
+    },
+    {
+      path: '/careerSearch',
+      components: {
+        default: careerSearch
+      },
+      name: 'careerSearch',
+      meta: { tab: 'careerSearch', title: 'careerSearch', keepAlive: true }
+    },
+    {
+      path: '/caseSearch',
+      components: {
+        default: caseSearch
+      },
+      name: 'caseSearch',
+      meta: { tab: 'caseSearch', title: 'caseSearch', keepAlive: true }
     },
     // {
     //   // 专业详情
@@ -117,6 +144,7 @@ export default new Router({
       name: 'career',
       meta: { tab: 'career', title: 'career' }
     },
+
     {
       path: '/careerCase',
       components: {
@@ -152,6 +180,16 @@ export default new Router({
       name: 'myinterest',
       // 登录校验
       meta: { tab: 'myinterest', title: 'myinterest' }
+    },
+    {
+      // 这是链接上的显示路径
+      path: '/myScore',
+      components: {
+        default: myScore
+      },
+      name:'myScore',
+      // 登录校验
+      meta: { tab: 'myScore', title: 'myScore' }
     },
     {
       // 这是链接上的显示路径
@@ -327,6 +365,14 @@ export default new Router({
       },
       name: 'majorInfo',
       meta: { tab: 'majorInfo', title: 'majorInfo' }
+    },
+    {
+      path: '/scoreInfo',
+      components: {
+        default: scoreInfo
+      },
+      name: 'scoreInfo',
+      meta: { tab: 'scoreInfo', title: 'scoreInfo' }
     },
     { // 计划力测试
       path: '/planResult',

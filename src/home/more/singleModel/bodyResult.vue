@@ -15,6 +15,7 @@
 
 <script>
 import {bodyResult} from '@/api/index'
+import { mapState } from 'vuex'
 export default {
   name: 'bodyResult',
   data () {
@@ -23,6 +24,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -36,7 +40,7 @@ export default {
     },
     getLearnResult () {
       bodyResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 6,
         result: this.answerList
       }).then(res => {

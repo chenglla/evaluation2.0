@@ -22,6 +22,7 @@
 </template>
 <script>
 import {postLearnAnswer} from '@/api/index'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -32,6 +33,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -45,7 +49,7 @@ export default {
     },
     getLearnResult () {
       postLearnAnswer({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 3,
         result: this.answerList
       }).then(res => {

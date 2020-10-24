@@ -8,20 +8,19 @@
     </div>
     <div class="C-body" ref="my-wrapper">
 
-      <div class="C-item" v-for="(item, index) in starLists" :key="index">
+      <div class="C-item" v-for="(item, index) in myStarList" :key="index">
         <div class="C-Title">
           <img src="../assets/img/zan.png" alt="">
           <div class="C-title">{{title}}</div>
         </div>
-        <div class="C-text">尊敬的用户，1.
-          <span class="C-name">【亦庄生物医药园区】</span>
-          于【3月5日00:00-】进行系统升级...
+        <div class="C-text">
+          <el-button type="text" @click="toCaseDetail(item.articleName,item.articleId)" >{{item.articleName}}</el-button>
         </div>
-        <div class="C-time">{{time}}</div>
-        <div class="C-more" >
-          <span>查看详情</span>
-          <i class="iconfont icon-youjiantou"></i>
-        </div>
+<!--        <div class="C-time">{{time}}</div>-->
+<!--        <div class="C-more" >-->
+<!--          <span>查看详情</span>-->
+<!--          <i class="iconfont icon-youjiantou"></i>-->
+<!--        </div>-->
 
       </div>
 
@@ -30,13 +29,15 @@
 </template>
 
 <script>
+import{getGreatList} from '@/api/index'
 import BScroll from 'better-scroll'
+import {mapState} from "vuex";
 
 export default {
   data () {
     return {
       title: '我赞过的',
-
+      myStarList:[],
       time: '2019-3-6 10: 22: 23',
       starLists: 10
 
@@ -49,11 +50,35 @@ export default {
         click: true
       })
     })
+    this.getmyStar()
+  },
+  computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    })
   },
   methods: {
     returnBack () {
       this.$router.go(-1)
-    }
+    },
+    getmyStar(){
+      getGreatList({
+        uid:this.openid,
+      }).then( res => {
+        this.myStarList = res.data
+        console.log(this.myStarList)
+      })
+    },
+    toCaseDetail (name,id) {
+      console.log('id:', id)
+      this.$router.push({
+        path: '/caseDetail',
+        query: {
+          name:name,
+          id: id
+        }
+      })
+    },
   }
 }
 </script>
@@ -96,7 +121,7 @@ export default {
   .C-item{
     margin: 0 auto 12px auto;
     width: 92vw;
-    height: 120px;
+    height: 60px;
     background-color: white;
     position: relative;
     top: 14px;

@@ -14,7 +14,7 @@
         <div class="one-item">
           <div class="one-step">
             <div class="one-step__item">
-              <p v-for="item in fenge">{{item}}<br/><br/></p>
+              <p v-for="(item,index) in fenge" :key = 'index'>{{item}}<br/><br/></p>
             </div>
           </div>
         </div>
@@ -24,6 +24,7 @@
 </template>
 <script>
 import {postPlanResult} from '@/api/index'
+import { mapState } from 'vuex'
 import BScroll from 'better-scroll'
 export default {
   data () {
@@ -32,10 +33,13 @@ export default {
       Plan: [],
       professionInfoList: [],
       resultScroll: null,
-      fenge:[]
+      fenge: []
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -61,28 +65,21 @@ export default {
 
     getPlanResult () {
       postPlanResult({
-        openid: '111',
+        openid: this.openid,
         result: this.answerList,
-        type: 11,
-
+        type: 11
       }).then(res => {
-        //alert('1')
-        //alert(res.data.data)
         console.log(this.answerList)
         this.mes = res.data.msg
         this.Plan = res.data.data
-        var start = 0;
-        var pos = this.Plan.describe.indexOf('。');
-
+        var start = 0
+        var pos = this.Plan.describe.indexOf('。')
         while (pos > -1) {
-          this.fenge.push(this.Plan.describe.substr(start, pos - start));
-          start = pos + 1;
-          pos = this.Plan.describe.indexOf('。', pos + 1);
+          this.fenge.push(this.Plan.describe.substr(start, pos - start))
+          start = pos + 1
+          pos = this.Plan.describe.indexOf('。', pos + 1)
         }
         console.log(this.fenge)
-        //this.Plan = res.data.data.Plan
-        //this.professionInfoList = res.data.data.professionInfoList
-        // this.result = res.data.data
       })
     }
   }

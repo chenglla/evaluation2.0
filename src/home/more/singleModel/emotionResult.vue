@@ -15,6 +15,7 @@
 
 <script>
 import {emotionResult} from "@/api/index";
+import { mapState } from 'vuex'
 export default {
 name: "emotionResult",
   data () {
@@ -23,6 +24,9 @@ name: "emotionResult",
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -36,7 +40,7 @@ name: "emotionResult",
     },
     getEmotionResult () {
       emotionResult({
-        openid: '111',
+        openid: this.openid,
         type: 8,
         result: this.answerList
       }).then(res => {

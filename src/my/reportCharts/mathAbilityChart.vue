@@ -13,6 +13,7 @@
 <script>
 import echarts from 'echarts'
 import {postMathResult} from '@/api/index'
+import { mapState } from 'vuex'
 require('echarts/theme/macarons') // echarts theme
 export default {
   name: 'bigFiveChart',
@@ -23,6 +24,11 @@ export default {
       mathview:{},
       math:{}
     }
+  },
+  computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    })
   },
   mounted () {
     this.mathResult()
@@ -37,7 +43,7 @@ export default {
     },
     mathResult: function(){
       postMathResult({
-        openid:'111',
+        openid: this.openid,
         evaluateType:14,
         result: this.mathdata
       }).then(res =>{

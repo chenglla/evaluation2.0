@@ -35,6 +35,7 @@
 </template>
 <script>
 import {postMBTIResult} from '@/api/index'
+import { mapState } from 'vuex'
 import BScroll from 'better-scroll'
 export default {
   data () {
@@ -45,6 +46,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -78,7 +82,7 @@ export default {
     },
     getMBTIResult () {
       postMBTIResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 1,
         result: this.answerList,
       }).then(res => {

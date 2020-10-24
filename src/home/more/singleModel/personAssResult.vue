@@ -18,7 +18,8 @@
   </div>
 </template>
 <script>
-import {postPersonResult} from '@/api/index'
+import {postFiveResult} from '@/api/index'
+import { mapState } from 'vuex'
 import BScroll from 'better-scroll'
 // import bus from '@/api/vueBus.js'
 export default {
@@ -32,6 +33,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -54,9 +58,11 @@ export default {
       })
     },
     postPersonResult () { // 获取结果数据
-      postPersonResult({
-        openid: '111',
-        result: this.answerList
+      postFiveResult({
+        openid: this.openid,
+        evaluateType: 9,
+        result: this.answerList,
+        toInsertDB: 1,
         // result: JSON.stringify(this.choice)
       }).then(res => {
         if (res.data.code === 0) {

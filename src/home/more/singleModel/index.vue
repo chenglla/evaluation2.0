@@ -58,6 +58,7 @@
 </template>
 <script>
 import {getLearnQuestion} from '@/api/index'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -76,6 +77,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     typeId () {
       // this.$store.state.singleModel.typeId
       console.log('typeid:', this.$route.query.typeId)
@@ -149,7 +153,7 @@ export default {
     },
     getLearnQuesList () { // 获取学习力模型所有题
       getLearnQuestion({
-        openid: '111',
+        openid: this.openid,
         evaluateType: this.typeId
       }).then(res => {
         console.log(this.typeId, res.data)

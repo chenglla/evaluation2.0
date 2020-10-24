@@ -1,25 +1,26 @@
 <template>
   <div class="majorList">
     <div class="major_header">
-      <div class="title">百科列表</div>
+      <div class="title">职业百科</div>
     </div>
-    <div><h>come</h></div>
     <div class="search">
-      <input type="text" placeholder='搜索关键词' >
+      <input  v-model="key" @focus="gotoPageSearch('careerSearch')" type="text" placeholder='搜索关键词'>
       <i class="iconfont iconsousuo"></i>
     </div>
     <div class="major_split"></div>
-    <div class="major-middle" ref="wrapper" >
+    <div class="major-middle" ref="wrapper">
         <div class="major-content" style="padding:20px 0 5px 0;">
-          <div class="major-list" v-for="(majorlist,index) in majorLists" :key="index">
-            <img src="../assets/img/百科里的图片.png" alt="">
-            <span>{{majorlist}}</span>
-            <i class="iconfont iconxiajiantou" @click="dropDown(majorlist)"></i>
-            <!-- <div v-if="">
-              <div class="" v-for="(pullDownList,index) in pulDownLists" :key="index" v-if="showProfessionList">
-                {{pullDownList.submajorName}}
-              </div>
-            </div> -->
+          <div class="major-list" v-for="(majorlist,index) in majorLists" :key="index" >
+            <div @click.stop="dropDown(majorlist)" style="margin-bottom: 0.5vh">
+              <img src="../assets/img/百科里的图片.png" alt="">
+              <span>{{majorlist.name}}</span>
+              <i class="iconfont iconxiajiantou"></i>
+            </div>
+            <div style="text-indent: 2em;" v-for="(sub,inde) in majorlist.children" :key="inde" v-show="majorlist.show">
+              <el-button  type="text"  @click.stop="toCareerDetail(sub.middle_name.submajorId)">
+                {{sub.middle_name.zhiyname}}
+              </el-button>
+            </div>
           </div>
         </div>
       </div>
@@ -28,21 +29,21 @@
 <script>
 import {getProfessionInfo,findCareerInfo} from '@/api/index'
 import BScroll from 'better-scroll'
-//let wrapper = document.querySelector('.wrapper')
-//let majorScroll = new BScroll(wrapper,{})
+import _ from 'underscore'
 export default {
   data () {
     return {
       majorScroll: null,
       majorLists:[],
+      key:'',
       showProfessionList:0,
       pulDownLists:[],
+
     }
   },
   mounted () {
 	this.getProfessionInfo()
   this.init()
-  this.dropDown()
   },
   methods: {
     init() {
@@ -50,7 +51,6 @@ export default {
         setTimeout(()=>{
           this.majorScroll = new BScroll(this.$refs.wrapper, {
             click: true,
-            //scrollY:true,
             bounce: false,
           },1000)
         })
@@ -61,21 +61,71 @@ export default {
 	  getProfessionInfo({
 	  }).then(res => {
 	    console.log('结果1：', res.data)
-	    this.majorLists = res.data
+	    this.majorLists = res.data.map((item,index) => {
+        return {
+          show: false,
+          index: index,
+          name: item,
+          children: []
+        }
+      })
+      console.log(this.majorLists)
+
 	  })
 	},
-  dropDown (val) {
-    this.showProfessionList = !this.showProfessionList
-    //if (this.showProfessionList!=0) {
-      console.log('名字：',val)
-      findCareerInfo ({
-        ktName: val,
-      }).then(res => {
-        console.log('结果2：', res.data)
-        this.pulDownLists = res.data
+    dropDown: _.debounce(function (majorList) {
+
+      if (!this.majorLists[majorList.index].show) {
+        findCareerInfo ({
+          ktName: majorList.name,
+        }).then(res => {
+            this.majorLists[majorList.index].children = res.data.map((item2, index2) => {
+              return {
+                middle_show: false,
+                middle_index: index2,
+                middle_name: item2,
+                middle_children: []
+              }
+            })
+            console.log( this.majorLists)
+          this.majorLists[majorList.index].show = true
+        })
+      }
+      this.majorLists[majorList.index].show = false
+      // this.list[major.index].show = !this.list[major.index].show
+    }),
+    gotoPageSearch(name){
+      this.$router.push({ name: name })
+    },
+    toCareerDetail (id) {
+      console.log('id:', id)
+      this.$router.push({
+        path: '/major_info',
+        query: {
+          id: id
+        }
       })
-    //}
-  }
+    }
+    // },
+    // toCareerDetail(majorDetail){
+    //   console.log('1111',majorDetail)
+    //   this.$router.push({
+    //     path: '/careerDetail',
+    //     query: {
+    //       majorDetail: majorDetail
+    //     }
+    //   })
+    // }
+  // dropDown (majorList) {
+  //   majorList.show = !majorList.show
+  //     findCareerInfo ({
+  //       ktName: majorList.name,
+  //     }).then(res => {
+  //       console.log('结果2：', res.data)
+  //       this.pulDownLists = res.data
+  //
+  //     })
+  // }
  }
 }
 </script>

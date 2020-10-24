@@ -28,6 +28,13 @@ export function postMathResult (req) { // 提交数学能力测试结果
     params: req
   })
 }
+export function postFiveResult (req) { // 提交数学能力测试结果
+  return request({
+    url: 'submitEvaluate',
+    method: 'post',
+    params: req
+  })
+}
 export function postBrainResult (req) { // 脑象图能力测试结果
   return request({
     url: 'submitEvaluate',
@@ -99,11 +106,6 @@ export function postLearnAnswer (req) { // 学习力模型结果
     url: 'submitEvaluate',
     method: 'post',
     params: req
-    // contentType: 'application/json; charset=utf-8',
-    // // contentType: 'application/x-www-form-urlencoded',
-    // // data: req
-    // data: [JSON.stringify(req)],
-    // dataType: 'json'
   })
 }
 export function postPlanResult (req) { // 提交计划力测试结果
@@ -136,7 +138,7 @@ export function getProfessionInfo (req) { // 获取所有专业大类
 }
 export function findCareerInfo (req) { // 获取专业大类对应的职业列表
   return request({
-    url: 'profession/findByKtnameAndLabeltype',
+    url: '/profession/findByKtnameAndLabeltype',
     method: 'get',
     params: req
   })
@@ -177,13 +179,6 @@ export function getCategoryList (req) { // 获取学科门类列表
     params: req
   })
 }
-// export function getSubject (req) { // 获取学科列表
-//   return request({
-//     url: '/majorInfo/getSubject',
-//     method: 'get',
-//     params: req
-//   })
-// }
 export function getMajor (req) { // 获取具体专业
   return request({
     url: '/majorInfo/getMajor',
@@ -198,3 +193,100 @@ export function getMajorInfoDescribe (req) { // 获取专业信息
     params: req
   })
 }
+export function getMajorInfoLike (req) { // 查询专业信息
+  return request({
+    url: '/majorInfo/getMajorInfoLike',
+    method: 'get',
+    params: req
+  })
+}
+export function getCareerInfoLike (req) { // 查询专业信息
+  return request({
+    url: '/profession/getProfessionLike',
+    method: 'get',
+    params: req
+  })
+}
+export function getListByName (req) { // 查询职业信息
+  return request({
+    url: '/profession/getListByName',
+    method: 'get',
+    params: req
+  })
+}
+export function getCaseLike (req) { // 查询职业案例信息
+  return request({
+    url: '/caseInfo/getCaseLike',
+    method: 'get',
+    params: req
+  })
+}
+export function getCaseNameByPro (req) { // 根据职业大类获得职业案例
+  return request({
+    url: '/caseInfo/getCaseNameByPro',
+    method: 'get',
+    params: req
+  })
+}
+export function getMajorInfo (req) { // 根据id获取专业详细信息
+  return request({
+    url: '/majorInfo/getMajorInfo',
+    method: 'get',
+    params: req
+  })
+}
+export function saveGreat (req) { // 保存点赞列表
+  return request({
+    url: '/great/saveGreat',
+    method: 'get',
+    params: req
+  })
+}
+export function getGreatList (req) { // 根据用户id 获得点赞列表
+  return request({
+    url: '/great/getGreatList',
+    method: 'get',
+    params: req
+  })
+}
+export function getStudentScore (req) { // 获得学生分数
+  return request({
+    url: '/studentscore/getStudentScore',
+    method: 'get',
+    params: req
+  })
+}
+export function saveStudentScore (req) { // 保存学生分数
+  return request({
+    url: '/studentscore/saveStudentScore',
+    method: 'get',
+    params: req
+  })
+}
+export function getListByzhiyId (req) { // 保存学生分数
+  return request({
+    url: '/profession/getListByzhiyId',
+    method: 'get',
+    params: req
+  })
+}
+export function deleteStudentScore (req) { // 根据id删除学生成绩
+  return request({
+    url: '/studentscore/deleteStudentScore',
+    method: 'get',
+    params: req
+  })
+}
+export function updateStudentScore (data) { // 根据id修改学生成绩
+  return request({
+    url: '/studentscore/updateStudentScore',
+    method: 'post',
+    params: data,
+    dataType:'json',
+    data:JSON.stringify(data),
+    headers:{
+      'content-Type':'application/json;',
+    }
+  })
+}
+

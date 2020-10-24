@@ -4,12 +4,16 @@
       <div class="return__icon" @click="returnBack">
         <i class="iconfont iconfanhui"></i>
       </div>
-      <div class="title">职业案例具体内容</div>
+      <div class="title"> 职业案例详情
+        <i @click="clickAgree(caseId)">
+          <i v-if="!istrue" class="iconfont iconfavorite" style="float: right;margin-right: 20px"></i>
+          <i v-else class="iconfont iconshoucang11" style="color:#ff9c00;float: right;margin-right: 20px"></i>
+        </i>
+      </div>
     </div>
     <div class="case-wrapper"  ref="caseWrapper">
       <div style="padding-top: 10px;">
         <div class="case"  v-for="(detailList,index) in detailLists" :key="index">
-
           <div class="case-title">{{detailList.title}}</div>
           <div class="case-list" v-for="(infolist,index) in detailList.infoList" :key="index" >
             <div class="list-labelname">{{infolist.labelName}}</div>
@@ -23,18 +27,30 @@
 </template>
 
 <script>
-  import {findCaseDetail} from '@/api/index'
+  import {findCaseDetail,saveGreat,getGreatList} from '@/api/index'
   import BScroll from 'better-scroll'
+  import {mapState} from "vuex";
   export default {
     data () {
       return {
         caseScroll: null,
         detailLists:[],
+        istrue:false,
+        flag:false,
       }
+    },
+    computed: {
+      ...mapState({
+        openid: state => state.user.openid
+      }),
+      caseId(){
+        return this.$route.query.id
+      },
     },
     mounted () {
       this.findCaseDetail ()
       this.init()
+      // this.judgeAgree()
     },
     methods: {
       returnBack () {
@@ -57,6 +73,23 @@
           this.detailLists = res.data
         })
       },
+      clickAgree(id) {
+        this.istrue = !this.istrue
+        console.log(id)
+        console.log(this.openid)
+        saveGreat({
+          uid: this.openid,
+          aid: id
+        }).then( res => {
+        })
+      },
+      // judgeAgree(){
+      //   getGreatList({
+      //     uid: this.openid
+      //   }).then( res => {
+      //
+      //   })
+      // }
   },
  }
 </script>
@@ -68,13 +101,13 @@
   }
   .score_header {
     box-shadow: 0 1px 2px #37a3ff;
-    font-size: 16px;
+    font-size: 1.2rem;
     width: 100%;
     background: linear-gradient(to right, #00d2ff 0%, #37a3ff 100%);
     /*background-color: #19bdff;*/
     color: #fff;
-    height: 45px;
-    line-height: 45px;
+    height: 8vh;
+    line-height: 8vh;
     flex: none;
     z-index: 1;
   }
@@ -122,4 +155,18 @@
       }
     }
     }
+  .changecolor{
+    color: #E6A23C;
+  }
+  .iconfont {
+    font-size: 28px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+  }
+  .return__icon {
+    position: absolute;
+    margin-left: 15px;
+  }
+
 </style>

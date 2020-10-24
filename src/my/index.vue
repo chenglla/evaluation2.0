@@ -1,5 +1,5 @@
 <template>
-  <div class="my-info" ref="my-wrapper">
+  <div class="my-info" ref="my_wrapper">
     <div class="my-content">
       <div class="my-up">
           <div>
@@ -30,7 +30,7 @@
                 <img src="../assets/img/报告.png" alt="">
                 <div>我的报告</div>
               </li>
-              <li class="my-down-score">
+              <li class="my-down-score" @click="gotoOption('myScore')">
                 <img src="../assets/img/成绩.png" alt="">
                 <div>学科成绩</div>
               </li>
@@ -38,10 +38,10 @@
                 <img src="../assets/img/收藏.png" alt="">
                 <div>我的收藏</div>
               </li>
-              <li class="my-down-star" @click="gotoOption('myStar')" >
-                <img src="../assets/img/赞.png" alt="">
-                <div>我赞过的</div>
-              </li>
+<!--              <li class="my-down-star" @click="gotoOption('myStar')" >-->
+<!--                <img src="../assets/img/赞.png" alt="">-->
+<!--                <div>我赞过的</div>-->
+<!--              </li>-->
               <li class="my-down-interest" @click="gotoOption('myinterest')" >
                 <img src="../assets/img/兴趣的小心心.png" alt="">
                 <div>我的兴趣 </div>
@@ -78,9 +78,9 @@ export default {
     }
   },
   mounted () {
+
     this.$nextTick(() => {
-      // eslint-disable-next-line no-undef
-      this.myScroll = new BScroll(this.$refs.my - wrapper, {
+      this.myScroll = new BScroll(this.$refs.my_wrapper, {
         click: true
       })
     })

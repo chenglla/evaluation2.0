@@ -24,24 +24,24 @@
         </div>
         <div class="one-step">
           <div style="margin: 0 auto; ">
-            <el-tag effect="plain">{{ mbtiData.brief }}</el-tag>
-            <el-tag effect="plain" style="float: right">{{ shisiData.teacherInfluenceBrief }}</el-tag>
+            <el-tag effect="plain" v-show="mbtiData.brief !== undefined">{{ mbtiData.brief }}</el-tag>
+            <el-tag effect="plain" v-show="shisiData.teacherInfluenceBrief !== undefined" style="float: right">{{shisiData.teacherInfluenceBrief}}</el-tag>
           </div>
           <el-row>
 
             <el-col :span="7" style="float: left ">
               <ul class="tag-list">
                 <li>
-                  <el-tag effect="plain">{{ sixData.brief }}</el-tag>
+                  <el-tag v-show="sixData.brief !== undefined" effect="plain">{{sixData.brief}}</el-tag>
                 </li>
                 <li>
-                  <el-tag effect="plain">{{ bodydata.brief }}</el-tag>
+                  <el-tag v-show="bodydata.brief !== undefined" effect="plain">{{bodydata.brief}}</el-tag>
                 </li>
                 <li>
-                  <el-tag effect="plain">{{ adjustdata.brief }}</el-tag>
+                  <el-tag v-show="adjustdata.brief !== undefined" effect="plain">{{adjustdata.brief}}</el-tag>
                 </li>
                 <li>
-                  <el-tag effect="plain">{{ plandata.brief }}</el-tag>
+                  <el-tag v-show="plandata.brief !== undefined"  effect="plain">{{plandata.brief}}</el-tag>
                 </li>
               </ul>
             </el-col>
@@ -53,47 +53,52 @@
             <el-col :span="7">
               <ul class="tag-list" style="float:right;">
                 <li>
-                  <el-tag effect="plain">{{ shisiData.hobbyInfluenceBrief }}</el-tag>
+                  <el-tag v-show="shisiData.hobbyInfluenceBrief !== undefined" effect="plain">{{shisiData.hobbyInfluenceBrief}}</el-tag>
                 </li>
                 <li>
-                  <el-tag effect="plain">{{ shisiData.othersInfluenceBrief }}</el-tag>
+                  <el-tag v-show="shisiData.othersInfluenceBrief !== undefined" effect="plain">{{shisiData.othersInfluenceBrief}}</el-tag>
                 </li>
                 <li>
-                  <el-tag effect="plain">{{ study.brief }}</el-tag>
+                  <el-tag v-show="study.brief !== undefined" effect="plain">{{ study.brief }}</el-tag>
                 </li>
                 <li>
-                  <el-tag effect="plain" style="padding: 0 6px 0 2px">{{ bigbrief }}</el-tag>
+                  <el-tag  v-show="bigbrief !== ''" effect="plain" style="padding: 0 6px 0 2px">{{ bigbrief }}</el-tag>
                 </li>
               </ul>
             </el-col>
           </el-row>
         </div>
-        <div style="margin: 0 auto; ">
-          <el-tag effect="plain">{{ happydata.brief }}</el-tag>
-          <el-tag effect="plain" style="float: right">{{ caredata.brief }}</el-tag>
+        <div  style="position: relative">
+            <el-tag v-show="happydata.brief  !== undefined" effect="plain" style="margin-right: 0.25rem">{{ happydata.brief }}</el-tag>
+            <el-tag v-show="caredata.brief !== undefined" effect="plain" >{{ caredata.brief }}</el-tag>
         </div>
         <el-collapse accordion>
           <el-collapse-item>
             <template slot="title">
               性格测评-MBTI 测评结果
             </template>
-            <div class="one-step">
+            <div class="one-step"  v-if="mapper[1] !== undefined">
               <h4>职业性格测评</h4>
-              <p v-html="mbtiData.describe">MBTI:{{ this.mbtiData.describe.zhiyname}}</p>
+              <p v-html="mbtiData.describe">MBTI:{{ this.mbtiData.describe}}</p>
               <h4>性格特征</h4>
               <p>{{ this.mbtiData.charactertype }}</p>
               <h4>适合职业</h4>
               <p v-for="item in mbtiprofession">{{ item.zhiyname }}</p>
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
           <el-collapse-item title="性格测评-大五人格测评">
-            <div class="one-step">
+            <div class="one-step" v-if="mapper[9] !== undefined">
               <h4>大五人格测评</h4>
               <el-row>
                 <el-col :span="24">
                   <big-five-chart :personassdata="mapper[9]" @func1="getbigfivebrief"></big-five-chart>
                 </el-col>
-
               </el-row>
               <div>
                 <p><span style="font-weight: bolder;color: #5ea6ff ">神经质或情绪稳定性(Neuroticism)：</span></p>
@@ -127,9 +132,15 @@
                 </p>
               </div>
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
           <el-collapse-item title="基本素养测评结果">
-            <div class="one-step">
+            <div class="one-step" v-if="mapper[7] !== undefined ||mapper[8] !== undefined || mapper[11]  !== undefined || mapper[12] !== undefined || mapper[13] !== undefined ">
               <h4>基本素养测评</h4>
               <p><span style="font-weight: bold;color: #ffae45">计划性:</span>{{ plandata.describe }}</p>
               <p><span style="font-weight: bold;color: #ffae45">细致高效:</span>{{ caredata.describe }}</p>
@@ -137,9 +148,15 @@
               <p><span style="font-weight: bold;color: #ffae45">积极乐观:</span>{{ happydata.describe }}</p>
               <p><span style="font-weight: bold;color: #ffae45">情绪稳定:</span>{{ emotiondata.describe }}</p>
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
           <el-collapse-item title="学习能力测评">
-            <div class="one-step">
+            <div class="one-step" v-if="mapper[3] !== undefined">
               <h4>学习能力</h4>
               <el-row>
                 <el-col :span="24">
@@ -174,23 +191,41 @@
                 </p>
               </div>
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
           <el-collapse-item title="心理状态测评">
-            <div class="one-step">
+            <div class="one-step" v-if="mapper[5] !== undefined">
               <h4>心理状态测评</h4>
               <p>{{ this.sixData.level }}</p>
               <p>{{ this.sixData.describe }}</p>
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
           <el-collapse-item title="身体状态测评">
-            <div class="one-step">
+            <div class="one-step" v-if="mapper[6] !== undefined">
               <h4>身体状态测评</h4>
               <p>{{ this.bodydata.level }}</p>
               <p>{{ this.bodydata.describe }}</p>
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
           <el-collapse-item title="TIMSS-A 数学能力测评">
-            <div class="one-step">
+            <div class="one-step"  v-if="mapper[14] !== undefined">
               <h4>TIMSS-A 数学能力测评</h4>
               <el-row>
                 <el-col :span="24">
@@ -199,9 +234,15 @@
               </el-row>
 
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
           <el-collapse-item title="脑象图测评">
-            <div class="one-step">
+            <div class="one-step" v-if="mapper[10] !== undefined">
               <h4>看图方法</h4>
               <li>
                 观察圆盘，找到上面的蓝色四边形区域。若这个四边形可以抽象为一个时钟的指针（也就是说指向某象限的那个角“锐”而不“钝”），那么您在此象限有明显倾向。指针越尖锐（夹角越小），倾向愈明显。有一些人会得出像利剑一般刺出了圆饼的图，这属于“超级倾向”，也就是说您在“剑刃”指向的大脑象限有非常强烈的倾向。
@@ -242,6 +283,12 @@
                 </p>
               </div>
             </div>
+            <div  class="img" v-else>
+              <el-image :src="require('@/assets/zanwu.png')" />
+              <div style="text-align: center">
+                <span style="font-size: 15px;font-weight: bold;color: #999999">暂无内容</span>
+              </div>
+            </div>
           </el-collapse-item>
         </el-collapse>
       </div>
@@ -263,7 +310,7 @@ import {carefulResult} from '@/api/index'
 import {adjustResult} from '@/api/index'
 import {happyBrainResult} from '@/api/index'
 import {bodyResult} from '@/api/index'
-
+import { mapState } from 'vuex'
 export default {
   name: 'myReport',
   components: {
@@ -271,6 +318,11 @@ export default {
     studyAbilityChart,
     mathAbilityChart,
     brainChart
+  },
+  computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    })
   },
   mounted() {
     this.getAll()
@@ -321,7 +373,7 @@ export default {
   methods: {
     getAll: function () {
       getAllUserAnswers({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 0
       }).then(res => {
         console.log('获取学生的全部测评答案')
@@ -353,7 +405,7 @@ export default {
         console.log("sss:");
         console.log(this.mbti);
         getMbtiResult({
-          openid: '111',
+          openid: this.openid,
           result: this.mbti
         }).then(res => {
           console.log('mbti')
@@ -369,7 +421,7 @@ export default {
     },
     getHealthData: function () {
       mentalBrainResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 5,
         result: this.six,
         toInsertDB: 0
@@ -383,7 +435,7 @@ export default {
         // console.log(res.data.data.describe)
       })
       bodyResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 6,
         result: this.body,
         toInsertDB: 0
@@ -399,7 +451,7 @@ export default {
     },
     getLearnResult() {
       postMathResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 14,
         result: this.shisi,
         toInsertDB: 0
@@ -415,7 +467,7 @@ export default {
     getBasic() {
       setTimeout(() => {
         carefulResult({
-          openid: '111',
+          openid: this.openid,
           result: this.care,
           type: 12
         }).then(res => {
@@ -427,7 +479,7 @@ export default {
           // console.log(this.caredata.describe)
         })
         adjustResult({
-          openid: '111',
+          openid: this.openid,
           result: this.adjust,
           type: 13
         }).then(res => {
@@ -436,7 +488,7 @@ export default {
           console.log(res.data.data.brief)
         })
         happyBrainResult({
-          openid: '111',
+          openid: this.openid,
           result: this.happy,
           type: 7
         }).then(res => {
@@ -445,7 +497,7 @@ export default {
           console.log(res.data.data.brief)
         })
         emotionResult({
-          openid: '111',
+          openid: this.openid,
           result: this.emotion,
           type: 8
         }).then(res => {
@@ -454,7 +506,7 @@ export default {
           console.log(res.data.data.brief)
         })
         postPlanResult({
-          openid: '111',
+          openid: this.openid,
           result: this.plan,
           type: 11
         }).then(res => {
@@ -467,7 +519,7 @@ export default {
     },
     getusermsg() {
       getuserinfo({
-        userOpenId: 111,
+        userOpenId: this.openid,
         type: 1
       }).then(res => {
         console.log('名字');
@@ -657,5 +709,8 @@ li {
   color: #9c9c9c;
   font-size: 12px;
   line-height: 26px;
+}
+.img{
+  text-align: center;
 }
 </style>

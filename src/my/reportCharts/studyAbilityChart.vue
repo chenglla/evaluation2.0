@@ -11,6 +11,7 @@
 <script>
 import echarts from 'echarts'
 import {postLearnAnswer} from '@/api/index'
+import { mapState } from 'vuex'
 require('echarts/theme/macarons') // echarts theme
 export default {
   name: 'bigFiveChart',
@@ -20,6 +21,11 @@ export default {
       learn: [],
       learnData: [],
     }
+  },
+  computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    })
   },
   mounted () {
 
@@ -35,7 +41,7 @@ export default {
     },
     learnDataResult(){
       postLearnAnswer({
-        openid:'111',
+        openid: this.openid,
         evaluateType: 3,
         result: this.learndata
       }).then(res =>{

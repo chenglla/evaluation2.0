@@ -7,6 +7,7 @@
 <script>
 import echarts from 'echarts'
 import {postBrainResult} from '@/api/index'
+import { mapState } from 'vuex'
 require('echarts/theme/macarons') // echarts theme
 export default {
   name: "brainChart",
@@ -22,6 +23,11 @@ export default {
       // option :
     }
   },
+  computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    })
+  },
   mounted() {
     this.getBrain()
     setTimeout(() => {
@@ -35,7 +41,7 @@ export default {
     },
     getBrain(){
       postBrainResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 10,
         result: this.braindata
       }).then(res => {

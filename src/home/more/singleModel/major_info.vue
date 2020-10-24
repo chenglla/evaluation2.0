@@ -4,7 +4,12 @@
       <div class="return__icon" @click="returnBack">
         <i class="iconfont iconfanhui"></i>
       </div>
-      <div class="title">职业详情</div>
+      <div class="title">职业详情
+        <i @click="clickAgree(careerId)">
+          <i v-if="!istrue" class="iconfont iconfavorite" style="float: right;margin-right: 20px"></i>
+          <i v-else class="iconfont iconshoucang11" style="color:#ff9c00;float: right;margin-right: 20px"></i>
+        </i>
+      </div>
     </div>
     <div class="resultInfo" ref="resultInfo">
       <div style="padding-bottom: 15px">
@@ -28,20 +33,26 @@
   </div>
 </template>
 <script>
-import {gotoMBTIMajorCon} from '@/api/index'
+import {getListByzhiyId,saveGreat} from '@/api/index'
 import BScroll from 'better-scroll'
+import {mapState} from "vuex";
 export default {
   data () {
     return {
       major_content: [],
-      resultScroll: null
+      resultScroll: null,
+      istrue:false,
+      careerid:'',
     }
   },
-  // computed: {
-  //   answerList () {
-  //     return JSON.parse(this.$route.query.list)
-  //   }
-  // },
+  computed: {
+    careerId () {
+      return this.$route.query.id
+    },
+    ...mapState({
+      openid: state => state.user.openid
+    }),
+  },
   mounted () {
     this.getMBTIMajorInfo()
     this.init()
@@ -61,13 +72,23 @@ export default {
       })
     },
     getMBTIMajorInfo () {
-      gotoMBTIMajorCon({
-        professionInfoId: this.$route.query.id
+      getListByzhiyId({
+        zhiyId: this.$route.query.id
       }).then(res => {
         console.log('结果：', res.data)
         this.major_content = res.data
       })
-    }
+    },
+    clickAgree(id) {
+      this.istrue = !this.istrue
+      console.log(id)
+      console.log(this.openid)
+      saveGreat({
+        uid: this.openid,
+        aid: id
+      }).then( res => {
+      })
+    },
   }
 }
 </script>
@@ -81,13 +102,13 @@ export default {
   }
   .score_header {
     position: relative;
-    font-size: 16px;
+    font-size: 1.2rem;
     width: 100%;
     background: linear-gradient(to right, #00d2ff 0%, #37a3ff 100%);
     /*background-color: #19bdff;*/
     color: #fff;
-    height: 45px;
-    line-height: 45px;
+    height: 8vh;
+    line-height: 8vh;
     flex: none;
     z-index: 1;
   }
@@ -139,6 +160,12 @@ export default {
   }
   .one-item-subtitle {
     margin: 7px;
+  }
+  .iconfont {
+    font-size: 28px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
   }
   .one-item-subcontent {
     /*text-indent: 2em;*/

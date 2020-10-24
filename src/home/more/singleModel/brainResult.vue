@@ -27,6 +27,7 @@
 <script>
 import echarts from 'echarts'
 import {postBrainResult} from '@/api/index'
+import { mapState } from 'vuex'
 export default {
   name: 'brainResult',
   data () {
@@ -40,6 +41,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    }),
     answerList () {
       return JSON.parse(this.$route.query.list)
     }
@@ -53,7 +57,7 @@ export default {
     },
     getBrainResult () {
       postBrainResult({
-        openid: '111',
+        openid: this.openid,
         evaluateType: 10,
         result: this.answerList
       }).then(res => {
