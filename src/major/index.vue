@@ -22,7 +22,7 @@
             <el-collapse>
               <el-collapse-item>
                 <template slot="title">
-                  <i class="iconfont iconanli"></i>
+                  <i class="iconfont iconanli" style="color: #69f0c7"></i>
                   <span>{{ major.name }}</span>
                 </template>
                 <div v-for="(sub, inde) in major.children" :key="inde" @click.stop="getMajorList('本科',sub)">
@@ -56,7 +56,7 @@
             <el-collapse>
               <el-collapse-item>
                 <template slot="title">
-                  <i class="iconfont iconanli"></i>
+                  <i class="iconfont iconanli" style="color: #69f0c7"></i>
                   <span>{{ majorzhuan.name }}</span>
                 </template>
                 <div v-for="(sub1, inde111) in majorzhuan.children" :key="inde111"

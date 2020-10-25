@@ -1,10 +1,10 @@
 <template>
   <div class="eval_second_info">
-    <div class="eval_second_item" @click="gotoOption('building')">
-<!--    <div class="eval_second_item" @click="gotoOption('discussion')">-->
-      <img src="../assets/img/taolun-3.png" alt="">
-      <span>讨论圈</span>
-    </div>
+<!--    <div class="eval_second_item" @click="gotoOption('building')">-->
+<!--&lt;!&ndash;    <div class="eval_second_item" @click="gotoOption('discussion')">&ndash;&gt;-->
+<!--      <img src="../assets/img/taolun-3.png" alt="">-->
+<!--      <span>讨论圈</span>-->
+<!--    </div>-->
     <div class="eval_second_item" @click="gotoOption('building')">
       <img src="../assets/img/huaban.png" alt="">
       <span>看资讯</span>

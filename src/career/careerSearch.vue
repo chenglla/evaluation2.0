@@ -21,8 +21,8 @@
         </div>
         <div v-else>
           <div class="major-list" v-for="(sub,index) in careerList" :key="index">
-            <el-button type="text" @click.stop="toCareerDetail(sub)">
-              {{ sub }}
+            <el-button type="text" @click.stop="toCareerDetail(sub.zhiyname)">
+              {{sub.zhiyid}}
             </el-button>
           </div>
         </div>
@@ -60,9 +60,9 @@ export default {
     toCareerDetail(sub) {
       console.log('id:', sub)
       this.$router.push({
-        path: '/careerDetail',
+        path: '/major_info',
         query: {
-          sub: sub
+          id: sub
         }
       })
     }

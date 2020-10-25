@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import {findCaseDetail,saveGreat,getGreatList} from '@/api/index'
+  import {findCaseDetail,saveGreat,getGreatList,whetherGreat} from '@/api/index'
   import BScroll from 'better-scroll'
   import {mapState} from "vuex";
   export default {
@@ -71,6 +71,12 @@
           caseId: this.$route.query.id,
         }).then(res => {
           this.detailLists = res.data
+        })
+        whetherGreat({
+          uid:this.openid,
+          aid:this.caseId
+        }).then( res => {
+          this.istrue = res.data
         })
       },
       clickAgree(id) {

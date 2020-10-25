@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import {getListByzhiyId,saveGreat} from '@/api/index'
+import {getListByzhiyId,saveGreat,whetherGreat} from '@/api/index'
 import BScroll from 'better-scroll'
 import {mapState} from "vuex";
 export default {
@@ -77,6 +77,12 @@ export default {
       }).then(res => {
         console.log('结果：', res.data)
         this.major_content = res.data
+      })
+      whetherGreat({
+        uid:this.openid,
+        aid:this.careerId
+      }).then( res => {
+        this.istrue = res.data
       })
     },
     clickAgree(id) {

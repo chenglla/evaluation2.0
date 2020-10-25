@@ -4,10 +4,10 @@
     <div class="eval_four_second">
       <img src="../assets/img/zcal.png" alt="">
 <!--      <div><span>职场</span>案例</div>-->
-      <span>查看更多 ></span>
+      <span @click="tocase">查看更多 ></span>
     </div>
     <div class="eval_four_third">
-      <div class="eval_four_third_item">
+      <div class="eval_four_third_item" @click="toCaseDetail1">
         <div class="eval_four_third_left">
           <div class="eval_four_left_top">
             <span>走出象牙塔</span>
@@ -18,14 +18,14 @@
 <!--              <span>￥59</span>-->
 <!--              <span class="middle_line">￥99</span>-->
 <!--            </div>-->
-            <span class="test_num">3k人已读</span>
+<!--            <span class="test_num">3k人已读</span>-->
           </div>
         </div>
         <div class="eval_four_third_right">
           <img src="../assets/img/anli_1.png" alt="">
         </div>
       </div>
-      <div class="eval_four_third_item">
+      <div class="eval_four_third_item" @click="toCaseDetail2">
         <div class="eval_four_third_left">
           <div class="eval_four_left_top">
             <span>宅在家的新天地</span>
@@ -36,7 +36,7 @@
 <!--              <span>￥59</span>-->
 <!--              <span class="middle_line">￥99</span>-->
 <!--            </div>-->
-            <span class="test_num">4k人已读</span>
+<!--            <span class="test_num">4k人已读</span>-->
           </div>
         </div>
         <div class="eval_four_third_right">
@@ -48,7 +48,31 @@
 </template>
 <script>
   export default {
-
+    methods:{
+      tocase() {
+        this.$router.push({
+          path: '/careerCase',
+        })
+      },
+      toCaseDetail1() {
+        this.$router.push({
+          path: '/caseDetail',
+          query: {
+            name:'走出象牙塔——在香醇咖啡中绽放创业花',
+            id: 'urkxdqr0fqq1ygiv'
+          }
+        })
+      },
+      toCaseDetail2() {
+        this.$router.push({
+          path: '/caseDetail',
+          query: {
+            name:'自由职业翻译',
+            id: 'njcq5rggis5njfk5'
+          }
+        })
+      }
+    }
   }
 </script>
 <style scoped lang="scss">

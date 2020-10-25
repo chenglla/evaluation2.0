@@ -59,6 +59,7 @@ export default {
     },
     toCaseDetail(name,id) {
       console.log('id:', id)
+      console.log('name:', name)
       this.$router.push({
         path: '/caseDetail',
         query: {

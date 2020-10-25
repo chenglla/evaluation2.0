@@ -4,11 +4,25 @@
       <div class="my-up">
           <div>
             <div class="my-up-avatar">
-              <img src="../assets/img/全头像.png" alt="">
+              <img :src="userInfo.usheadimgurl" alt="">
             </div>
-            <span class="user-name">用户名</span>
+            <span class="user-name">{{userInfo.userNickName}}</span>
           </div>
           <div class="my-up-num">
+<!--            <el-row :gutter="80">-->
+<!--              <el-col :span="8"> <div class="my-up-history">-->
+<!--                <div>43</div>-->
+<!--                <p>足迹</p>-->
+<!--              </div></el-col>-->
+<!--              <el-col :span="8"> <div class="my-up-history">-->
+<!--                <div>43</div>-->
+<!--                <p>足迹</p>-->
+<!--              </div></el-col>-->
+<!--              <el-col :span="8"> <div class="my-up-history">-->
+<!--                <div>43</div>-->
+<!--                <p>足迹</p>-->
+<!--              </div></el-col>-->
+<!--            </el-row>-->
             <div class="my-up-history">
               <div>43</div>
               <p>足迹</p>
@@ -51,14 +65,17 @@
           <div class="my-down-test">
             <div>
               <div class="test-head"><p>未完成测评</p></div>
-              <div v-if="testlist"></div>
+              <div v-if="testlist">
+              </div>
               <div class="test-list" v-else>
                 <img src="../assets/img/测评里的图片.png" alt="">
                 <div>
-                  <b class="none">暂无测评</b>
-                  <span class="tosee" @click="gotoOption('more')">去看看</span>
+                  <b class="none">已全部完成</b>
                 </div>
-                <p>你所有未完成的评价会显示在这里</p>
+<!--                <div >-->
+<!--                  <span class="tosee" @click="gotoOption('myReport')">去看看我的测评报告</span>-->
+<!--                </div>-->
+<!--                <p>你所有未完成的评价会显示在这里</p>-->
               </div>
             </div>
           </div>
@@ -68,27 +85,44 @@
  </div>
 </template>
 <script>
+import {getUserName} from '@/api/index'
 import BScroll from 'better-scroll'
+import {mapState} from "vuex";
 export default {
   name: 'my',
   data () {
     return {
       homeScroll: null,
+      userInfo:{},
       testlist: 0
     }
   },
+  computed: {
+    ...mapState({
+      openid: state => state.user.openid
+    })
+  },
   mounted () {
-
     this.$nextTick(() => {
       this.myScroll = new BScroll(this.$refs.my_wrapper, {
         click: true
       })
     })
+    this.getusername()
   },
   methods: {
     gotoOption (val) {
       this.$router.push({name: val})
+    },
+    getusername(){
+      getUserName({
+        openid: this.openid
+      }).then( res => {
+         this.userInfo = res.data.data
+        console.log((this.userInfo))
+      })
     }
+
   }
 }
 </script>
@@ -174,7 +208,6 @@ export default {
   // 未完成测试的大框
   .my-down-test{
     width: 90vw;
-    height: 700px;
     background-color: white;
     margin: 20px;
     border-bottom-color: gray;

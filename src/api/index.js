@@ -285,8 +285,22 @@ export function updateStudentScore (data) { // 根据id修改学生成绩
     dataType:'json',
     data:JSON.stringify(data),
     headers:{
-      'content-Type':'application/json;',
+      'content-Type':'application/json',
     }
+  })
+}
+export function whetherGreat (req) { // 根据id删除学生成绩
+  return request({
+    url: '/great/whetherGreat',
+    method: 'get',
+    params: req
+  })
+}
+export function getUserName (req) { // 获取用户名头像
+  return request({
+    url: '/user/getUserInfo',
+    method: 'get',
+    params: req
   })
 }
 

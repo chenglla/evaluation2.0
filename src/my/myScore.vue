@@ -9,8 +9,9 @@
     <div class="C-body" ref="mywrapper">
       <div class="C-item">
         <div class="C-text">
-          <el-button style="float: right;font: bolder;" type="text" size="medium" @click="addscore">新增
-          </el-button>
+          <div>
+            <el-button size="medium" type="text" icon="el-icon-plus" style="float: right" @click="addscore">新增</el-button>
+          </div>
           <el-table
             :data="scoreTable"
             stripe
@@ -185,7 +186,8 @@ export default {
       this.$confirm('确认删除此条成绩记录?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        center: true
       }).then(() => {
         deleteStudentScore({
           id:row.id,

@@ -12,13 +12,14 @@
       <div class="major-content" style="padding:20px 0 5px 0;">
         <div class="major-list" v-for="(majorlist,index) in majorLists" :key="index" >
           <div @click.stop="dropDown(majorlist)" style="margin-bottom: 0.5vh">
-            <img src="../assets/img/百科里的图片.png" alt="">
+<!--            <img src="../assets/img/百科里的图片.png" alt="">-->
+            <i class="iconfont iconanli1" style="color: #fe852f"></i>
             <span>{{majorlist.name}}</span>
             <i class="iconfont iconxiajiantou"></i>
           </div>
           <div  v-for="(sub,inde) in majorlist.children" :key="inde" v-show="majorlist.show" style="margin-top: 13px">
-            <div style="float: left">
-              <img src="../assets/img/火苗.png" alt="">
+            <div style="float: left;margin-right: 5px;height: 50%">
+              <img style="width: 10px" src="../assets/img/火苗.png" alt="">
             </div>
             <div @click.stop="toCaseDetail(sub.middle_name.caseName,sub.middle_name.caseId)">
               <h4>{{sub.middle_name.caseName}}</h4>

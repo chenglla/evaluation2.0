@@ -49,7 +49,7 @@
 <!--  <div style="height: 100%;width: 100%;display:flex;flex-direction: column;">-->
 </template>
 <script>
-  import {getMajorInfo,saveGreat} from '@/api/index'
+  import {getMajorInfo,saveGreat,whetherGreat} from '@/api/index'
   import {mapState} from "vuex";
     export default {
         name: "majorMsg",
@@ -84,6 +84,12 @@
             majorId:this.majorId
           }).then( res => {
             this.majorDescribe = res.data
+          })
+          whetherGreat({
+            uid:this.openid,
+            aid:this. majorId
+          }).then( res => {
+            this.istrue = res.data
           })
         },
         clickAgree(id) {

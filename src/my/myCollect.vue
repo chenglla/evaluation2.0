@@ -15,7 +15,7 @@
               <div class="C-title">{{ title }}</div>
             </div>
             <div class="C-text">
-              <el-button type="text" @click="toCaseDetail(item.articleName,item.articleId)">{{ item.articleName }}
+              <el-button type="text" @click="toMajorDetail(item.articleName,item.articleId)">{{ item.articleName }}
               </el-button>
             </div>
             <!--        <div class="C-time">{{time}}</div>-->
@@ -33,7 +33,7 @@
               <div class="C-title">{{ title }}</div>
             </div>
             <div class="C-text">
-              <el-button type="text" @click="toCaseDetail(item.articleName,item.articleId)">{{ item.articleName }}
+              <el-button type="text" @click="toCareerDetail(item.articleId)">{{ item.articleName }}
               </el-button>
             </div>
             <!--        <div class="C-time">{{time}}</div>-->
@@ -120,6 +120,18 @@ export default {
         }
       })
     },
+    toMajorDetail(name, id) {
+      this.$router.push({name: 'majorMsg', params: {name:name,id: id}})
+    },
+    toCareerDetail (id) {
+      console.log('id:', id)
+      this.$router.push({
+        path: '/major_info',
+        query: {
+          id: id
+        }
+      })
+    }
   }
 }
 </script>
